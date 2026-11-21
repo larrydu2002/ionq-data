@@ -1,0 +1,24 @@
+# ---- secrets: never commit ----
+.env
+.env.*
+*.env
+env
+env.*
+*secret*
+*credential*
+*.key
+*.pem
+*.p12
+*.pfx
+.netrc
+rclone.conf
+*token*.json
+id_rsa*
+secrets/
+.config/
+
+# ---- noise ----
+__pycache__/
+*.pyc
+.DS_Store
+*.swp
