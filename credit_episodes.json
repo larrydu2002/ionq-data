@@ -7,7 +7,7 @@
     "series": {
       "BAMLH0A3HYC": {
         "value": null,
-        "reason": "no FRED data in window; series starts 2023-11-21. ICE BofA OAS on FRED is limited to a rolling ~3-year window and ALFRED holds no vintages for it."
+        "reason": "no FRED data in window; series starts 2023-11-20. ICE BofA OAS on FRED is limited to a rolling ~3-year window and ALFRED holds no vintages for it."
       },
       "BAMLH0A2HYB": {
         "value": null,
@@ -19,7 +19,7 @@
       },
       "BAMLH0A0HYM2": {
         "value": null,
-        "reason": "no FRED data in window; series starts 2023-11-21. ICE BofA OAS on FRED is limited to a rolling ~3-year window and ALFRED holds no vintages for it."
+        "reason": "no FRED data in window; series starts 2023-11-20. ICE BofA OAS on FRED is limited to a rolling ~3-year window and ALFRED holds no vintages for it."
       },
       "BAMLC0A4CBBB": {
         "value": null,
@@ -36,6 +36,9 @@
         "window_start_obs_date": "2007-06-01",
         "max_5obs_widening_bp": 60.0,
         "max_5obs_widening_date": "2008-10-14",
+        "max_5obs_widening_dates": [
+          "2008-10-14"
+        ],
         "trading_days_start_to_peak": 7,
         "observations_in_window": 647,
         "source": "FRED",
@@ -48,6 +51,9 @@
         "window_start_obs_date": "2007-06-01",
         "max_5obs_widening_bp": 97.0,
         "max_5obs_widening_date": "2008-10-17",
+        "max_5obs_widening_dates": [
+          "2008-10-17"
+        ],
         "trading_days_start_to_peak": 378,
         "observations_in_window": 647,
         "source": "FRED",
@@ -60,6 +66,9 @@
         "window_start_obs_date": "2007-06-01",
         "max_5obs_widening_bp": 46.0,
         "max_5obs_widening_date": "2009-03-18",
+        "max_5obs_widening_dates": [
+          "2009-03-18"
+        ],
         "trading_days_start_to_peak": 448,
         "observations_in_window": 647,
         "source": "FRED",
@@ -77,7 +86,7 @@
     "series": {
       "BAMLH0A3HYC": {
         "value": null,
-        "reason": "no FRED data in window; series starts 2023-11-21. ICE BofA OAS on FRED is limited to a rolling ~3-year window and ALFRED holds no vintages for it."
+        "reason": "no FRED data in window; series starts 2023-11-20. ICE BofA OAS on FRED is limited to a rolling ~3-year window and ALFRED holds no vintages for it."
       },
       "BAMLH0A2HYB": {
         "value": null,
@@ -89,7 +98,7 @@
       },
       "BAMLH0A0HYM2": {
         "value": null,
-        "reason": "no FRED data in window; series starts 2023-11-21. ICE BofA OAS on FRED is limited to a rolling ~3-year window and ALFRED holds no vintages for it."
+        "reason": "no FRED data in window; series starts 2023-11-20. ICE BofA OAS on FRED is limited to a rolling ~3-year window and ALFRED holds no vintages for it."
       },
       "BAMLC0A4CBBB": {
         "value": null,
@@ -106,6 +115,9 @@
         "window_start_obs_date": "2000-03-01",
         "max_5obs_widening_bp": 59.0,
         "max_5obs_widening_date": "2001-11-16",
+        "max_5obs_widening_dates": [
+          "2001-11-16"
+        ],
         "trading_days_start_to_peak": 47,
         "observations_in_window": 770,
         "source": "FRED",
@@ -118,6 +130,9 @@
         "window_start_obs_date": "2000-03-01",
         "max_5obs_widening_bp": 53.0,
         "max_5obs_widening_date": "2001-09-19",
+        "max_5obs_widening_dates": [
+          "2001-09-19"
+        ],
         "trading_days_start_to_peak": 652,
         "observations_in_window": 769,
         "source": "FRED",
@@ -130,6 +145,9 @@
         "window_start_obs_date": "2000-03-01",
         "max_5obs_widening_bp": 52.0,
         "max_5obs_widening_date": "2001-09-19",
+        "max_5obs_widening_dates": [
+          "2001-09-19"
+        ],
         "trading_days_start_to_peak": 391,
         "observations_in_window": 769,
         "source": "FRED",
@@ -147,7 +165,7 @@
     "series": {
       "BAMLH0A3HYC": {
         "value": null,
-        "reason": "no FRED data in window; series starts 2023-11-21. ICE BofA OAS on FRED is limited to a rolling ~3-year window and ALFRED holds no vintages for it."
+        "reason": "no FRED data in window; series starts 2023-11-20. ICE BofA OAS on FRED is limited to a rolling ~3-year window and ALFRED holds no vintages for it."
       },
       "BAMLH0A2HYB": {
         "value": null,
@@ -159,7 +177,7 @@
       },
       "BAMLH0A0HYM2": {
         "value": null,
-        "reason": "no FRED data in window; series starts 2023-11-21. ICE BofA OAS on FRED is limited to a rolling ~3-year window and ALFRED holds no vintages for it."
+        "reason": "no FRED data in window; series starts 2023-11-20. ICE BofA OAS on FRED is limited to a rolling ~3-year window and ALFRED holds no vintages for it."
       },
       "BAMLC0A4CBBB": {
         "value": null,
@@ -176,6 +194,9 @@
         "window_start_obs_date": "2015-06-01",
         "max_5obs_widening_bp": 29.0,
         "max_5obs_widening_date": "2015-06-05",
+        "max_5obs_widening_dates": [
+          "2015-06-05"
+        ],
         "trading_days_start_to_peak": 7,
         "observations_in_window": 273,
         "source": "FRED",
@@ -187,7 +208,11 @@
         "value_at_window_start": 2.75,
         "window_start_obs_date": "2015-06-01",
         "max_5obs_widening_bp": 17.0,
-        "max_5obs_widening_date": "2016-01-21",
+        "max_5obs_widening_date": "2015-08-24",
+        "max_5obs_widening_dates": [
+          "2015-08-24",
+          "2016-01-21"
+        ],
         "trading_days_start_to_peak": 175,
         "observations_in_window": 273,
         "source": "FRED",
@@ -200,6 +225,9 @@
         "window_start_obs_date": "2015-06-01",
         "max_5obs_widening_bp": 24.0,
         "max_5obs_widening_date": "2016-01-20",
+        "max_5obs_widening_dates": [
+          "2016-01-20"
+        ],
         "trading_days_start_to_peak": 175,
         "observations_in_window": 273,
         "source": "FRED",
@@ -217,7 +245,7 @@
     "series": {
       "BAMLH0A3HYC": {
         "value": null,
-        "reason": "no FRED data in window; series starts 2023-11-21. ICE BofA OAS on FRED is limited to a rolling ~3-year window and ALFRED holds no vintages for it."
+        "reason": "no FRED data in window; series starts 2023-11-20. ICE BofA OAS on FRED is limited to a rolling ~3-year window and ALFRED holds no vintages for it."
       },
       "BAMLH0A2HYB": {
         "value": null,
@@ -229,7 +257,7 @@
       },
       "BAMLH0A0HYM2": {
         "value": null,
-        "reason": "no FRED data in window; series starts 2023-11-21. ICE BofA OAS on FRED is limited to a rolling ~3-year window and ALFRED holds no vintages for it."
+        "reason": "no FRED data in window; series starts 2023-11-20. ICE BofA OAS on FRED is limited to a rolling ~3-year window and ALFRED holds no vintages for it."
       },
       "BAMLC0A4CBBB": {
         "value": null,
@@ -246,6 +274,10 @@
         "window_start_obs_date": "2018-09-04",
         "max_5obs_widening_bp": 18.0,
         "max_5obs_widening_date": "2018-10-05",
+        "max_5obs_widening_dates": [
+          "2018-10-05",
+          "2019-01-10"
+        ],
         "trading_days_start_to_peak": 46,
         "observations_in_window": 141,
         "source": "FRED",
@@ -258,6 +290,9 @@
         "window_start_obs_date": "2018-09-04",
         "max_5obs_widening_bp": 18.0,
         "max_5obs_widening_date": "2018-11-19",
+        "max_5obs_widening_dates": [
+          "2018-11-19"
+        ],
         "trading_days_start_to_peak": 81,
         "observations_in_window": 141,
         "source": "FRED",
@@ -270,6 +305,9 @@
         "window_start_obs_date": "2018-09-04",
         "max_5obs_widening_bp": 18.0,
         "max_5obs_widening_date": "2018-11-19",
+        "max_5obs_widening_dates": [
+          "2018-11-19"
+        ],
         "trading_days_start_to_peak": 81,
         "observations_in_window": 141,
         "source": "FRED",
@@ -287,7 +325,7 @@
     "series": {
       "BAMLH0A3HYC": {
         "value": null,
-        "reason": "no FRED data in window; series starts 2023-11-21. ICE BofA OAS on FRED is limited to a rolling ~3-year window and ALFRED holds no vintages for it."
+        "reason": "no FRED data in window; series starts 2023-11-20. ICE BofA OAS on FRED is limited to a rolling ~3-year window and ALFRED holds no vintages for it."
       },
       "BAMLH0A2HYB": {
         "value": null,
@@ -299,7 +337,7 @@
       },
       "BAMLH0A0HYM2": {
         "value": null,
-        "reason": "no FRED data in window; series starts 2023-11-21. ICE BofA OAS on FRED is limited to a rolling ~3-year window and ALFRED holds no vintages for it."
+        "reason": "no FRED data in window; series starts 2023-11-20. ICE BofA OAS on FRED is limited to a rolling ~3-year window and ALFRED holds no vintages for it."
       },
       "BAMLC0A4CBBB": {
         "value": null,
@@ -316,6 +354,9 @@
         "window_start_obs_date": "2022-01-03",
         "max_5obs_widening_bp": 51.0,
         "max_5obs_widening_date": "2022-06-14",
+        "max_5obs_widening_dates": [
+          "2022-06-14"
+        ],
         "trading_days_start_to_peak": 202,
         "observations_in_window": 249,
         "source": "FRED",
@@ -328,6 +369,9 @@
         "window_start_obs_date": "2022-01-03",
         "max_5obs_widening_bp": 28.0,
         "max_5obs_widening_date": "2022-10-03",
+        "max_5obs_widening_dates": [
+          "2022-10-03"
+        ],
         "trading_days_start_to_peak": 124,
         "observations_in_window": 249,
         "source": "FRED",
@@ -340,6 +384,9 @@
         "window_start_obs_date": "2022-01-03",
         "max_5obs_widening_bp": 31.0,
         "max_5obs_widening_date": "2022-10-03",
+        "max_5obs_widening_dates": [
+          "2022-10-03"
+        ],
         "trading_days_start_to_peak": 44,
         "observations_in_window": 249,
         "source": "FRED",
@@ -357,7 +404,7 @@
     "series": {
       "BAMLH0A3HYC": {
         "value": null,
-        "reason": "no FRED data in window; series starts 2023-11-21. ICE BofA OAS on FRED is limited to a rolling ~3-year window and ALFRED holds no vintages for it."
+        "reason": "no FRED data in window; series starts 2023-11-20. ICE BofA OAS on FRED is limited to a rolling ~3-year window and ALFRED holds no vintages for it."
       },
       "BAMLH0A2HYB": {
         "value": null,
@@ -369,7 +416,7 @@
       },
       "BAMLH0A0HYM2": {
         "value": null,
-        "reason": "no FRED data in window; series starts 2023-11-21. ICE BofA OAS on FRED is limited to a rolling ~3-year window and ALFRED holds no vintages for it."
+        "reason": "no FRED data in window; series starts 2023-11-20. ICE BofA OAS on FRED is limited to a rolling ~3-year window and ALFRED holds no vintages for it."
       },
       "BAMLC0A4CBBB": {
         "value": null,
@@ -386,6 +433,9 @@
         "window_start_obs_date": "2020-02-03",
         "max_5obs_widening_bp": 36.0,
         "max_5obs_widening_date": "2020-03-18",
+        "max_5obs_widening_dates": [
+          "2020-03-18"
+        ],
         "trading_days_start_to_peak": 2,
         "observations_in_window": 230,
         "source": "FRED",
@@ -398,6 +448,10 @@
         "window_start_obs_date": "2020-02-03",
         "max_5obs_widening_bp": 93.0,
         "max_5obs_widening_date": "2020-03-20",
+        "max_5obs_widening_dates": [
+          "2020-03-20",
+          "2020-03-23"
+        ],
         "trading_days_start_to_peak": 34,
         "observations_in_window": 230,
         "source": "FRED",
@@ -410,6 +464,9 @@
         "window_start_obs_date": "2020-02-03",
         "max_5obs_widening_bp": 111.0,
         "max_5obs_widening_date": "2020-03-20",
+        "max_5obs_widening_dates": [
+          "2020-03-20"
+        ],
         "trading_days_start_to_peak": 33,
         "observations_in_window": 230,
         "source": "FRED",
@@ -432,6 +489,9 @@
         "window_start_obs_date": "2025-02-03",
         "max_5obs_widening_bp": 211.0,
         "max_5obs_widening_date": "2025-04-04",
+        "max_5obs_widening_dates": [
+          "2025-04-04"
+        ],
         "trading_days_start_to_peak": 45,
         "observations_in_window": 106,
         "source": "FRED",
@@ -444,6 +504,9 @@
         "window_start_obs_date": "2025-02-03",
         "max_5obs_widening_bp": 121.0,
         "max_5obs_widening_date": "2025-04-08",
+        "max_5obs_widening_dates": [
+          "2025-04-08"
+        ],
         "trading_days_start_to_peak": 45,
         "observations_in_window": 106,
         "source": "FRED",
@@ -456,6 +519,9 @@
         "window_start_obs_date": "2025-02-03",
         "max_5obs_widening_bp": 84.0,
         "max_5obs_widening_date": "2025-04-08",
+        "max_5obs_widening_dates": [
+          "2025-04-08"
+        ],
         "trading_days_start_to_peak": 45,
         "observations_in_window": 106,
         "source": "FRED",
@@ -468,6 +534,9 @@
         "window_start_obs_date": "2025-02-03",
         "max_5obs_widening_bp": 107.0,
         "max_5obs_widening_date": "2025-04-08",
+        "max_5obs_widening_dates": [
+          "2025-04-08"
+        ],
         "trading_days_start_to_peak": 45,
         "observations_in_window": 106,
         "source": "FRED",
@@ -480,6 +549,9 @@
         "window_start_obs_date": "2025-02-03",
         "max_5obs_widening_bp": 30.0,
         "max_5obs_widening_date": "2025-04-09",
+        "max_5obs_widening_dates": [
+          "2025-04-09"
+        ],
         "trading_days_start_to_peak": 47,
         "observations_in_window": 106,
         "source": "FRED",
@@ -492,6 +564,9 @@
         "window_start_obs_date": "2025-02-03",
         "max_5obs_widening_bp": 25.0,
         "max_5obs_widening_date": "2025-04-09",
+        "max_5obs_widening_dates": [
+          "2025-04-09"
+        ],
         "trading_days_start_to_peak": 47,
         "observations_in_window": 106,
         "source": "FRED",
@@ -504,6 +579,9 @@
         "window_start_obs_date": "2025-02-03",
         "max_5obs_widening_bp": 47.0,
         "max_5obs_widening_date": "2025-04-11",
+        "max_5obs_widening_dates": [
+          "2025-04-11"
+        ],
         "trading_days_start_to_peak": 7,
         "observations_in_window": 102,
         "source": "FRED",
@@ -516,6 +594,9 @@
         "window_start_obs_date": "2025-02-03",
         "max_5obs_widening_bp": 29.0,
         "max_5obs_widening_date": "2025-04-09",
+        "max_5obs_widening_dates": [
+          "2025-04-09"
+        ],
         "trading_days_start_to_peak": 44,
         "observations_in_window": 102,
         "source": "FRED",
@@ -528,6 +609,9 @@
         "window_start_obs_date": "2025-02-03",
         "max_5obs_widening_bp": 23.0,
         "max_5obs_widening_date": "2025-04-08",
+        "max_5obs_widening_dates": [
+          "2025-04-08"
+        ],
         "trading_days_start_to_peak": 44,
         "observations_in_window": 102,
         "source": "FRED",
@@ -542,8 +626,10 @@
       "value": 13.61,
       "as_of": "2026-11-19",
       "change_5obs_bp": 47.0,
-      "percentile_vs_trailing_1y": 93.3,
+      "percentile_vs_trailing_1y": 93.1,
+      "ties_at_current": 1,
       "trailing_observations": 252,
+      "percentile_method": "mid-rank: (#below + #equal/2) / n",
       "source": "FRED BAMLH0A3HYC",
       "grade": "一手"
     },
@@ -551,8 +637,10 @@
       "value": 3.8,
       "as_of": "2026-11-19",
       "change_5obs_bp": 41.0,
-      "percentile_vs_trailing_1y": 99.2,
+      "percentile_vs_trailing_1y": 99.0,
+      "ties_at_current": 1,
       "trailing_observations": 252,
+      "percentile_method": "mid-rank: (#below + #equal/2) / n",
       "source": "FRED BAMLH0A2HYB",
       "grade": "一手"
     },
@@ -560,8 +648,10 @@
       "value": 2.1,
       "as_of": "2026-11-19",
       "change_5obs_bp": 27.0,
-      "percentile_vs_trailing_1y": 98.4,
+      "percentile_vs_trailing_1y": 98.2,
+      "ties_at_current": 1,
       "trailing_observations": 252,
+      "percentile_method": "mid-rank: (#below + #equal/2) / n",
       "source": "FRED BAMLH0A1HYBB",
       "grade": "一手"
     },
@@ -569,8 +659,10 @@
       "value": 3.52,
       "as_of": "2026-11-19",
       "change_5obs_bp": 32.0,
-      "percentile_vs_trailing_1y": 98.4,
+      "percentile_vs_trailing_1y": 98.2,
+      "ties_at_current": 1,
       "trailing_observations": 252,
+      "percentile_method": "mid-rank: (#below + #equal/2) / n",
       "source": "FRED BAMLH0A0HYM2",
       "grade": "一手"
     },
@@ -579,7 +671,9 @@
       "as_of": "2026-11-19",
       "change_5obs_bp": 6.0,
       "percentile_vs_trailing_1y": 94.0,
+      "ties_at_current": 6,
       "trailing_observations": 252,
+      "percentile_method": "mid-rank: (#below + #equal/2) / n",
       "source": "FRED BAMLC0A4CBBB",
       "grade": "一手"
     },
@@ -587,8 +681,10 @@
       "value": 0.94,
       "as_of": "2026-11-19",
       "change_5obs_bp": 5.0,
-      "percentile_vs_trailing_1y": 93.7,
+      "percentile_vs_trailing_1y": 94.2,
+      "ties_at_current": 5,
       "trailing_observations": 252,
+      "percentile_method": "mid-rank: (#below + #equal/2) / n",
       "source": "FRED BAMLC0A0CM",
       "grade": "一手"
     },
@@ -596,8 +692,10 @@
       "value": 5.04,
       "as_of": "2026-11-19",
       "change_5obs_bp": -6.0,
-      "percentile_vs_trailing_1y": 21.8,
+      "percentile_vs_trailing_1y": 20.0,
+      "ties_at_current": 9,
       "trailing_observations": 252,
+      "percentile_method": "mid-rank: (#below + #equal/2) / n",
       "source": "FRED DGS10",
       "grade": "一手"
     },
@@ -605,8 +703,10 @@
       "value": 1.56,
       "as_of": "2026-11-19",
       "change_5obs_bp": 8.0,
-      "percentile_vs_trailing_1y": 98.0,
+      "percentile_vs_trailing_1y": 96.6,
+      "ties_at_current": 7,
       "trailing_observations": 252,
+      "percentile_method": "mid-rank: (#below + #equal/2) / n",
       "source": "FRED BAA10Y",
       "grade": "一手"
     },
@@ -614,18 +714,28 @@
       "value": 1.1,
       "as_of": "2026-11-19",
       "change_5obs_bp": 8.0,
-      "percentile_vs_trailing_1y": 97.2,
+      "percentile_vs_trailing_1y": 96.4,
+      "ties_at_current": 4,
       "trailing_observations": 252,
+      "percentile_method": "mid-rank: (#below + #equal/2) / n",
       "source": "FRED AAA10Y",
       "grade": "一手"
     }
   },
   "coverage": {
     "BAMLH0A3HYC": {
-      "earliest": "2023-11-21",
+      "earliest": "2023-11-20",
       "latest": "2026-11-19",
-      "observations": 786,
-      "source": "FRED (full history the API allows)"
+      "observations": 787,
+      "source": "FRED (full history the API allows)",
+      "seeded_rows": {
+        "dates": [
+          "2023-11-20"
+        ],
+        "source": "FRED 网页手工下载（Lei 2026-11-18）",
+        "file": "/home/du_lei/projects/invest/BAMLH0A3HYC.csv",
+        "note": "FRED API 的滚动窗口已不再返回这些日期；与 API 重叠的日期一律以 API 为准，手工文件不覆盖。"
+      }
     },
     "BAMLH0A2HYB": {
       "earliest": "2023-11-21",
@@ -640,10 +750,18 @@
       "source": "FRED (full history the API allows)"
     },
     "BAMLH0A0HYM2": {
-      "earliest": "2023-11-21",
+      "earliest": "2023-11-20",
       "latest": "2026-11-19",
-      "observations": 786,
-      "source": "FRED (full history the API allows)"
+      "observations": 787,
+      "source": "FRED (full history the API allows)",
+      "seeded_rows": {
+        "dates": [
+          "2023-11-20"
+        ],
+        "source": "FRED 网页手工下载（Lei 2026-11-18）",
+        "file": "/home/du_lei/projects/invest/BAMLH0A0HYM2.csv",
+        "note": "FRED API 的滚动窗口已不再返回这些日期；与 API 重叠的日期一律以 API 为准，手工文件不覆盖。"
+      }
     },
     "BAMLC0A4CBBB": {
       "earliest": "2023-11-21",
@@ -680,8 +798,11 @@
     "所有数据一手取自 FRED API，缺口一律 null + 原因，绝不用其他来源或记忆补。",
     "六条 ICE BofA OAS 在 FRED 只有约 3 年滚动窗口（最早 2023-11-21），ALFRED 对它们没有任何 vintage，因此 2023 年之前的 ICE 历史无法获得。",
     "BAA10Y / AAA10Y 是穆迪收益率利差，不是期权调整利差(OAS)，仅作长周期参照单列，绝不并入 ICE 列。",
-    "max_5obs_widening_bp = 窗口内 (值 − 5 个观测值前) × 100 的最大值。",
-    "percentile_vs_trailing_1y = 最新 5 观测变化在过去 252 个观测变化分布中的百分位。"
+    "5 观测变化 = (值 − 5 个观测值前) × 100，先四舍五入到 0.1bp，之后所有比较都用这个取整后的值。",
+    "max_5obs_widening_bp = 窗口内 5 观测变化的最大值。取整到 0.1bp 后可能有并列，max_5obs_widening_date 取并列中最早的一天，max_5obs_widening_dates 列出全部并列日期。",
+    "percentile_vs_trailing_1y = 中位秩口径：窗口取最近 252 个 5 观测变化（含当前这一个），百分位 = (小于当前值的个数 + 等于当前值的个数 ÷ 2) ÷ n × 100，保留 1 位小数。并列值取中位秩，避免当前值落在一串相等观测里时被整体推到该串的顶端。",
+    "ties_at_current = 窗口内与当前 5 观测变化相等的观测个数（含自身）。",
+    "credit_history.csv 中早于 FRED API 当前窗口的日期来自 FRED 网页手工下载（Lei 2026-11-18），见 coverage.*.seeded_rows；与 API 重叠的日期一律以 API 为准。"
   ],
-  "generated_at": "2026-11-22T14:01:48+11:00"
+  "generated_at": "2026-11-22T15:16:18+11:00"
 }
