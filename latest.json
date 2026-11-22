@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-22T17:40:10+11:00",
+  "generated_at": "2026-11-22T21:08:00+11:00",
   "script": "market_data_daily_v1.py",
   "version": "v1",
   "snapshot_date": "2026-11-20",
@@ -623,15 +623,21 @@
       },
       "6_breadth_washout_then_recover": {
         "triggered": false,
+        "anchor_peak_date": "2026-10-06",
         "armed_date": null,
         "armed_low": null,
         "recovered_date": null,
         "recovered_value": null,
-        "window_trading_days": 250,
-        "rule": "上膛：比例 < 10%；成立：上膛之后任意一天比例 > 50%（回看 250 个交易日 / 脚本口径）",
-        "thresholds_are_script_defined": true,
-        "in_force": false,
-        "note": "等 Lei 确认定义后生效；目前只计算、不参与任何红黄灯或批次判断",
+        "observations_since_peak": 33,
+        "min_since_peak": 31.7,
+        "rule": "第一步已满足（待确认）：比例 < 10%；成立：之后任意一天比例 > 50%。只认纳指100 参考高点日（2026-10-06）之后出现的读数；若纳指100 收盘创新高，参考高点更新，本条状态清零。",
+        "in_force": true,
+        "in_force_note": "Lei 2026-11-22 确认启用",
+        "anchor_source": "yfinance ^NDX 收盘最高日（与 bear_clock 同源，未设上限）",
+        "anchor_note": "取自 bear_clock 同一条 ^NDX 收盘序列的最高收盘日，但不设 2026-10-06 上限；当前最高收盘日仍是 2026-10-06，与 bear_clock.peak_close_date 一致。",
+        "anchor_is_new_high_after_plan_peak": false,
+        "bear_clock_peak_close_date": "2026-10-06",
+        "anchor_matches_bear_clock": true,
         "source": "yfinance NDX constituents"
       }
     }
@@ -646,7 +652,7 @@
     "ndx_breadth_ma50 = 纳指100 成分股中收盘价高于 50 日简单均线的比例（%）。分母是有效成分股数（数据不足 50 天或抓取失败的列入 missing_tickers，不估、不计入分母）。成分股名单一手取自 Nasdaq 官网。",
     "ndx_breadth_history.csv 用【当前】成分股名单回算，存在幸存者偏差：今天的名单不等于历史上的成分股，被剔除的公司完全不在样本里，因此回算值只能作参考，不能用于判断。",
     "rsp_spy_ratio / qqew_qqq_ratio 读法：比值上升 = 大市值（AI）跌得比普通股多，属于窄幅；比值持平且两者同步下跌 = 全面。两者均为纯观察项，不触发任何批次。",
-    "triggers.batch_3_partial.6_breadth_washout_then_recover 尚未生效（in_force=false）：上膛 < 10%、成立 > 50%，回看 250 个交易日为脚本口径，等 Lei 确认后才参与判断。",
+    "triggers.batch_3_partial.6_breadth_washout_then_recover 已生效（in_force=true，Lei 2026-11-22 确认）：第一步已满足（待确认）= 比例 < 10%，成立 = 之后任意一天 > 50%。不再使用固定回看窗口，改为锚定本轮熊市起点：只认纳指100 参考高点日之后出现的读数；若纳指100 收盘创新高，参考高点更新，本条状态清零。",
     "脚本只读数据，不连接券商，不下单。"
   ],
   "raw": {
