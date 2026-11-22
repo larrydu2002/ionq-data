@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-22T21:08:00+11:00",
+  "generated_at": "2026-11-22T22:29:32+11:00",
   "script": "market_data_daily_v1.py",
   "version": "v1",
   "snapshot_date": "2026-11-20",
@@ -317,6 +317,35 @@
       "qqq_drawdown_from_52w_high_pct": -19.9,
       "qqq_52w_high": 759.66,
       "qqq_52w_high_date": "2026-10-06"
+    },
+    "finra_margin": {
+      "latest_month": "2026-10",
+      "debit_mn": 1448360,
+      "mom_pct": -2.14,
+      "mom_base_month": "2026-09",
+      "yoy_pct": 22.36,
+      "yoy_base_month": "2025-10",
+      "yoy_error": null,
+      "peak_month": "2026-06",
+      "peak_debit_mn": 1502072,
+      "from_peak_pct": -3.58,
+      "free_credit_cash_mn": 210290,
+      "free_credit_margin_mn": 212890,
+      "debit_to_cash_ratio": 6.8874,
+      "flag_mom_drop_gt_10": false,
+      "flag_yoy_negative": false,
+      "new_month_since_last_snapshot": false,
+      "previous_latest_month": "2026-10",
+      "months_in_history": 358,
+      "history_first_month": "1997-01",
+      "source_url": "https://www.finra.org/rules-guidance/key-topics/margin-accounts/margin-statistics",
+      "fetched_at": "2026-11-22T22:29:31+11:00",
+      "source": "FINRA margin-statistics.xlsx (linked on the page)",
+      "source_file_url": "https://www.finra.org/sites/default/files/2021-03/margin-statistics.xlsx",
+      "rows": 358,
+      "in_force": false,
+      "note": "观察项 F，只记录，不触发",
+      "error": null
     },
     "qqq_drawdown_pct_crosscheck": {
       "value": -19.9,
@@ -653,6 +682,7 @@
     "ndx_breadth_history.csv 用【当前】成分股名单回算，存在幸存者偏差：今天的名单不等于历史上的成分股，被剔除的公司完全不在样本里，因此回算值只能作参考，不能用于判断。",
     "rsp_spy_ratio / qqew_qqq_ratio 读法：比值上升 = 大市值（AI）跌得比普通股多，属于窄幅；比值持平且两者同步下跌 = 全面。两者均为纯观察项，不触发任何批次。",
     "triggers.batch_3_partial.6_breadth_washout_then_recover 已生效（in_force=true，Lei 2026-11-22 确认）：第一步已满足（待确认）= 比例 < 10%，成立 = 之后任意一天 > 50%。不再使用固定回看窗口，改为锚定本轮熊市起点：只认纳指100 参考高点日之后出现的读数；若纳指100 收盘创新高，参考高点更新，本条状态清零。",
+    "finra_margin = 观察项 F：FINRA 融资余额（月度，单位百万美元）。一手来源只认 FINRA 官网 margin statistics 页面及该页链接的 xlsx，不用任何新闻站/YCharts/第三方聚合；两者都失败就写 null + error，绝不估值。FINRA 通常在次月第三周左右发布上月数据，所以 latest_month 会落后当前月 1-2 个月。本项 in_force=false，只记录，不参与任何红黄灯、批次或触发判断。",
     "脚本只读数据，不连接券商，不下单。"
   ],
   "raw": {
@@ -4171,6 +4201,2156 @@
           "value": 0.94
         }
       ]
-    }
+    },
+    "finra_margin": [
+      {
+        "month": "1997-01",
+        "debit_mn": 103337,
+        "free_credit_cash_mn": 68856,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1997-02",
+        "debit_mn": 103886,
+        "free_credit_cash_mn": 67058,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1997-03",
+        "debit_mn": 104835,
+        "free_credit_cash_mn": 69553,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1997-04",
+        "debit_mn": 102842,
+        "free_credit_cash_mn": 64825,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1997-05",
+        "debit_mn": 111097,
+        "free_credit_cash_mn": 66879,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1997-06",
+        "debit_mn": 118843,
+        "free_credit_cash_mn": 72422,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1997-07",
+        "debit_mn": 121090,
+        "free_credit_cash_mn": 73714,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1997-08",
+        "debit_mn": 124404,
+        "free_credit_cash_mn": 71211,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1997-09",
+        "debit_mn": 131962,
+        "free_credit_cash_mn": 73087,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1997-10",
+        "debit_mn": 134491,
+        "free_credit_cash_mn": 80287,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1997-11",
+        "debit_mn": 132741,
+        "free_credit_cash_mn": 77259,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1997-12",
+        "debit_mn": 131560,
+        "free_credit_cash_mn": 88590,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1998-01",
+        "debit_mn": 132912,
+        "free_credit_cash_mn": 83362,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1998-02",
+        "debit_mn": 141328,
+        "free_credit_cash_mn": 81932,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1998-03",
+        "debit_mn": 146536,
+        "free_credit_cash_mn": 85580,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1998-04",
+        "debit_mn": 146589,
+        "free_credit_cash_mn": 85771,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1998-05",
+        "debit_mn": 150293,
+        "free_credit_cash_mn": 80174,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1998-06",
+        "debit_mn": 154357,
+        "free_credit_cash_mn": 87891,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1998-07",
+        "debit_mn": 160980,
+        "free_credit_cash_mn": 92687,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1998-08",
+        "debit_mn": 155879,
+        "free_credit_cash_mn": 100093,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1998-09",
+        "debit_mn": 144541,
+        "free_credit_cash_mn": 103879,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1998-10",
+        "debit_mn": 138399,
+        "free_credit_cash_mn": 108179,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1998-11",
+        "debit_mn": 148697,
+        "free_credit_cash_mn": 108032,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1998-12",
+        "debit_mn": 148674,
+        "free_credit_cash_mn": 111507,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1999-01",
+        "debit_mn": 162322,
+        "free_credit_cash_mn": 107200,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1999-02",
+        "debit_mn": 162909,
+        "free_credit_cash_mn": 109523,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1999-03",
+        "debit_mn": 166212,
+        "free_credit_cash_mn": 109941,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1999-04",
+        "debit_mn": 184329,
+        "free_credit_cash_mn": 112290,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1999-05",
+        "debit_mn": 189950,
+        "free_credit_cash_mn": 114271,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1999-06",
+        "debit_mn": 187695,
+        "free_credit_cash_mn": 116982,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1999-07",
+        "debit_mn": 189503,
+        "free_credit_cash_mn": 115017,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1999-08",
+        "debit_mn": 187616,
+        "free_credit_cash_mn": 117149,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1999-09",
+        "debit_mn": 189741,
+        "free_credit_cash_mn": 121207,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1999-10",
+        "debit_mn": 194259,
+        "free_credit_cash_mn": 123457,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1999-11",
+        "debit_mn": 218304,
+        "free_credit_cash_mn": 131786,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "1999-12",
+        "debit_mn": 241967,
+        "free_credit_cash_mn": 146582,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2000-01",
+        "debit_mn": 260409,
+        "free_credit_cash_mn": 148567,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2000-02",
+        "debit_mn": 284206,
+        "free_credit_cash_mn": 153540,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2000-03",
+        "debit_mn": 299933,
+        "free_credit_cash_mn": 168002,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2000-04",
+        "debit_mn": 268716,
+        "free_credit_cash_mn": 156868,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2000-05",
+        "debit_mn": 256862,
+        "free_credit_cash_mn": 153843,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2000-06",
+        "debit_mn": 264471,
+        "free_credit_cash_mn": 153050,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2000-07",
+        "debit_mn": 263729,
+        "free_credit_cash_mn": 163050,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2000-08",
+        "debit_mn": 265166,
+        "free_credit_cash_mn": 156775,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2000-09",
+        "debit_mn": 270208,
+        "free_credit_cash_mn": 160964,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2000-10",
+        "debit_mn": 250965,
+        "free_credit_cash_mn": 172738,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2000-11",
+        "debit_mn": 237913,
+        "free_credit_cash_mn": 186459,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2000-12",
+        "debit_mn": 210385,
+        "free_credit_cash_mn": 198179,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2001-01",
+        "debit_mn": 208687,
+        "free_credit_cash_mn": 187225,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2001-02",
+        "debit_mn": 198887,
+        "free_credit_cash_mn": 193266,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2001-03",
+        "debit_mn": 174797,
+        "free_credit_cash_mn": 198581,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2001-04",
+        "debit_mn": 176096,
+        "free_credit_cash_mn": 191145,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2001-05",
+        "debit_mn": 183041,
+        "free_credit_cash_mn": 183493,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2001-06",
+        "debit_mn": 179585,
+        "free_credit_cash_mn": 187602,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2001-07",
+        "debit_mn": 173680,
+        "free_credit_cash_mn": 185100,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2001-08",
+        "debit_mn": 169316,
+        "free_credit_cash_mn": 191219,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2001-09",
+        "debit_mn": 157931,
+        "free_credit_cash_mn": 211281,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2001-10",
+        "debit_mn": 152367,
+        "free_credit_cash_mn": 187012,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2001-11",
+        "debit_mn": 159440,
+        "free_credit_cash_mn": 188441,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2001-12",
+        "debit_mn": 160473,
+        "free_credit_cash_mn": 197424,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2002-01",
+        "debit_mn": 160906,
+        "free_credit_cash_mn": 189841,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2002-02",
+        "debit_mn": 154931,
+        "free_credit_cash_mn": 186919,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2002-03",
+        "debit_mn": 160089,
+        "free_credit_cash_mn": 180578,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2002-04",
+        "debit_mn": 159072,
+        "free_credit_cash_mn": 175730,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2002-05",
+        "debit_mn": 157802,
+        "free_credit_cash_mn": 173395,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2002-06",
+        "debit_mn": 153972,
+        "free_credit_cash_mn": 178744,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2002-07",
+        "debit_mn": 143905,
+        "free_credit_cash_mn": 183326,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2002-08",
+        "debit_mn": 139146,
+        "free_credit_cash_mn": 174995,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2002-09",
+        "debit_mn": 136107,
+        "free_credit_cash_mn": 180997,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2002-10",
+        "debit_mn": 138647,
+        "free_credit_cash_mn": 181069,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2002-11",
+        "debit_mn": 139472,
+        "free_credit_cash_mn": 176062,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2002-12",
+        "debit_mn": 139451,
+        "free_credit_cash_mn": 184715,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2003-01",
+        "debit_mn": 141391,
+        "free_credit_cash_mn": 179528,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2003-02",
+        "debit_mn": 140516,
+        "free_credit_cash_mn": 179925,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2003-03",
+        "debit_mn": 144267,
+        "free_credit_cash_mn": 176955,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2003-04",
+        "debit_mn": 143237,
+        "free_credit_cash_mn": 168756,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2003-05",
+        "debit_mn": 153725,
+        "free_credit_cash_mn": 178946,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2003-06",
+        "debit_mn": 168281,
+        "free_credit_cash_mn": 190026,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2003-07",
+        "debit_mn": 174427,
+        "free_credit_cash_mn": 199973,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2003-08",
+        "debit_mn": 167200,
+        "free_credit_cash_mn": 188112,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2003-09",
+        "debit_mn": 171194,
+        "free_credit_cash_mn": 189826,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2003-10",
+        "debit_mn": 175428,
+        "free_credit_cash_mn": 191554,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2003-11",
+        "debit_mn": 182587,
+        "free_credit_cash_mn": 184899,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2003-12",
+        "debit_mn": 181459,
+        "free_credit_cash_mn": 199297,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2004-01",
+        "debit_mn": 189429,
+        "free_credit_cash_mn": 198628,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2004-02",
+        "debit_mn": 190448,
+        "free_credit_cash_mn": 200323,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2004-03",
+        "debit_mn": 191451,
+        "free_credit_cash_mn": 203953,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2004-04",
+        "debit_mn": 198778,
+        "free_credit_cash_mn": 217992,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2004-05",
+        "debit_mn": 193843,
+        "free_credit_cash_mn": 219640,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2004-06",
+        "debit_mn": 193993,
+        "free_credit_cash_mn": 220781,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2004-07",
+        "debit_mn": 187844,
+        "free_credit_cash_mn": 220196,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2004-08",
+        "debit_mn": 187828,
+        "free_credit_cash_mn": 217945,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2004-09",
+        "debit_mn": 193668,
+        "free_credit_cash_mn": 220860,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2004-10",
+        "debit_mn": 197999,
+        "free_credit_cash_mn": 218090,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2004-11",
+        "debit_mn": 211012,
+        "free_credit_cash_mn": 223928,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2004-12",
+        "debit_mn": 217573,
+        "free_credit_cash_mn": 238192,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2005-01",
+        "debit_mn": 220122,
+        "free_credit_cash_mn": 230624,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2005-02",
+        "debit_mn": 223155,
+        "free_credit_cash_mn": 224392,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2005-03",
+        "debit_mn": 226876,
+        "free_credit_cash_mn": 234533,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2005-04",
+        "debit_mn": 217447,
+        "free_credit_cash_mn": 223839,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2005-05",
+        "debit_mn": 219404,
+        "free_credit_cash_mn": 224933,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2005-06",
+        "debit_mn": 224153,
+        "free_credit_cash_mn": 234352,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2005-07",
+        "debit_mn": 233585,
+        "free_credit_cash_mn": 224242,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2005-08",
+        "debit_mn": 231400,
+        "free_credit_cash_mn": 225410,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2005-09",
+        "debit_mn": 244669,
+        "free_credit_cash_mn": 238929,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2005-10",
+        "debit_mn": 239868,
+        "free_credit_cash_mn": 243174,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2005-11",
+        "debit_mn": 242904,
+        "free_credit_cash_mn": 241695,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2005-12",
+        "debit_mn": 244098,
+        "free_credit_cash_mn": 263205,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2006-01",
+        "debit_mn": 255795,
+        "free_credit_cash_mn": 255819,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2006-02",
+        "debit_mn": 249609,
+        "free_credit_cash_mn": 257573,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2006-03",
+        "debit_mn": 259370,
+        "free_credit_cash_mn": 258928,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2006-04",
+        "debit_mn": 265164,
+        "free_credit_cash_mn": 259342,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2006-05",
+        "debit_mn": 255608,
+        "free_credit_cash_mn": 264307,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2006-06",
+        "debit_mn": 251495,
+        "free_credit_cash_mn": 280275,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2006-07",
+        "debit_mn": 256016,
+        "free_credit_cash_mn": 269376,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2006-08",
+        "debit_mn": 249368,
+        "free_credit_cash_mn": 269423,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2006-09",
+        "debit_mn": 261769,
+        "free_credit_cash_mn": 268612,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2006-10",
+        "debit_mn": 267710,
+        "free_credit_cash_mn": 267462,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2006-11",
+        "debit_mn": 294899,
+        "free_credit_cash_mn": 290910,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2006-12",
+        "debit_mn": 303288,
+        "free_credit_cash_mn": 299023,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2007-01",
+        "debit_mn": 311506,
+        "free_credit_cash_mn": 292521,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2007-02",
+        "debit_mn": 321171,
+        "free_credit_cash_mn": 300072,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2007-03",
+        "debit_mn": 317737,
+        "free_credit_cash_mn": 305479,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2007-04",
+        "debit_mn": 342084,
+        "free_credit_cash_mn": 314744,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2007-05",
+        "debit_mn": 382312,
+        "free_credit_cash_mn": 334359,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2007-06",
+        "debit_mn": 408444,
+        "free_credit_cash_mn": 347617,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2007-07",
+        "debit_mn": 416403,
+        "free_credit_cash_mn": 380971,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2007-08",
+        "debit_mn": 362475,
+        "free_credit_cash_mn": 381550,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2007-09",
+        "debit_mn": 359104,
+        "free_credit_cash_mn": 377364,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2007-10",
+        "debit_mn": 376979,
+        "free_credit_cash_mn": 392543,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2007-11",
+        "debit_mn": 379593,
+        "free_credit_cash_mn": 426721,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2007-12",
+        "debit_mn": 355292,
+        "free_credit_cash_mn": 456353,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2008-01",
+        "debit_mn": 365592,
+        "free_credit_cash_mn": 474496,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2008-02",
+        "debit_mn": 377088,
+        "free_credit_cash_mn": 454785,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2008-03",
+        "debit_mn": 349419,
+        "free_credit_cash_mn": 488831,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2008-04",
+        "debit_mn": 332303,
+        "free_credit_cash_mn": 472371,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2008-05",
+        "debit_mn": 341610,
+        "free_credit_cash_mn": 470188,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2008-06",
+        "debit_mn": 346892,
+        "free_credit_cash_mn": 499634,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2008-07",
+        "debit_mn": 343297,
+        "free_credit_cash_mn": 519226,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2008-08",
+        "debit_mn": 324814,
+        "free_credit_cash_mn": 530042,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2008-09",
+        "debit_mn": 345745,
+        "free_credit_cash_mn": 381702,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2008-10",
+        "debit_mn": 277568,
+        "free_credit_cash_mn": 383429,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2008-11",
+        "debit_mn": 227334,
+        "free_credit_cash_mn": 364232,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2008-12",
+        "debit_mn": 210185,
+        "free_credit_cash_mn": 345713,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2009-01",
+        "debit_mn": 205007,
+        "free_credit_cash_mn": 316763,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2009-02",
+        "debit_mn": 199655,
+        "free_credit_cash_mn": 310503,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2009-03",
+        "debit_mn": 203967,
+        "free_credit_cash_mn": 291927,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2009-04",
+        "debit_mn": 208010,
+        "free_credit_cash_mn": 285658,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2009-05",
+        "debit_mn": 214401,
+        "free_credit_cash_mn": 275313,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2009-06",
+        "debit_mn": 217140,
+        "free_credit_cash_mn": 283874,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2009-07",
+        "debit_mn": 228734,
+        "free_credit_cash_mn": 277082,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2009-08",
+        "debit_mn": 236251,
+        "free_credit_cash_mn": 281989,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2009-09",
+        "debit_mn": 254107,
+        "free_credit_cash_mn": 287196,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2009-10",
+        "debit_mn": 265404,
+        "free_credit_cash_mn": 299858,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2009-11",
+        "debit_mn": 250988,
+        "free_credit_cash_mn": 284071,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2009-12",
+        "debit_mn": 262399,
+        "free_credit_cash_mn": 281043,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2010-01",
+        "debit_mn": 266455,
+        "free_credit_cash_mn": 281035,
+        "free_credit_margin_mn": NaN
+      },
+      {
+        "month": "2010-02",
+        "debit_mn": 263657,
+        "free_credit_cash_mn": 106131,
+        "free_credit_margin_mn": 164624.0
+      },
+      {
+        "month": "2010-03",
+        "debit_mn": 277798,
+        "free_credit_cash_mn": 108908,
+        "free_credit_margin_mn": 162169.0
+      },
+      {
+        "month": "2010-04",
+        "debit_mn": 295550,
+        "free_credit_cash_mn": 111217,
+        "free_credit_margin_mn": 160630.0
+      },
+      {
+        "month": "2010-05",
+        "debit_mn": 268566,
+        "free_credit_cash_mn": 114051,
+        "free_credit_margin_mn": 166706.0
+      },
+      {
+        "month": "2010-06",
+        "debit_mn": 263202,
+        "free_credit_cash_mn": 114265,
+        "free_credit_margin_mn": 172908.0
+      },
+      {
+        "month": "2010-07",
+        "debit_mn": 267468,
+        "free_credit_cash_mn": 106290,
+        "free_credit_margin_mn": 172179.0
+      },
+      {
+        "month": "2010-08",
+        "debit_mn": 268371,
+        "free_credit_cash_mn": 106870,
+        "free_credit_margin_mn": 174209.0
+      },
+      {
+        "month": "2010-09",
+        "debit_mn": 288540,
+        "free_credit_cash_mn": 114321,
+        "free_credit_margin_mn": 173544.0
+      },
+      {
+        "month": "2010-10",
+        "debit_mn": 303428,
+        "free_credit_cash_mn": 114784,
+        "free_credit_margin_mn": 176588.0
+      },
+      {
+        "month": "2010-11",
+        "debit_mn": 309340,
+        "free_credit_cash_mn": 119305,
+        "free_credit_margin_mn": 176805.0
+      },
+      {
+        "month": "2010-12",
+        "debit_mn": 313678,
+        "free_credit_cash_mn": 126098,
+        "free_credit_margin_mn": 182426.0
+      },
+      {
+        "month": "2011-01",
+        "debit_mn": 326868,
+        "free_credit_cash_mn": 130894,
+        "free_credit_margin_mn": 173545.0
+      },
+      {
+        "month": "2011-02",
+        "debit_mn": 348979,
+        "free_credit_cash_mn": 135760,
+        "free_credit_margin_mn": 179102.0
+      },
+      {
+        "month": "2011-03",
+        "debit_mn": 355413,
+        "free_credit_cash_mn": 133386,
+        "free_credit_margin_mn": 170139.0
+      },
+      {
+        "month": "2011-04",
+        "debit_mn": 360883,
+        "free_credit_cash_mn": 133131,
+        "free_credit_margin_mn": 175399.0
+      },
+      {
+        "month": "2011-05",
+        "debit_mn": 355736,
+        "free_credit_cash_mn": 133727,
+        "free_credit_margin_mn": 175508.0
+      },
+      {
+        "month": "2011-06",
+        "debit_mn": 345273,
+        "free_credit_cash_mn": 139575,
+        "free_credit_margin_mn": 183547.0
+      },
+      {
+        "month": "2011-07",
+        "debit_mn": 344572,
+        "free_credit_cash_mn": 138316,
+        "free_credit_margin_mn": 182957.0
+      },
+      {
+        "month": "2011-08",
+        "debit_mn": 308866,
+        "free_credit_cash_mn": 135508,
+        "free_credit_margin_mn": 193533.0
+      },
+      {
+        "month": "2011-09",
+        "debit_mn": 298277,
+        "free_credit_cash_mn": 141806,
+        "free_credit_margin_mn": 204307.0
+      },
+      {
+        "month": "2011-10",
+        "debit_mn": 317028,
+        "free_credit_cash_mn": 133639,
+        "free_credit_margin_mn": 188141.0
+      },
+      {
+        "month": "2011-11",
+        "debit_mn": 303930,
+        "free_credit_cash_mn": 132934,
+        "free_credit_margin_mn": 188259.0
+      },
+      {
+        "month": "2011-12",
+        "debit_mn": 301616,
+        "free_credit_cash_mn": 142533,
+        "free_credit_margin_mn": 189143.0
+      },
+      {
+        "month": "2012-01",
+        "debit_mn": 309844,
+        "free_credit_cash_mn": 137309,
+        "free_credit_margin_mn": 174889.0
+      },
+      {
+        "month": "2012-02",
+        "debit_mn": 323021,
+        "free_credit_cash_mn": 139609,
+        "free_credit_margin_mn": 177639.0
+      },
+      {
+        "month": "2012-03",
+        "debit_mn": 330815,
+        "free_credit_cash_mn": 142297,
+        "free_credit_margin_mn": 182814.0
+      },
+      {
+        "month": "2012-04",
+        "debit_mn": 335154,
+        "free_credit_cash_mn": 138909,
+        "free_credit_margin_mn": 182021.0
+      },
+      {
+        "month": "2012-05",
+        "debit_mn": 315147,
+        "free_credit_cash_mn": 139111,
+        "free_credit_margin_mn": 187938.0
+      },
+      {
+        "month": "2012-06",
+        "debit_mn": 320952,
+        "free_credit_cash_mn": 138937,
+        "free_credit_margin_mn": 192149.0
+      },
+      {
+        "month": "2012-07",
+        "debit_mn": 313525,
+        "free_credit_cash_mn": 124330,
+        "free_credit_margin_mn": 194741.0
+      },
+      {
+        "month": "2012-08",
+        "debit_mn": 320395,
+        "free_credit_cash_mn": 124276,
+        "free_credit_margin_mn": 196786.0
+      },
+      {
+        "month": "2012-09",
+        "debit_mn": 339159,
+        "free_credit_cash_mn": 129389,
+        "free_credit_margin_mn": 205176.0
+      },
+      {
+        "month": "2012-10",
+        "debit_mn": 342325,
+        "free_credit_cash_mn": 124800,
+        "free_credit_margin_mn": 200406.0
+      },
+      {
+        "month": "2012-11",
+        "debit_mn": 351441,
+        "free_credit_cash_mn": 135650,
+        "free_credit_margin_mn": 202425.0
+      },
+      {
+        "month": "2012-12",
+        "debit_mn": 355009,
+        "free_credit_cash_mn": 162206,
+        "free_credit_margin_mn": 211576.0
+      },
+      {
+        "month": "2013-01",
+        "debit_mn": 388123,
+        "free_credit_cash_mn": 142856,
+        "free_credit_margin_mn": 199709.0
+      },
+      {
+        "month": "2013-02",
+        "debit_mn": 390351,
+        "free_credit_cash_mn": 142123,
+        "free_credit_margin_mn": 208682.0
+      },
+      {
+        "month": "2013-03",
+        "debit_mn": 403933,
+        "free_credit_cash_mn": 144530,
+        "free_credit_margin_mn": 197887.0
+      },
+      {
+        "month": "2013-04",
+        "debit_mn": 408677,
+        "free_credit_cash_mn": 140706,
+        "free_credit_margin_mn": 191719.0
+      },
+      {
+        "month": "2013-05",
+        "debit_mn": 401606,
+        "free_credit_cash_mn": 146765,
+        "free_credit_margin_mn": 199756.0
+      },
+      {
+        "month": "2013-06",
+        "debit_mn": 407681,
+        "free_credit_cash_mn": 150093,
+        "free_credit_margin_mn": 200308.0
+      },
+      {
+        "month": "2013-07",
+        "debit_mn": 412101,
+        "free_credit_cash_mn": 144495,
+        "free_credit_margin_mn": 194790.0
+      },
+      {
+        "month": "2013-08",
+        "debit_mn": 414442,
+        "free_credit_cash_mn": 143808,
+        "free_credit_margin_mn": 195181.0
+      },
+      {
+        "month": "2013-09",
+        "debit_mn": 432852,
+        "free_credit_cash_mn": 149895,
+        "free_credit_margin_mn": 197780.0
+      },
+      {
+        "month": "2013-10",
+        "debit_mn": 445022,
+        "free_credit_cash_mn": 151494,
+        "free_credit_margin_mn": 199889.0
+      },
+      {
+        "month": "2013-11",
+        "debit_mn": 456378,
+        "free_credit_cash_mn": 150214,
+        "free_credit_margin_mn": 199153.0
+      },
+      {
+        "month": "2013-12",
+        "debit_mn": 478502,
+        "free_credit_cash_mn": 157000,
+        "free_credit_margin_mn": 197521.0
+      },
+      {
+        "month": "2014-01",
+        "debit_mn": 487549,
+        "free_credit_cash_mn": 151878,
+        "free_credit_margin_mn": 195863.0
+      },
+      {
+        "month": "2014-02",
+        "debit_mn": 502093,
+        "free_credit_cash_mn": 154049,
+        "free_credit_margin_mn": 190312.0
+      },
+      {
+        "month": "2014-03",
+        "debit_mn": 487932,
+        "free_credit_cash_mn": 156083,
+        "free_credit_margin_mn": 194461.0
+      },
+      {
+        "month": "2014-04",
+        "debit_mn": 475195,
+        "free_credit_cash_mn": 149801,
+        "free_credit_margin_mn": 194679.0
+      },
+      {
+        "month": "2014-05",
+        "debit_mn": 475362,
+        "free_credit_cash_mn": 150474,
+        "free_credit_margin_mn": 188551.0
+      },
+      {
+        "month": "2014-06",
+        "debit_mn": 502270,
+        "free_credit_cash_mn": 160293,
+        "free_credit_margin_mn": 184723.0
+      },
+      {
+        "month": "2014-07",
+        "debit_mn": 498671,
+        "free_credit_cash_mn": 155931,
+        "free_credit_margin_mn": 177981.0
+      },
+      {
+        "month": "2014-08",
+        "debit_mn": 501000,
+        "free_credit_cash_mn": 155245,
+        "free_credit_margin_mn": 180820.0
+      },
+      {
+        "month": "2014-09",
+        "debit_mn": 503901,
+        "free_credit_cash_mn": 161621,
+        "free_credit_margin_mn": 183243.0
+      },
+      {
+        "month": "2014-10",
+        "debit_mn": 492888,
+        "free_credit_cash_mn": 158624,
+        "free_credit_margin_mn": 185193.0
+      },
+      {
+        "month": "2014-11",
+        "debit_mn": 496341,
+        "free_credit_cash_mn": 158420,
+        "free_credit_margin_mn": 184227.0
+      },
+      {
+        "month": "2014-12",
+        "debit_mn": 495756,
+        "free_credit_cash_mn": 169295,
+        "free_credit_margin_mn": 181223.0
+      },
+      {
+        "month": "2015-01",
+        "debit_mn": 485872,
+        "free_credit_cash_mn": 163599,
+        "free_credit_margin_mn": 178259.0
+      },
+      {
+        "month": "2015-02",
+        "debit_mn": 504923,
+        "free_credit_cash_mn": 168371,
+        "free_credit_margin_mn": 170930.0
+      },
+      {
+        "month": "2015-03",
+        "debit_mn": 518055,
+        "free_credit_cash_mn": 171625,
+        "free_credit_margin_mn": 170074.0
+      },
+      {
+        "month": "2015-04",
+        "debit_mn": 549964,
+        "free_credit_cash_mn": 168430,
+        "free_credit_margin_mn": 167073.0
+      },
+      {
+        "month": "2015-05",
+        "debit_mn": 541671,
+        "free_credit_cash_mn": 166334,
+        "free_credit_margin_mn": 169076.0
+      },
+      {
+        "month": "2015-06",
+        "debit_mn": 547957,
+        "free_credit_cash_mn": 170614,
+        "free_credit_margin_mn": 168441.0
+      },
+      {
+        "month": "2015-07",
+        "debit_mn": 530744,
+        "free_credit_cash_mn": 168659,
+        "free_credit_margin_mn": 169132.0
+      },
+      {
+        "month": "2015-08",
+        "debit_mn": 515960,
+        "free_credit_cash_mn": 175647,
+        "free_credit_margin_mn": 168692.0
+      },
+      {
+        "month": "2015-09",
+        "debit_mn": 497279,
+        "free_credit_cash_mn": 173760,
+        "free_credit_margin_mn": 167132.0
+      },
+      {
+        "month": "2015-10",
+        "debit_mn": 513941,
+        "free_credit_cash_mn": 174437,
+        "free_credit_margin_mn": 163210.0
+      },
+      {
+        "month": "2015-11",
+        "debit_mn": 515410,
+        "free_credit_cash_mn": 174607,
+        "free_credit_margin_mn": 165584.0
+      },
+      {
+        "month": "2015-12",
+        "debit_mn": 503444,
+        "free_credit_cash_mn": 181812,
+        "free_credit_margin_mn": 159677.0
+      },
+      {
+        "month": "2016-01",
+        "debit_mn": 487200,
+        "free_credit_cash_mn": 180616,
+        "free_credit_margin_mn": 162825.0
+      },
+      {
+        "month": "2016-02",
+        "debit_mn": 474156,
+        "free_credit_cash_mn": 178989,
+        "free_credit_margin_mn": 168308.0
+      },
+      {
+        "month": "2016-03",
+        "debit_mn": 483909,
+        "free_credit_cash_mn": 182673,
+        "free_credit_margin_mn": 172525.0
+      },
+      {
+        "month": "2016-04",
+        "debit_mn": 495178,
+        "free_credit_cash_mn": 176016,
+        "free_credit_margin_mn": 187000.0
+      },
+      {
+        "month": "2016-05",
+        "debit_mn": 489867,
+        "free_credit_cash_mn": 177161,
+        "free_credit_margin_mn": 187495.0
+      },
+      {
+        "month": "2016-06",
+        "debit_mn": 487636,
+        "free_credit_cash_mn": 186233,
+        "free_credit_margin_mn": 189585.0
+      },
+      {
+        "month": "2016-07",
+        "debit_mn": 513221,
+        "free_credit_cash_mn": 183435,
+        "free_credit_margin_mn": 188155.0
+      },
+      {
+        "month": "2016-08",
+        "debit_mn": 510157,
+        "free_credit_cash_mn": 177764,
+        "free_credit_margin_mn": 185695.0
+      },
+      {
+        "month": "2016-09",
+        "debit_mn": 540615,
+        "free_credit_cash_mn": 184757,
+        "free_credit_margin_mn": 182833.0
+      },
+      {
+        "month": "2016-10",
+        "debit_mn": 523760,
+        "free_credit_cash_mn": 182051,
+        "free_credit_margin_mn": 182986.0
+      },
+      {
+        "month": "2016-11",
+        "debit_mn": 539972,
+        "free_credit_cash_mn": 179598,
+        "free_credit_margin_mn": 187085.0
+      },
+      {
+        "month": "2016-12",
+        "debit_mn": 529372,
+        "free_credit_cash_mn": 188062,
+        "free_credit_margin_mn": 189979.0
+      },
+      {
+        "month": "2017-01",
+        "debit_mn": 553557,
+        "free_credit_cash_mn": 186301,
+        "free_credit_margin_mn": 186029.0
+      },
+      {
+        "month": "2017-02",
+        "debit_mn": 568637,
+        "free_credit_cash_mn": 185720,
+        "free_credit_margin_mn": 184598.0
+      },
+      {
+        "month": "2017-03",
+        "debit_mn": 577674,
+        "free_credit_cash_mn": 186892,
+        "free_credit_margin_mn": 184977.0
+      },
+      {
+        "month": "2017-04",
+        "debit_mn": 590797,
+        "free_credit_cash_mn": 180908,
+        "free_credit_margin_mn": 184930.0
+      },
+      {
+        "month": "2017-05",
+        "debit_mn": 582764,
+        "free_credit_cash_mn": 176970,
+        "free_credit_margin_mn": 185463.0
+      },
+      {
+        "month": "2017-06",
+        "debit_mn": 584258,
+        "free_credit_cash_mn": 176707,
+        "free_credit_margin_mn": 187500.0
+      },
+      {
+        "month": "2017-07",
+        "debit_mn": 594414,
+        "free_credit_cash_mn": 173195,
+        "free_credit_margin_mn": 184246.0
+      },
+      {
+        "month": "2017-08",
+        "debit_mn": 596567,
+        "free_credit_cash_mn": 170524,
+        "free_credit_margin_mn": 183744.0
+      },
+      {
+        "month": "2017-09",
+        "debit_mn": 606334,
+        "free_credit_cash_mn": 172872,
+        "free_credit_margin_mn": 183599.0
+      },
+      {
+        "month": "2017-10",
+        "debit_mn": 607838,
+        "free_credit_cash_mn": 169368,
+        "free_credit_margin_mn": 184047.0
+      },
+      {
+        "month": "2017-11",
+        "debit_mn": 627422,
+        "free_credit_cash_mn": 170948,
+        "free_credit_margin_mn": 185312.0
+      },
+      {
+        "month": "2017-12",
+        "debit_mn": 642798,
+        "free_credit_cash_mn": 172999,
+        "free_credit_margin_mn": 182773.0
+      },
+      {
+        "month": "2018-01",
+        "debit_mn": 665716,
+        "free_credit_cash_mn": 168450,
+        "free_credit_margin_mn": 181763.0
+      },
+      {
+        "month": "2018-02",
+        "debit_mn": 645064,
+        "free_credit_cash_mn": 164657,
+        "free_credit_margin_mn": 183267.0
+      },
+      {
+        "month": "2018-03",
+        "debit_mn": 645235,
+        "free_credit_cash_mn": 166148,
+        "free_credit_margin_mn": 180751.0
+      },
+      {
+        "month": "2018-04",
+        "debit_mn": 652303,
+        "free_credit_cash_mn": 155989,
+        "free_credit_margin_mn": 179410.0
+      },
+      {
+        "month": "2018-05",
+        "debit_mn": 668940,
+        "free_credit_cash_mn": 155344,
+        "free_credit_margin_mn": 181890.0
+      },
+      {
+        "month": "2018-06",
+        "debit_mn": 646931,
+        "free_credit_cash_mn": 157150,
+        "free_credit_margin_mn": 179399.0
+      },
+      {
+        "month": "2018-07",
+        "debit_mn": 652790,
+        "free_credit_cash_mn": 148947,
+        "free_credit_margin_mn": 178299.0
+      },
+      {
+        "month": "2018-08",
+        "debit_mn": 652395,
+        "free_credit_cash_mn": 148873,
+        "free_credit_margin_mn": 178601.0
+      },
+      {
+        "month": "2018-09",
+        "debit_mn": 648126,
+        "free_credit_cash_mn": 151384,
+        "free_credit_margin_mn": 188152.0
+      },
+      {
+        "month": "2018-10",
+        "debit_mn": 607645,
+        "free_credit_cash_mn": 148037,
+        "free_credit_margin_mn": 183432.0
+      },
+      {
+        "month": "2018-11",
+        "debit_mn": 592593,
+        "free_credit_cash_mn": 146452,
+        "free_credit_margin_mn": 178810.0
+      },
+      {
+        "month": "2018-12",
+        "debit_mn": 554285,
+        "free_credit_cash_mn": 159572,
+        "free_credit_margin_mn": 190743.0
+      },
+      {
+        "month": "2019-01",
+        "debit_mn": 568433,
+        "free_credit_cash_mn": 151804,
+        "free_credit_margin_mn": 186050.0
+      },
+      {
+        "month": "2019-02",
+        "debit_mn": 581205,
+        "free_credit_cash_mn": 149686,
+        "free_credit_margin_mn": 181955.0
+      },
+      {
+        "month": "2019-03",
+        "debit_mn": 574013,
+        "free_credit_cash_mn": 141074,
+        "free_credit_margin_mn": 180765.0
+      },
+      {
+        "month": "2019-04",
+        "debit_mn": 588721,
+        "free_credit_cash_mn": 143802,
+        "free_credit_margin_mn": 178523.0
+      },
+      {
+        "month": "2019-05",
+        "debit_mn": 568751,
+        "free_credit_cash_mn": 137489,
+        "free_credit_margin_mn": 179019.0
+      },
+      {
+        "month": "2019-06",
+        "debit_mn": 596304,
+        "free_credit_cash_mn": 139826,
+        "free_credit_margin_mn": 179542.0
+      },
+      {
+        "month": "2019-07",
+        "debit_mn": 602139,
+        "free_credit_cash_mn": 138703,
+        "free_credit_margin_mn": 182613.0
+      },
+      {
+        "month": "2019-08",
+        "debit_mn": 564894,
+        "free_credit_cash_mn": 135567,
+        "free_credit_margin_mn": 181451.0
+      },
+      {
+        "month": "2019-09",
+        "debit_mn": 555910,
+        "free_credit_cash_mn": 150648,
+        "free_credit_margin_mn": 187887.0
+      },
+      {
+        "month": "2019-10",
+        "debit_mn": 554604,
+        "free_credit_cash_mn": 145650,
+        "free_credit_margin_mn": 183966.0
+      },
+      {
+        "month": "2019-11",
+        "debit_mn": 563482,
+        "free_credit_cash_mn": 146935,
+        "free_credit_margin_mn": 186866.0
+      },
+      {
+        "month": "2019-12",
+        "debit_mn": 579221,
+        "free_credit_cash_mn": 151543,
+        "free_credit_margin_mn": 186315.0
+      },
+      {
+        "month": "2020-01",
+        "debit_mn": 561812,
+        "free_credit_cash_mn": 152854,
+        "free_credit_margin_mn": 186847.0
+      },
+      {
+        "month": "2020-02",
+        "debit_mn": 545127,
+        "free_credit_cash_mn": 163001,
+        "free_credit_margin_mn": 197716.0
+      },
+      {
+        "month": "2020-03",
+        "debit_mn": 479291,
+        "free_credit_cash_mn": 191046,
+        "free_credit_margin_mn": 226202.0
+      },
+      {
+        "month": "2020-04",
+        "debit_mn": 524696,
+        "free_credit_cash_mn": 180942,
+        "free_credit_margin_mn": 217187.0
+      },
+      {
+        "month": "2020-05",
+        "debit_mn": 552543,
+        "free_credit_cash_mn": 175794,
+        "free_credit_margin_mn": 210935.0
+      },
+      {
+        "month": "2020-06",
+        "debit_mn": 584676,
+        "free_credit_cash_mn": 185497,
+        "free_credit_margin_mn": 229078.0
+      },
+      {
+        "month": "2020-07",
+        "debit_mn": 613830,
+        "free_credit_cash_mn": 181420,
+        "free_credit_margin_mn": 223768.0
+      },
+      {
+        "month": "2020-08",
+        "debit_mn": 645547,
+        "free_credit_cash_mn": 185113,
+        "free_credit_margin_mn": 215042.0
+      },
+      {
+        "month": "2020-09",
+        "debit_mn": 654324,
+        "free_credit_cash_mn": 189462,
+        "free_credit_margin_mn": 211547.0
+      },
+      {
+        "month": "2020-10",
+        "debit_mn": 659313,
+        "free_credit_cash_mn": 193293,
+        "free_credit_margin_mn": 217739.0
+      },
+      {
+        "month": "2020-11",
+        "debit_mn": 722118,
+        "free_credit_cash_mn": 200723,
+        "free_credit_margin_mn": 221567.0
+      },
+      {
+        "month": "2020-12",
+        "debit_mn": 778037,
+        "free_credit_cash_mn": 224987,
+        "free_credit_margin_mn": 227127.0
+      },
+      {
+        "month": "2021-01",
+        "debit_mn": 798605,
+        "free_credit_cash_mn": 224133,
+        "free_credit_margin_mn": 241220.0
+      },
+      {
+        "month": "2021-02",
+        "debit_mn": 813680,
+        "free_credit_cash_mn": 220840,
+        "free_credit_margin_mn": 240481.0
+      },
+      {
+        "month": "2021-03",
+        "debit_mn": 822551,
+        "free_credit_cash_mn": 219522,
+        "free_credit_margin_mn": 237154.0
+      },
+      {
+        "month": "2021-04",
+        "debit_mn": 847186,
+        "free_credit_cash_mn": 218132,
+        "free_credit_margin_mn": 233145.0
+      },
+      {
+        "month": "2021-05",
+        "debit_mn": 861626,
+        "free_credit_cash_mn": 213356,
+        "free_credit_margin_mn": 234992.0
+      },
+      {
+        "month": "2021-06",
+        "debit_mn": 882103,
+        "free_credit_cash_mn": 221862,
+        "free_credit_margin_mn": 239290.0
+      },
+      {
+        "month": "2021-07",
+        "debit_mn": 844324,
+        "free_credit_cash_mn": 215463,
+        "free_credit_margin_mn": 195762.0
+      },
+      {
+        "month": "2021-08",
+        "debit_mn": 911545,
+        "free_credit_cash_mn": 219365,
+        "free_credit_margin_mn": 198913.0
+      },
+      {
+        "month": "2021-09",
+        "debit_mn": 903117,
+        "free_credit_cash_mn": 229279,
+        "free_credit_margin_mn": 205564.0
+      },
+      {
+        "month": "2021-10",
+        "debit_mn": 935862,
+        "free_credit_cash_mn": 226159,
+        "free_credit_margin_mn": 200548.0
+      },
+      {
+        "month": "2021-11",
+        "debit_mn": 918598,
+        "free_credit_cash_mn": 235638,
+        "free_credit_margin_mn": 211623.0
+      },
+      {
+        "month": "2021-12",
+        "debit_mn": 910021,
+        "free_credit_cash_mn": 250435,
+        "free_credit_margin_mn": 215116.0
+      },
+      {
+        "month": "2022-01",
+        "debit_mn": 829637,
+        "free_credit_cash_mn": 247752,
+        "free_credit_margin_mn": 194545.0
+      },
+      {
+        "month": "2022-02",
+        "debit_mn": 835255,
+        "free_credit_cash_mn": 250686,
+        "free_credit_margin_mn": 195269.0
+      },
+      {
+        "month": "2022-03",
+        "debit_mn": 799660,
+        "free_credit_cash_mn": 256076,
+        "free_credit_margin_mn": 196008.0
+      },
+      {
+        "month": "2022-04",
+        "debit_mn": 772940,
+        "free_credit_cash_mn": 242724,
+        "free_credit_margin_mn": 188652.0
+      },
+      {
+        "month": "2022-05",
+        "debit_mn": 752944,
+        "free_credit_cash_mn": 244857,
+        "free_credit_margin_mn": 184151.0
+      },
+      {
+        "month": "2022-06",
+        "debit_mn": 683445,
+        "free_credit_cash_mn": 249399,
+        "free_credit_margin_mn": 186931.0
+      },
+      {
+        "month": "2022-07",
+        "debit_mn": 696781,
+        "free_credit_cash_mn": 232147,
+        "free_credit_margin_mn": 177054.0
+      },
+      {
+        "month": "2022-08",
+        "debit_mn": 687787,
+        "free_credit_cash_mn": 226182,
+        "free_credit_margin_mn": 175974.0
+      },
+      {
+        "month": "2022-09",
+        "debit_mn": 664009,
+        "free_credit_cash_mn": 223400,
+        "free_credit_margin_mn": 173050.0
+      },
+      {
+        "month": "2022-10",
+        "debit_mn": 649618,
+        "free_credit_cash_mn": 216057,
+        "free_credit_margin_mn": 172976.0
+      },
+      {
+        "month": "2022-11",
+        "debit_mn": 643783,
+        "free_credit_cash_mn": 205158,
+        "free_credit_margin_mn": 165434.0
+      },
+      {
+        "month": "2022-12",
+        "debit_mn": 606659,
+        "free_credit_cash_mn": 205902,
+        "free_credit_margin_mn": 164065.0
+      },
+      {
+        "month": "2023-01",
+        "debit_mn": 641228,
+        "free_credit_cash_mn": 208720,
+        "free_credit_margin_mn": 161224.0
+      },
+      {
+        "month": "2023-02",
+        "debit_mn": 624379,
+        "free_credit_cash_mn": 198644,
+        "free_credit_margin_mn": 159103.0
+      },
+      {
+        "month": "2023-03",
+        "debit_mn": 645429,
+        "free_credit_cash_mn": 191618,
+        "free_credit_margin_mn": 152014.0
+      },
+      {
+        "month": "2023-04",
+        "debit_mn": 631949,
+        "free_credit_cash_mn": 175460,
+        "free_credit_margin_mn": 145594.0
+      },
+      {
+        "month": "2023-05",
+        "debit_mn": 644170,
+        "free_credit_cash_mn": 178576,
+        "free_credit_margin_mn": 147377.0
+      },
+      {
+        "month": "2023-06",
+        "debit_mn": 681228,
+        "free_credit_cash_mn": 181569,
+        "free_credit_margin_mn": 145173.0
+      },
+      {
+        "month": "2023-07",
+        "debit_mn": 709834,
+        "free_credit_cash_mn": 174804,
+        "free_credit_margin_mn": 147921.0
+      },
+      {
+        "month": "2023-08",
+        "debit_mn": 689185,
+        "free_credit_cash_mn": 177711,
+        "free_credit_margin_mn": 145989.0
+      },
+      {
+        "month": "2023-09",
+        "debit_mn": 680846,
+        "free_credit_cash_mn": 153918,
+        "free_credit_margin_mn": 141751.0
+      },
+      {
+        "month": "2023-10",
+        "debit_mn": 635276,
+        "free_credit_cash_mn": 162865,
+        "free_credit_margin_mn": 142117.0
+      },
+      {
+        "month": "2023-11",
+        "debit_mn": 660887,
+        "free_credit_cash_mn": 171207,
+        "free_credit_margin_mn": 146319.0
+      },
+      {
+        "month": "2023-12",
+        "debit_mn": 700774,
+        "free_credit_cash_mn": 161639,
+        "free_credit_margin_mn": 147019.0
+      },
+      {
+        "month": "2024-01",
+        "debit_mn": 701975,
+        "free_credit_cash_mn": 165025,
+        "free_credit_margin_mn": 144941.0
+      },
+      {
+        "month": "2024-02",
+        "debit_mn": 742963,
+        "free_credit_cash_mn": 166144,
+        "free_credit_margin_mn": 150620.0
+      },
+      {
+        "month": "2024-03",
+        "debit_mn": 784136,
+        "free_credit_cash_mn": 166990,
+        "free_credit_margin_mn": 151339.0
+      },
+      {
+        "month": "2024-04",
+        "debit_mn": 775464,
+        "free_credit_cash_mn": 161749,
+        "free_credit_margin_mn": 149855.0
+      },
+      {
+        "month": "2024-05",
+        "debit_mn": 809431,
+        "free_credit_cash_mn": 155256,
+        "free_credit_margin_mn": 145072.0
+      },
+      {
+        "month": "2024-06",
+        "debit_mn": 809322,
+        "free_credit_cash_mn": 157240,
+        "free_credit_margin_mn": 149714.0
+      },
+      {
+        "month": "2024-07",
+        "debit_mn": 810835,
+        "free_credit_cash_mn": 154951,
+        "free_credit_margin_mn": 150738.0
+      },
+      {
+        "month": "2024-08",
+        "debit_mn": 797162,
+        "free_credit_cash_mn": 148702,
+        "free_credit_margin_mn": 152107.0
+      },
+      {
+        "month": "2024-09",
+        "debit_mn": 813211,
+        "free_credit_cash_mn": 167901,
+        "free_credit_margin_mn": 158358.0
+      },
+      {
+        "month": "2024-10",
+        "debit_mn": 815369,
+        "free_credit_cash_mn": 173621,
+        "free_credit_margin_mn": 164813.0
+      },
+      {
+        "month": "2024-11",
+        "debit_mn": 890852,
+        "free_credit_cash_mn": 170052,
+        "free_credit_margin_mn": 167223.0
+      },
+      {
+        "month": "2024-12",
+        "debit_mn": 899168,
+        "free_credit_cash_mn": 181280,
+        "free_credit_margin_mn": 175795.0
+      },
+      {
+        "month": "2025-01",
+        "debit_mn": 937253,
+        "free_credit_cash_mn": 178301,
+        "free_credit_margin_mn": 166346.0
+      },
+      {
+        "month": "2025-02",
+        "debit_mn": 918144,
+        "free_credit_cash_mn": 183278,
+        "free_credit_margin_mn": 176051.0
+      },
+      {
+        "month": "2025-03",
+        "debit_mn": 880316,
+        "free_credit_cash_mn": 189855,
+        "free_credit_margin_mn": 176161.0
+      },
+      {
+        "month": "2025-04",
+        "debit_mn": 850558,
+        "free_credit_cash_mn": 187958,
+        "free_credit_margin_mn": 175824.0
+      },
+      {
+        "month": "2025-05",
+        "debit_mn": 920960,
+        "free_credit_cash_mn": 187685,
+        "free_credit_margin_mn": 176698.0
+      },
+      {
+        "month": "2025-06",
+        "debit_mn": 1007961,
+        "free_credit_cash_mn": 200573,
+        "free_credit_margin_mn": 185584.0
+      },
+      {
+        "month": "2025-07",
+        "debit_mn": 1022548,
+        "free_credit_cash_mn": 194712,
+        "free_credit_margin_mn": 186672.0
+      },
+      {
+        "month": "2025-08",
+        "debit_mn": 1059723,
+        "free_credit_cash_mn": 188221,
+        "free_credit_margin_mn": 181563.0
+      },
+      {
+        "month": "2025-09",
+        "debit_mn": 1126494,
+        "free_credit_cash_mn": 204106,
+        "free_credit_margin_mn": 194884.0
+      },
+      {
+        "month": "2025-10",
+        "debit_mn": 1183654,
+        "free_credit_cash_mn": 197923,
+        "free_credit_margin_mn": 195376.0
+      },
+      {
+        "month": "2025-11",
+        "debit_mn": 1214321,
+        "free_credit_cash_mn": 202131,
+        "free_credit_margin_mn": 194418.0
+      },
+      {
+        "month": "2025-12",
+        "debit_mn": 1225597,
+        "free_credit_cash_mn": 211720,
+        "free_credit_margin_mn": 199762.0
+      },
+      {
+        "month": "2026-01",
+        "debit_mn": 1279042,
+        "free_credit_cash_mn": 203700,
+        "free_credit_margin_mn": 196911.0
+      },
+      {
+        "month": "2026-02",
+        "debit_mn": 1253192,
+        "free_credit_cash_mn": 205060,
+        "free_credit_margin_mn": 200047.0
+      },
+      {
+        "month": "2026-03",
+        "debit_mn": 1220922,
+        "free_credit_cash_mn": 221860,
+        "free_credit_margin_mn": 205600.0
+      },
+      {
+        "month": "2026-04",
+        "debit_mn": 1304281,
+        "free_credit_cash_mn": 217836,
+        "free_credit_margin_mn": 215445.0
+      },
+      {
+        "month": "2026-05",
+        "debit_mn": 1415557,
+        "free_credit_cash_mn": 206600,
+        "free_credit_margin_mn": 217256.0
+      },
+      {
+        "month": "2026-06",
+        "debit_mn": 1502072,
+        "free_credit_cash_mn": 217441,
+        "free_credit_margin_mn": 223412.0
+      },
+      {
+        "month": "2026-07",
+        "debit_mn": 1417225,
+        "free_credit_cash_mn": 205132,
+        "free_credit_margin_mn": 217305.0
+      },
+      {
+        "month": "2026-08",
+        "debit_mn": 1453832,
+        "free_credit_cash_mn": 207641,
+        "free_credit_margin_mn": 217499.0
+      },
+      {
+        "month": "2026-09",
+        "debit_mn": 1480054,
+        "free_credit_cash_mn": 215328,
+        "free_credit_margin_mn": 218581.0
+      },
+      {
+        "month": "2026-10",
+        "debit_mn": 1448360,
+        "free_credit_cash_mn": 210290,
+        "free_credit_margin_mn": 212890.0
+      }
+    ]
   }
 }
