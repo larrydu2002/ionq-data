@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-22T13:38:42+11:00",
+  "generated_at": "2026-11-22T14:01:44+11:00",
   "script": "market_data_daily_v1.py",
   "version": "v1",
   "snapshot_date": "2026-11-20",
@@ -536,7 +536,9 @@
         "max_date": "2026-11-19",
         "latest": 3.52,
         "latest_date": "2026-11-19",
-        "rule": "窗口内 HY OAS 曾 ≥ 4.0% 且已回落 ≥ 0.5pp（脚本口径）",
+        "spike_min": 4.5,
+        "retreat_pp": 0.5,
+        "rule": "窗口内 HY OAS 曾 ≥ 4.5% 且已回落 ≥ 0.5pp（脚本口径）",
         "source": "FRED BAMLH0A0HYM2",
         "grade": "一手"
       },
