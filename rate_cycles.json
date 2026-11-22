@@ -1,0 +1,2105 @@
+{
+  "purpose": "Interval between the last hike of each tightening cycle and the equity bottom, from first-hand data. One-off research output; NOT part of the daily pipeline.",
+  "generated_at": "2026-11-22T17:00:32+11:00",
+  "parameters": {
+    "window_before_months": 24,
+    "window_after_months": 36,
+    "peak_lookback_trading_days": 252,
+    "bear_threshold_pct": 20.0,
+    "days_per_month": 30.4375,
+    "fedfunds_check_months": 6,
+    "fedfunds_tolerance_pp": 0.5,
+    "sensitivity_windows": [
+      [
+        12,
+        24
+      ],
+      [
+        36,
+        48
+      ]
+    ]
+  },
+  "definitions": {
+    "tightening_cycle": "a maximal run of consecutive increases in the spliced policy rate. A cut ends the cycle; a hold does not interrupt it.",
+    "last_hike": "the final increase before the first subsequent cut",
+    "equity_bottom": "lowest close inside [last hike -24m, last hike +36m]",
+    "drawdown": "bottom close vs the highest close in the 252 trading days strictly BEFORE the window opens",
+    "interval_months": "bottom date - last hike date, in days / (365.25/12)",
+    "negative_interval": "the equity bottom came FIRST",
+    "supplementary_local_bottom": "lowest close within +/-6 months of the last hike. Reported because the memory table's claim is about a bottom NEAR the last hike, which the five-year window minimum does not measure.",
+    "supplementary_is_window_edge_artifact": "true when the window minimum sits within 10 trading days of the window opening, i.e. the index only rose inside the window and the 'bottom' is the left edge rather than a trough."
+  },
+  "synthetic_cases": {
+    "note": "These drive find_cycles() directly, so a FAIL is a bug in the cycle definition. Run `python3 rate_cycles_v1.py --selftest`. Deliberately not wired into run_daily.sh or the daily validators.",
+    "cases": [
+      {
+        "case": "hike3_hold_then_cut",
+        "rates": [
+          [
+            "2026-01-01",
+            1.0
+          ],
+          [
+            "2026-02-01",
+            1.25
+          ],
+          [
+            "2026-03-01",
+            1.5
+          ],
+          [
+            "2026-04-01",
+            1.75
+          ],
+          [
+            "2026-07-01",
+            1.75
+          ],
+          [
+            "2026-08-01",
+            1.5
+          ]
+        ],
+        "expect": {
+          "first_hike": "2026-02-01",
+          "last_hike": "2026-04-01",
+          "hike_count": 3,
+          "ongoing": false,
+          "first_cut_after": "2026-08-01"
+        },
+        "rule": "连加 3 次后持平，再降息 → 最后一次加息 = 第 3 次加息，持平不中断周期"
+      },
+      {
+        "case": "hike2_hold_hike1_then_cut",
+        "rates": [
+          [
+            "2026-01-01",
+            1.0
+          ],
+          [
+            "2026-02-01",
+            1.25
+          ],
+          [
+            "2026-03-01",
+            1.5
+          ],
+          [
+            "2026-06-01",
+            1.5
+          ],
+          [
+            "2026-07-01",
+            1.75
+          ],
+          [
+            "2026-09-01",
+            1.5
+          ]
+        ],
+        "expect": {
+          "first_hike": "2026-02-01",
+          "last_hike": "2026-07-01",
+          "hike_count": 3,
+          "ongoing": false,
+          "first_cut_after": "2026-09-01"
+        },
+        "rule": "连加 2 次、持平、再加 1 次、然后降息 → 最后一次加息 = 第 3 次，仍是同一个周期"
+      },
+      {
+        "case": "hikes_only_ongoing",
+        "rates": [
+          [
+            "2026-01-01",
+            1.0
+          ],
+          [
+            "2026-02-01",
+            1.25
+          ],
+          [
+            "2026-03-01",
+            1.5
+          ],
+          [
+            "2026-04-01",
+            1.75
+          ]
+        ],
+        "expect": {
+          "first_hike": "2026-02-01",
+          "last_hike": "2026-04-01",
+          "hike_count": 3,
+          "ongoing": true,
+          "first_cut_after": null
+        },
+        "rule": "只加不降 → ongoing，没有『最后一次加息』，last_hike 只是目前最近一次"
+      }
+    ],
+    "last_run": {
+      "passed": 3,
+      "failed": 0
+    }
+  },
+  "policy_rate_splice": {
+    "splice_date": "2008-12-16",
+    "before": {
+      "series_id": "DFEDTAR",
+      "meaning": "single target rate",
+      "first": "1982-09-27",
+      "last": "2008-12-15",
+      "last_value": 1.0,
+      "observations": 9577
+    },
+    "after": {
+      "series_id": "DFEDTARU",
+      "meaning": "UPPER BOUND of the target range",
+      "first": "2008-12-16",
+      "last": "2026-11-21",
+      "first_value": 0.25,
+      "observations": 6550
+    },
+    "level_break_pp": -0.75,
+    "note": "The two series measure different things, so the splice prints a level break. It is a downward step and therefore cannot create a false hike; it also falls inside the 2007-08 easing."
+  },
+  "coverage": {
+    "DFEDTAR": {
+      "earliest": "1982-09-27",
+      "latest": "2008-12-15",
+      "observations": 9577,
+      "source": "FRED"
+    },
+    "DFEDTARU": {
+      "earliest": "2008-12-16",
+      "latest": "2026-11-21",
+      "observations": 6550,
+      "source": "FRED"
+    },
+    "FEDFUNDS": {
+      "earliest": "1954-07-01",
+      "latest": "2026-10-01",
+      "observations": 868,
+      "source": "FRED"
+    },
+    "BAA10Y": {
+      "earliest": "1986-01-02",
+      "latest": "2026-11-19",
+      "observations": 10221,
+      "source": "FRED"
+    },
+    "^GSPC": {
+      "earliest": "1927-12-30",
+      "latest": "2026-11-20",
+      "observations": 24841,
+      "source": "yfinance (auto_adjust=False, unadjusted close)"
+    },
+    "^NDX": {
+      "earliest": "1985-10-01",
+      "latest": "2026-11-20",
+      "observations": 10366,
+      "source": "yfinance (auto_adjust=False, unadjusted close)"
+    }
+  },
+  "cycles": [
+    {
+      "cycle_id": "1983-03-31__1983-08-11",
+      "first_hike_date": "1983-03-31",
+      "last_hike_date": "1983-08-11",
+      "status": "complete",
+      "rate_before_pct": 8.5,
+      "peak_rate_pct": 9.5625,
+      "total_hike_bp": 106.3,
+      "hike_count": 6,
+      "months_first_to_last_hike": 4.4,
+      "first_cut_after_date": "1983-08-17",
+      "window": {
+        "start": "1981-08-11",
+        "end": "1986-08-11",
+        "months_before": 24,
+        "months_after": 36
+      },
+      "gspc": {
+        "supplementary_drawdown_from_running_peak_pct": -23.48,
+        "supplementary_running_peak_close": 133.85,
+        "supplementary_running_peak_date": "1981-08-11",
+        "supplementary_trading_days_from_window_start": 254,
+        "supplementary_is_window_edge_artifact": false,
+        "bottom_date": "1982-08-12",
+        "bottom_close": 102.42,
+        "reference_peak_close": 140.52,
+        "reference_peak_date": "1980-11-28",
+        "drawdown_pct": -27.11,
+        "is_bear_market": true,
+        "observations_in_window": 1265,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "1983-02-22",
+          "close": 145.48,
+          "months_from_last_hike": -5.6
+        },
+        "months_from_last_hike": -12.0,
+        "trading_days_from_last_hike": -253,
+        "bottom_before_last_hike": true,
+        "months_from_first_cut": -12.2,
+        "window_starts_before_index_history": false
+      },
+      "ndx": {
+        "supplementary_drawdown_from_running_peak_pct": -4.44,
+        "supplementary_running_peak_close": 112.14,
+        "supplementary_running_peak_date": "1985-10-01",
+        "supplementary_trading_days_from_window_start": 5,
+        "supplementary_is_window_edge_artifact": true,
+        "bottom_date": "1985-10-08",
+        "bottom_close": 107.16,
+        "reference_peak_close": null,
+        "reference_peak_date": null,
+        "drawdown_pct": null,
+        "is_bear_market": null,
+        "observations_in_window": 218,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "value": null,
+          "reason": "no data"
+        },
+        "months_from_last_hike": 25.9,
+        "trading_days_from_last_hike": 6,
+        "bottom_before_last_hike": false,
+        "months_from_first_cut": 25.7,
+        "window_starts_before_index_history": true
+      },
+      "fedfunds_check": {
+        "value": 9.56,
+        "month": "1983-08-01",
+        "neighbourhood_months": 6,
+        "neighbourhood_peak": 9.59,
+        "neighbourhood_peak_month": "1984-02-01",
+        "gap_pp": 0.03,
+        "flagged": false,
+        "flag_rule": "gap_pp > 0.5"
+      },
+      "baa10y": {
+        "max_in_window": 3.16,
+        "max_date": "1986-04-16",
+        "at_last_hike": null,
+        "at_last_hike_as_of": null,
+        "descriptive_only": true
+      },
+      "ice_hy_oas": {
+        "value": null,
+        "reason": "ICE BofA HY OAS on FRED only covers a rolling ~3-year window (earliest 2023-11) and ALFRED holds no vintages; unavailable for this cycle"
+      }
+    },
+    {
+      "cycle_id": "1984-03-29__1984-08-09",
+      "first_hike_date": "1984-03-29",
+      "last_hike_date": "1984-08-09",
+      "status": "complete",
+      "rate_before_pct": 9.375,
+      "peak_rate_pct": 11.5,
+      "total_hike_bp": 212.5,
+      "hike_count": 4,
+      "months_first_to_last_hike": 4.4,
+      "first_cut_after_date": "1984-09-20",
+      "window": {
+        "start": "1982-08-09",
+        "end": "1987-08-09",
+        "months_before": 24,
+        "months_after": 36
+      },
+      "gspc": {
+        "supplementary_drawdown_from_running_peak_pct": -0.64,
+        "supplementary_running_peak_close": 103.08,
+        "supplementary_running_peak_date": "1982-08-09",
+        "supplementary_trading_days_from_window_start": 3,
+        "supplementary_is_window_edge_artifact": true,
+        "bottom_date": "1982-08-12",
+        "bottom_close": 102.42,
+        "reference_peak_close": 133.85,
+        "reference_peak_date": "1981-08-11",
+        "drawdown_pct": -23.48,
+        "is_bear_market": true,
+        "observations_in_window": 1265,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "1984-07-24",
+          "close": 147.82,
+          "months_from_last_hike": -0.5
+        },
+        "months_from_last_hike": -23.9,
+        "trading_days_from_last_hike": -505,
+        "bottom_before_last_hike": true,
+        "months_from_first_cut": -25.3,
+        "window_starts_before_index_history": false
+      },
+      "ndx": {
+        "supplementary_drawdown_from_running_peak_pct": -4.44,
+        "supplementary_running_peak_close": 112.14,
+        "supplementary_running_peak_date": "1985-10-01",
+        "supplementary_trading_days_from_window_start": 5,
+        "supplementary_is_window_edge_artifact": true,
+        "bottom_date": "1985-10-08",
+        "bottom_close": 107.16,
+        "reference_peak_close": null,
+        "reference_peak_date": null,
+        "drawdown_pct": null,
+        "is_bear_market": null,
+        "observations_in_window": 469,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "value": null,
+          "reason": "no data"
+        },
+        "months_from_last_hike": 14.0,
+        "trading_days_from_last_hike": 6,
+        "bottom_before_last_hike": false,
+        "months_from_first_cut": 12.6,
+        "window_starts_before_index_history": true
+      },
+      "fedfunds_check": {
+        "value": 11.64,
+        "month": "1984-08-01",
+        "neighbourhood_months": 6,
+        "neighbourhood_peak": 11.64,
+        "neighbourhood_peak_month": "1984-08-01",
+        "gap_pp": 0.0,
+        "flagged": false,
+        "flag_rule": "gap_pp > 0.5"
+      },
+      "baa10y": {
+        "max_in_window": 3.16,
+        "max_date": "1986-04-16",
+        "at_last_hike": null,
+        "at_last_hike_as_of": null,
+        "descriptive_only": true
+      },
+      "ice_hy_oas": {
+        "value": null,
+        "reason": "ICE BofA HY OAS on FRED only covers a rolling ~3-year window (earliest 2023-11) and ALFRED holds no vintages; unavailable for this cycle"
+      }
+    },
+    {
+      "cycle_id": "1985-01-24__1985-03-28",
+      "first_hike_date": "1985-01-24",
+      "last_hike_date": "1985-03-28",
+      "status": "complete",
+      "rate_before_pct": 8.125,
+      "peak_rate_pct": 8.5,
+      "total_hike_bp": 37.5,
+      "hike_count": 3,
+      "months_first_to_last_hike": 2.1,
+      "first_cut_after_date": "1985-04-25",
+      "window": {
+        "start": "1983-03-28",
+        "end": "1988-03-28",
+        "months_before": 24,
+        "months_after": 36
+      },
+      "gspc": {
+        "supplementary_drawdown_from_running_peak_pct": -14.38,
+        "supplementary_running_peak_close": 172.65,
+        "supplementary_running_peak_date": "1983-10-10",
+        "supplementary_trading_days_from_window_start": 335,
+        "supplementary_is_window_edge_artifact": false,
+        "bottom_date": "1984-07-24",
+        "bottom_close": 147.82,
+        "reference_peak_close": 153.67,
+        "reference_peak_date": "1983-03-04",
+        "drawdown_pct": -3.81,
+        "is_bear_market": false,
+        "observations_in_window": 1265,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "1984-10-09",
+          "close": 161.67,
+          "months_from_last_hike": -5.6
+        },
+        "months_from_last_hike": -8.1,
+        "trading_days_from_last_hike": -172,
+        "bottom_before_last_hike": true,
+        "months_from_first_cut": -9.0,
+        "window_starts_before_index_history": false
+      },
+      "ndx": {
+        "supplementary_drawdown_from_running_peak_pct": -4.44,
+        "supplementary_running_peak_close": 112.14,
+        "supplementary_running_peak_date": "1985-10-01",
+        "supplementary_trading_days_from_window_start": 5,
+        "supplementary_is_window_edge_artifact": true,
+        "bottom_date": "1985-10-08",
+        "bottom_close": 107.16,
+        "reference_peak_close": null,
+        "reference_peak_date": null,
+        "drawdown_pct": null,
+        "is_bear_market": null,
+        "observations_in_window": 630,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "value": null,
+          "reason": "no data"
+        },
+        "months_from_last_hike": 6.4,
+        "trading_days_from_last_hike": 6,
+        "bottom_before_last_hike": false,
+        "months_from_first_cut": 5.5,
+        "window_starts_before_index_history": true
+      },
+      "fedfunds_check": {
+        "value": 8.58,
+        "month": "1985-03-01",
+        "neighbourhood_months": 6,
+        "neighbourhood_peak": 11.3,
+        "neighbourhood_peak_month": "1984-09-01",
+        "gap_pp": 2.72,
+        "flagged": true,
+        "flag_rule": "gap_pp > 0.5"
+      },
+      "baa10y": {
+        "max_in_window": 3.16,
+        "max_date": "1986-04-16",
+        "at_last_hike": null,
+        "at_last_hike_as_of": null,
+        "descriptive_only": true
+      },
+      "ice_hy_oas": {
+        "value": null,
+        "reason": "ICE BofA HY OAS on FRED only covers a rolling ~3-year window (earliest 2023-11) and ALFRED holds no vintages; unavailable for this cycle"
+      }
+    },
+    {
+      "cycle_id": "1985-07-25__1985-09-06",
+      "first_hike_date": "1985-07-25",
+      "last_hike_date": "1985-09-06",
+      "status": "complete",
+      "rate_before_pct": 7.6875,
+      "peak_rate_pct": 8.0,
+      "total_hike_bp": 31.2,
+      "hike_count": 3,
+      "months_first_to_last_hike": 1.4,
+      "first_cut_after_date": "1985-12-18",
+      "window": {
+        "start": "1983-09-06",
+        "end": "1988-09-06",
+        "months_before": 24,
+        "months_after": 36
+      },
+      "gspc": {
+        "supplementary_drawdown_from_running_peak_pct": -14.38,
+        "supplementary_running_peak_close": 172.65,
+        "supplementary_running_peak_date": "1983-10-10",
+        "supplementary_trading_days_from_window_start": 223,
+        "supplementary_is_window_edge_artifact": false,
+        "bottom_date": "1984-07-24",
+        "bottom_close": 147.82,
+        "reference_peak_close": 170.99,
+        "reference_peak_date": "1983-06-22",
+        "drawdown_pct": -13.55,
+        "is_bear_market": false,
+        "observations_in_window": 1265,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "1985-03-15",
+          "close": 176.53,
+          "months_from_last_hike": -5.7
+        },
+        "months_from_last_hike": -13.4,
+        "trading_days_from_last_hike": -284,
+        "bottom_before_last_hike": true,
+        "months_from_first_cut": -16.8,
+        "window_starts_before_index_history": false
+      },
+      "ndx": {
+        "supplementary_drawdown_from_running_peak_pct": -4.44,
+        "supplementary_running_peak_close": 112.14,
+        "supplementary_running_peak_date": "1985-10-01",
+        "supplementary_trading_days_from_window_start": 5,
+        "supplementary_is_window_edge_artifact": true,
+        "bottom_date": "1985-10-08",
+        "bottom_close": 107.16,
+        "reference_peak_close": null,
+        "reference_peak_date": null,
+        "drawdown_pct": null,
+        "is_bear_market": null,
+        "observations_in_window": 742,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "1985-10-08",
+          "close": 107.16,
+          "months_from_last_hike": 1.1
+        },
+        "months_from_last_hike": 1.1,
+        "trading_days_from_last_hike": 6,
+        "bottom_before_last_hike": false,
+        "months_from_first_cut": -2.3,
+        "window_starts_before_index_history": true
+      },
+      "fedfunds_check": {
+        "value": 7.92,
+        "month": "1985-09-01",
+        "neighbourhood_months": 6,
+        "neighbourhood_peak": 8.58,
+        "neighbourhood_peak_month": "1985-03-01",
+        "gap_pp": 0.66,
+        "flagged": true,
+        "flag_rule": "gap_pp > 0.5"
+      },
+      "baa10y": {
+        "max_in_window": 3.16,
+        "max_date": "1986-04-16",
+        "at_last_hike": null,
+        "at_last_hike_as_of": null,
+        "descriptive_only": true
+      },
+      "ice_hy_oas": {
+        "value": null,
+        "reason": "ICE BofA HY OAS on FRED only covers a rolling ~3-year window (earliest 2023-11) and ALFRED holds no vintages; unavailable for this cycle"
+      }
+    },
+    {
+      "cycle_id": "1986-04-02__1986-04-02",
+      "first_hike_date": "1986-04-02",
+      "last_hike_date": "1986-04-02",
+      "status": "complete",
+      "rate_before_pct": 7.25,
+      "peak_rate_pct": 7.3125,
+      "total_hike_bp": 6.2,
+      "hike_count": 1,
+      "months_first_to_last_hike": 0.0,
+      "first_cut_after_date": "1986-04-21",
+      "window": {
+        "start": "1984-04-02",
+        "end": "1989-04-02",
+        "months_before": 24,
+        "months_after": 36
+      },
+      "gspc": {
+        "supplementary_drawdown_from_running_peak_pct": -8.7,
+        "supplementary_running_peak_close": 161.9,
+        "supplementary_running_peak_date": "1984-05-02",
+        "supplementary_trading_days_from_window_start": 78,
+        "supplementary_is_window_edge_artifact": false,
+        "bottom_date": "1984-07-24",
+        "bottom_close": 147.82,
+        "reference_peak_close": 172.65,
+        "reference_peak_date": "1983-10-10",
+        "drawdown_pct": -14.38,
+        "is_bear_market": false,
+        "observations_in_window": 1263,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "1985-10-07",
+          "close": 181.87,
+          "months_from_last_hike": -5.8
+        },
+        "months_from_last_hike": -20.3,
+        "trading_days_from_last_hike": -426,
+        "bottom_before_last_hike": true,
+        "months_from_first_cut": -20.9,
+        "window_starts_before_index_history": false
+      },
+      "ndx": {
+        "supplementary_drawdown_from_running_peak_pct": -4.44,
+        "supplementary_running_peak_close": 112.14,
+        "supplementary_running_peak_date": "1985-10-01",
+        "supplementary_trading_days_from_window_start": 5,
+        "supplementary_is_window_edge_artifact": true,
+        "bottom_date": "1985-10-08",
+        "bottom_close": 107.16,
+        "reference_peak_close": null,
+        "reference_peak_date": null,
+        "drawdown_pct": null,
+        "is_bear_market": null,
+        "observations_in_window": 885,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "1985-10-08",
+          "close": 107.16,
+          "months_from_last_hike": -5.8
+        },
+        "months_from_last_hike": -5.8,
+        "trading_days_from_last_hike": -121,
+        "bottom_before_last_hike": true,
+        "months_from_first_cut": -6.4,
+        "window_starts_before_index_history": true
+      },
+      "fedfunds_check": {
+        "value": 6.99,
+        "month": "1986-04-01",
+        "neighbourhood_months": 6,
+        "neighbourhood_peak": 8.27,
+        "neighbourhood_peak_month": "1985-12-01",
+        "gap_pp": 1.28,
+        "flagged": true,
+        "flag_rule": "gap_pp > 0.5"
+      },
+      "baa10y": {
+        "max_in_window": 3.16,
+        "max_date": "1986-04-16",
+        "at_last_hike": 2.92,
+        "at_last_hike_as_of": "1986-04-02",
+        "descriptive_only": true
+      },
+      "ice_hy_oas": {
+        "value": null,
+        "reason": "ICE BofA HY OAS on FRED only covers a rolling ~3-year window (earliest 2023-11) and ALFRED holds no vintages; unavailable for this cycle"
+      }
+    },
+    {
+      "cycle_id": "1986-05-22__1986-06-05",
+      "first_hike_date": "1986-05-22",
+      "last_hike_date": "1986-06-05",
+      "status": "complete",
+      "rate_before_pct": 6.75,
+      "peak_rate_pct": 6.875,
+      "total_hike_bp": 12.4,
+      "hike_count": 2,
+      "months_first_to_last_hike": 0.5,
+      "first_cut_after_date": "1986-07-11",
+      "window": {
+        "start": "1984-06-05",
+        "end": "1989-06-05",
+        "months_before": 24,
+        "months_after": 36
+      },
+      "gspc": {
+        "supplementary_drawdown_from_running_peak_pct": -4.74,
+        "supplementary_running_peak_close": 155.17,
+        "supplementary_running_peak_date": "1984-06-08",
+        "supplementary_trading_days_from_window_start": 34,
+        "supplementary_is_window_edge_artifact": false,
+        "bottom_date": "1984-07-24",
+        "bottom_close": 147.82,
+        "reference_peak_close": 172.65,
+        "reference_peak_date": "1983-10-10",
+        "drawdown_pct": -14.38,
+        "is_bear_market": false,
+        "observations_in_window": 1264,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "1985-12-06",
+          "close": 202.99,
+          "months_from_last_hike": -5.9
+        },
+        "months_from_last_hike": -22.4,
+        "trading_days_from_last_hike": -471,
+        "bottom_before_last_hike": true,
+        "months_from_first_cut": -23.6,
+        "window_starts_before_index_history": false
+      },
+      "ndx": {
+        "supplementary_drawdown_from_running_peak_pct": -4.44,
+        "supplementary_running_peak_close": 112.14,
+        "supplementary_running_peak_date": "1985-10-01",
+        "supplementary_trading_days_from_window_start": 5,
+        "supplementary_is_window_edge_artifact": true,
+        "bottom_date": "1985-10-08",
+        "bottom_close": 107.16,
+        "reference_peak_close": null,
+        "reference_peak_date": null,
+        "drawdown_pct": null,
+        "is_bear_market": null,
+        "observations_in_window": 930,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "1985-12-06",
+          "close": 126.96,
+          "months_from_last_hike": -5.9
+        },
+        "months_from_last_hike": -7.9,
+        "trading_days_from_last_hike": -166,
+        "bottom_before_last_hike": true,
+        "months_from_first_cut": -9.1,
+        "window_starts_before_index_history": true
+      },
+      "fedfunds_check": {
+        "value": 6.92,
+        "month": "1986-06-01",
+        "neighbourhood_months": 6,
+        "neighbourhood_peak": 8.27,
+        "neighbourhood_peak_month": "1985-12-01",
+        "gap_pp": 1.35,
+        "flagged": true,
+        "flag_rule": "gap_pp > 0.5"
+      },
+      "baa10y": {
+        "max_in_window": 3.16,
+        "max_date": "1986-04-16",
+        "at_last_hike": 2.15,
+        "at_last_hike_as_of": "1986-06-05",
+        "descriptive_only": true
+      },
+      "ice_hy_oas": {
+        "value": null,
+        "reason": "ICE BofA HY OAS on FRED only covers a rolling ~3-year window (earliest 2023-11) and ALFRED holds no vintages; unavailable for this cycle"
+      }
+    },
+    {
+      "cycle_id": "1987-01-05__1987-05-22",
+      "first_hike_date": "1987-01-05",
+      "last_hike_date": "1987-05-22",
+      "status": "complete",
+      "rate_before_pct": 5.875,
+      "peak_rate_pct": 6.75,
+      "total_hike_bp": 87.5,
+      "hike_count": 3,
+      "months_first_to_last_hike": 4.5,
+      "first_cut_after_date": "1987-07-02",
+      "window": {
+        "start": "1985-05-22",
+        "end": "1990-05-22",
+        "months_before": 24,
+        "months_after": 36
+      },
+      "gspc": {
+        "supplementary_drawdown_from_running_peak_pct": -7.66,
+        "supplementary_running_peak_close": 195.65,
+        "supplementary_running_peak_date": "1985-07-17",
+        "supplementary_trading_days_from_window_start": 87,
+        "supplementary_is_window_edge_artifact": false,
+        "bottom_date": "1985-09-25",
+        "bottom_close": 180.66,
+        "reference_peak_close": 189.72,
+        "reference_peak_date": "1985-05-20",
+        "drawdown_pct": -4.78,
+        "is_bear_market": false,
+        "observations_in_window": 1264,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "1987-10-19",
+          "close": 224.84,
+          "months_from_last_hike": 4.9
+        },
+        "months_from_last_hike": -19.8,
+        "trading_days_from_last_hike": -418,
+        "bottom_before_last_hike": true,
+        "months_from_first_cut": -21.2,
+        "window_starts_before_index_history": false
+      },
+      "ndx": {
+        "supplementary_drawdown_from_running_peak_pct": -4.44,
+        "supplementary_running_peak_close": 112.14,
+        "supplementary_running_peak_date": "1985-10-01",
+        "supplementary_trading_days_from_window_start": 5,
+        "supplementary_is_window_edge_artifact": true,
+        "bottom_date": "1985-10-08",
+        "bottom_close": 107.16,
+        "reference_peak_close": null,
+        "reference_peak_date": null,
+        "drawdown_pct": null,
+        "is_bear_market": null,
+        "observations_in_window": 1174,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "1987-10-26",
+          "close": 128.43,
+          "months_from_last_hike": 5.2
+        },
+        "months_from_last_hike": -19.4,
+        "trading_days_from_last_hike": -410,
+        "bottom_before_last_hike": true,
+        "months_from_first_cut": -20.8,
+        "window_starts_before_index_history": true
+      },
+      "fedfunds_check": {
+        "value": 6.85,
+        "month": "1987-05-01",
+        "neighbourhood_months": 6,
+        "neighbourhood_peak": 7.29,
+        "neighbourhood_peak_month": "1987-10-01",
+        "gap_pp": 0.44,
+        "flagged": false,
+        "flag_rule": "gap_pp > 0.5"
+      },
+      "baa10y": {
+        "max_in_window": 3.16,
+        "max_date": "1986-04-16",
+        "at_last_hike": 1.91,
+        "at_last_hike_as_of": "1987-05-22",
+        "descriptive_only": true
+      },
+      "ice_hy_oas": {
+        "value": null,
+        "reason": "ICE BofA HY OAS on FRED only covers a rolling ~3-year window (earliest 2023-11) and ALFRED holds no vintages; unavailable for this cycle"
+      }
+    },
+    {
+      "cycle_id": "1987-08-27__1987-09-24",
+      "first_hike_date": "1987-08-27",
+      "last_hike_date": "1987-09-24",
+      "status": "complete",
+      "rate_before_pct": 6.625,
+      "peak_rate_pct": 7.3125,
+      "total_hike_bp": 68.7,
+      "hike_count": 4,
+      "months_first_to_last_hike": 0.9,
+      "first_cut_after_date": "1987-11-04",
+      "window": {
+        "start": "1985-09-24",
+        "end": "1990-09-24",
+        "months_before": 24,
+        "months_after": 36
+      },
+      "gspc": {
+        "supplementary_drawdown_from_running_peak_pct": -1.07,
+        "supplementary_running_peak_close": 182.62,
+        "supplementary_running_peak_date": "1985-09-24",
+        "supplementary_trading_days_from_window_start": 1,
+        "supplementary_is_window_edge_artifact": true,
+        "bottom_date": "1985-09-25",
+        "bottom_close": 180.66,
+        "reference_peak_close": 195.65,
+        "reference_peak_date": "1985-07-17",
+        "drawdown_pct": -7.66,
+        "is_bear_market": false,
+        "observations_in_window": 1264,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "1987-12-04",
+          "close": 223.92,
+          "months_from_last_hike": 2.3
+        },
+        "months_from_last_hike": -24.0,
+        "trading_days_from_last_hike": -504,
+        "bottom_before_last_hike": true,
+        "months_from_first_cut": -25.3,
+        "window_starts_before_index_history": false
+      },
+      "ndx": {
+        "supplementary_drawdown_from_running_peak_pct": -4.44,
+        "supplementary_running_peak_close": 112.14,
+        "supplementary_running_peak_date": "1985-10-01",
+        "supplementary_trading_days_from_window_start": 5,
+        "supplementary_is_window_edge_artifact": true,
+        "bottom_date": "1985-10-08",
+        "bottom_close": 107.16,
+        "reference_peak_close": null,
+        "reference_peak_date": null,
+        "drawdown_pct": null,
+        "is_bear_market": null,
+        "observations_in_window": 1260,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "1987-10-26",
+          "close": 128.43,
+          "months_from_last_hike": 1.1
+        },
+        "months_from_last_hike": -23.5,
+        "trading_days_from_last_hike": -496,
+        "bottom_before_last_hike": true,
+        "months_from_first_cut": -24.9,
+        "window_starts_before_index_history": true
+      },
+      "fedfunds_check": {
+        "value": 7.22,
+        "month": "1987-09-01",
+        "neighbourhood_months": 6,
+        "neighbourhood_peak": 7.29,
+        "neighbourhood_peak_month": "1987-10-01",
+        "gap_pp": 0.07,
+        "flagged": false,
+        "flag_rule": "gap_pp > 0.5"
+      },
+      "baa10y": {
+        "max_in_window": 3.16,
+        "max_date": "1986-04-16",
+        "at_last_hike": 1.9,
+        "at_last_hike_as_of": "1987-09-24",
+        "descriptive_only": true
+      },
+      "ice_hy_oas": {
+        "value": null,
+        "reason": "ICE BofA HY OAS on FRED only covers a rolling ~3-year window (earliest 2023-11) and ALFRED holds no vintages; unavailable for this cycle"
+      }
+    },
+    {
+      "cycle_id": "1988-03-30__1989-05-17",
+      "first_hike_date": "1988-03-30",
+      "last_hike_date": "1989-05-17",
+      "status": "complete",
+      "rate_before_pct": 6.5,
+      "peak_rate_pct": 9.8125,
+      "total_hike_bp": 331.2,
+      "hike_count": 16,
+      "months_first_to_last_hike": 13.6,
+      "first_cut_after_date": "1989-06-06",
+      "window": {
+        "start": "1987-05-17",
+        "end": "1992-05-17",
+        "months_before": 24,
+        "months_after": 36
+      },
+      "gspc": {
+        "supplementary_drawdown_from_running_peak_pct": -33.51,
+        "supplementary_running_peak_close": 336.77,
+        "supplementary_running_peak_date": "1987-08-25",
+        "supplementary_trading_days_from_window_start": 140,
+        "supplementary_is_window_edge_artifact": false,
+        "bottom_date": "1987-12-04",
+        "bottom_close": 223.92,
+        "reference_peak_close": 301.95,
+        "reference_peak_date": "1987-04-06",
+        "drawdown_pct": -25.84,
+        "is_bear_market": true,
+        "observations_in_window": 1265,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "1988-11-17",
+          "close": 264.6,
+          "months_from_last_hike": -5.9
+        },
+        "months_from_last_hike": -17.4,
+        "trading_days_from_last_hike": -366,
+        "bottom_before_last_hike": true,
+        "months_from_first_cut": -18.1,
+        "window_starts_before_index_history": false
+      },
+      "ndx": {
+        "supplementary_drawdown_from_running_peak_pct": -39.93,
+        "supplementary_running_peak_close": 213.81,
+        "supplementary_running_peak_date": "1987-10-05",
+        "supplementary_trading_days_from_window_start": 112,
+        "supplementary_is_window_edge_artifact": false,
+        "bottom_date": "1987-10-26",
+        "bottom_close": 128.43,
+        "reference_peak_close": 191.36,
+        "reference_peak_date": "1987-04-03",
+        "drawdown_pct": -32.89,
+        "is_bear_market": true,
+        "observations_in_window": 1265,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "1988-11-21",
+          "close": 163.82,
+          "months_from_last_hike": -5.8
+        },
+        "months_from_last_hike": -18.7,
+        "trading_days_from_last_hike": -394,
+        "bottom_before_last_hike": true,
+        "months_from_first_cut": -19.4,
+        "window_starts_before_index_history": false
+      },
+      "fedfunds_check": {
+        "value": 9.81,
+        "month": "1989-05-01",
+        "neighbourhood_months": 6,
+        "neighbourhood_peak": 9.85,
+        "neighbourhood_peak_month": "1989-03-01",
+        "gap_pp": 0.04,
+        "flagged": false,
+        "flag_rule": "gap_pp > 0.5"
+      },
+      "baa10y": {
+        "max_in_window": 2.68,
+        "max_date": "1987-10-22",
+        "at_last_hike": 1.66,
+        "at_last_hike_as_of": "1989-05-17",
+        "descriptive_only": true
+      },
+      "ice_hy_oas": {
+        "value": null,
+        "reason": "ICE BofA HY OAS on FRED only covers a rolling ~3-year window (earliest 2023-11) and ALFRED holds no vintages; unavailable for this cycle"
+      }
+    },
+    {
+      "cycle_id": "1994-02-04__1995-02-01",
+      "first_hike_date": "1994-02-04",
+      "last_hike_date": "1995-02-01",
+      "status": "complete",
+      "rate_before_pct": 3.0,
+      "peak_rate_pct": 6.0,
+      "total_hike_bp": 300.0,
+      "hike_count": 7,
+      "months_first_to_last_hike": 11.9,
+      "first_cut_after_date": "1995-07-06",
+      "window": {
+        "start": "1993-02-01",
+        "end": "1998-02-01",
+        "months_before": 24,
+        "months_after": 36
+      },
+      "gspc": {
+        "supplementary_drawdown_from_running_peak_pct": -3.93,
+        "supplementary_running_peak_close": 449.56,
+        "supplementary_running_peak_date": "1993-02-04",
+        "supplementary_trading_days_from_window_start": 12,
+        "supplementary_is_window_edge_artifact": false,
+        "bottom_date": "1993-02-18",
+        "bottom_close": 431.9,
+        "reference_peak_close": 441.28,
+        "reference_peak_date": "1992-12-18",
+        "drawdown_pct": -2.13,
+        "is_bear_market": false,
+        "observations_in_window": 1264,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "1994-12-08",
+          "close": 445.45,
+          "months_from_last_hike": -1.8
+        },
+        "months_from_last_hike": -23.4,
+        "trading_days_from_last_hike": -494,
+        "bottom_before_last_hike": true,
+        "months_from_first_cut": -28.5,
+        "window_starts_before_index_history": false
+      },
+      "ndx": {
+        "supplementary_drawdown_from_running_peak_pct": -13.29,
+        "supplementary_running_peak_close": 377.44,
+        "supplementary_running_peak_date": "1993-02-02",
+        "supplementary_trading_days_from_window_start": 58,
+        "supplementary_is_window_edge_artifact": false,
+        "bottom_date": "1993-04-26",
+        "bottom_close": 327.28,
+        "reference_peak_close": 381.34,
+        "reference_peak_date": "1993-01-14",
+        "drawdown_pct": -14.18,
+        "is_bear_market": false,
+        "observations_in_window": 1264,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "1994-08-05",
+          "close": 367.15,
+          "months_from_last_hike": -5.9
+        },
+        "months_from_last_hike": -21.2,
+        "trading_days_from_last_hike": -448,
+        "bottom_before_last_hike": true,
+        "months_from_first_cut": -26.3,
+        "window_starts_before_index_history": false
+      },
+      "fedfunds_check": {
+        "value": 5.92,
+        "month": "1995-02-01",
+        "neighbourhood_months": 6,
+        "neighbourhood_peak": 6.05,
+        "neighbourhood_peak_month": "1995-04-01",
+        "gap_pp": 0.13,
+        "flagged": false,
+        "flag_rule": "gap_pp > 0.5"
+      },
+      "baa10y": {
+        "max_in_window": 2.25,
+        "max_date": "1993-02-23",
+        "at_last_hike": 1.28,
+        "at_last_hike_as_of": "1995-02-01",
+        "descriptive_only": true
+      },
+      "ice_hy_oas": {
+        "value": null,
+        "reason": "ICE BofA HY OAS on FRED only covers a rolling ~3-year window (earliest 2023-11) and ALFRED holds no vintages; unavailable for this cycle"
+      }
+    },
+    {
+      "cycle_id": "1997-03-25__1997-03-25",
+      "first_hike_date": "1997-03-25",
+      "last_hike_date": "1997-03-25",
+      "status": "complete",
+      "rate_before_pct": 5.25,
+      "peak_rate_pct": 5.5,
+      "total_hike_bp": 25.0,
+      "hike_count": 1,
+      "months_first_to_last_hike": 0.0,
+      "first_cut_after_date": "1998-09-29",
+      "window": {
+        "start": "1995-03-25",
+        "end": "2000-03-25",
+        "months_before": 24,
+        "months_after": 36
+      },
+      "gspc": {
+        "supplementary_drawdown_from_running_peak_pct": -0.63,
+        "supplementary_running_peak_close": 503.9,
+        "supplementary_running_peak_date": "1995-03-28",
+        "supplementary_trading_days_from_window_start": 4,
+        "supplementary_is_window_edge_artifact": true,
+        "bottom_date": "1995-03-31",
+        "bottom_close": 500.71,
+        "reference_peak_close": 500.97,
+        "reference_peak_date": "1995-03-24",
+        "drawdown_pct": -0.05,
+        "is_bear_market": false,
+        "observations_in_window": 1263,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "1996-09-25",
+          "close": 685.83,
+          "months_from_last_hike": -5.9
+        },
+        "months_from_last_hike": -23.8,
+        "trading_days_from_last_hike": -501,
+        "bottom_before_last_hike": true,
+        "months_from_first_cut": -42.0,
+        "window_starts_before_index_history": false
+      },
+      "ndx": {
+        "supplementary_drawdown_from_running_peak_pct": -4.48,
+        "supplementary_running_peak_close": 460.54,
+        "supplementary_running_peak_date": "1995-03-28",
+        "supplementary_trading_days_from_window_start": 8,
+        "supplementary_is_window_edge_artifact": true,
+        "bottom_date": "1995-04-06",
+        "bottom_close": 439.92,
+        "reference_peak_close": 455.43,
+        "reference_peak_date": "1995-03-24",
+        "drawdown_pct": -3.41,
+        "is_bear_market": false,
+        "observations_in_window": 1263,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "1996-10-29",
+          "close": 731.21,
+          "months_from_last_hike": -4.8
+        },
+        "months_from_last_hike": -23.6,
+        "trading_days_from_last_hike": -497,
+        "bottom_before_last_hike": true,
+        "months_from_first_cut": -41.8,
+        "window_starts_before_index_history": false
+      },
+      "fedfunds_check": {
+        "value": 5.39,
+        "month": "1997-03-01",
+        "neighbourhood_months": 6,
+        "neighbourhood_peak": 5.56,
+        "neighbourhood_peak_month": "1997-06-01",
+        "gap_pp": 0.17,
+        "flagged": false,
+        "flag_rule": "gap_pp > 0.5"
+      },
+      "baa10y": {
+        "max_in_window": 2.77,
+        "max_date": "1998-10-16",
+        "at_last_hike": 1.47,
+        "at_last_hike_as_of": "1997-03-25",
+        "descriptive_only": true
+      },
+      "ice_hy_oas": {
+        "value": null,
+        "reason": "ICE BofA HY OAS on FRED only covers a rolling ~3-year window (earliest 2023-11) and ALFRED holds no vintages; unavailable for this cycle"
+      }
+    },
+    {
+      "cycle_id": "1999-06-30__2000-05-16",
+      "first_hike_date": "1999-06-30",
+      "last_hike_date": "2000-05-16",
+      "status": "complete",
+      "rate_before_pct": 4.75,
+      "peak_rate_pct": 6.5,
+      "total_hike_bp": 175.0,
+      "hike_count": 6,
+      "months_first_to_last_hike": 10.5,
+      "first_cut_after_date": "2001-01-03",
+      "window": {
+        "start": "1998-05-16",
+        "end": "2003-05-16",
+        "months_before": 24,
+        "months_after": 36
+      },
+      "gspc": {
+        "supplementary_drawdown_from_running_peak_pct": -49.15,
+        "supplementary_running_peak_close": 1527.46,
+        "supplementary_running_peak_date": "2000-03-24",
+        "supplementary_trading_days_from_window_start": 1105,
+        "supplementary_is_window_edge_artifact": false,
+        "bottom_date": "2002-10-09",
+        "bottom_close": 776.76,
+        "reference_peak_close": 1130.54,
+        "reference_peak_date": "1998-04-22",
+        "drawdown_pct": -31.29,
+        "is_bear_market": true,
+        "observations_in_window": 1257,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "2000-10-12",
+          "close": 1329.78,
+          "months_from_last_hike": 4.9
+        },
+        "months_from_last_hike": 28.8,
+        "trading_days_from_last_hike": 601,
+        "bottom_before_last_hike": false,
+        "months_from_first_cut": 21.2,
+        "window_starts_before_index_history": false
+      },
+      "ndx": {
+        "supplementary_drawdown_from_running_peak_pct": -82.9,
+        "supplementary_running_peak_close": 4704.73,
+        "supplementary_running_peak_date": "2000-03-27",
+        "supplementary_trading_days_from_window_start": 1103,
+        "supplementary_is_window_edge_artifact": false,
+        "bottom_date": "2002-10-07",
+        "bottom_close": 804.64,
+        "reference_peak_close": 1290.9,
+        "reference_peak_date": "1998-04-22",
+        "drawdown_pct": -37.67,
+        "is_bear_market": true,
+        "observations_in_window": 1257,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "2000-11-13",
+          "close": 2836.62,
+          "months_from_last_hike": 5.9
+        },
+        "months_from_last_hike": 28.7,
+        "trading_days_from_last_hike": 599,
+        "bottom_before_last_hike": false,
+        "months_from_first_cut": 21.1,
+        "window_starts_before_index_history": false
+      },
+      "fedfunds_check": {
+        "value": 6.27,
+        "month": "2000-05-01",
+        "neighbourhood_months": 6,
+        "neighbourhood_peak": 6.54,
+        "neighbourhood_peak_month": "2000-07-01",
+        "gap_pp": 0.27,
+        "flagged": false,
+        "flag_rule": "gap_pp > 0.5"
+      },
+      "baa10y": {
+        "max_in_window": 3.9,
+        "max_date": "2002-10-09",
+        "at_last_hike": 2.51,
+        "at_last_hike_as_of": "2000-05-16",
+        "descriptive_only": true
+      },
+      "ice_hy_oas": {
+        "value": null,
+        "reason": "ICE BofA HY OAS on FRED only covers a rolling ~3-year window (earliest 2023-11) and ALFRED holds no vintages; unavailable for this cycle"
+      }
+    },
+    {
+      "cycle_id": "2004-06-30__2006-06-29",
+      "first_hike_date": "2004-06-30",
+      "last_hike_date": "2006-06-29",
+      "status": "complete",
+      "rate_before_pct": 1.0,
+      "peak_rate_pct": 5.25,
+      "total_hike_bp": 425.0,
+      "hike_count": 17,
+      "months_first_to_last_hike": 24.0,
+      "first_cut_after_date": "2007-09-18",
+      "window": {
+        "start": "2004-06-29",
+        "end": "2009-06-29",
+        "months_before": 24,
+        "months_after": 36
+      },
+      "gspc": {
+        "supplementary_drawdown_from_running_peak_pct": -56.78,
+        "supplementary_running_peak_close": 1565.15,
+        "supplementary_running_peak_date": "2007-10-09",
+        "supplementary_trading_days_from_window_start": 1181,
+        "supplementary_is_window_edge_artifact": false,
+        "bottom_date": "2009-03-09",
+        "bottom_close": 676.53,
+        "reference_peak_close": 1157.76,
+        "reference_peak_date": "2004-02-11",
+        "drawdown_pct": -41.57,
+        "is_bear_market": true,
+        "observations_in_window": 1260,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "2006-06-13",
+          "close": 1223.69,
+          "months_from_last_hike": -0.5
+        },
+        "months_from_last_hike": 32.3,
+        "trading_days_from_last_hike": 676,
+        "bottom_before_last_hike": false,
+        "months_from_first_cut": 17.7,
+        "window_starts_before_index_history": false
+      },
+      "ndx": {
+        "supplementary_drawdown_from_running_peak_pct": -53.71,
+        "supplementary_running_peak_close": 2238.98,
+        "supplementary_running_peak_date": "2007-10-31",
+        "supplementary_trading_days_from_window_start": 1109,
+        "supplementary_is_window_edge_artifact": false,
+        "bottom_date": "2008-11-20",
+        "bottom_close": 1036.51,
+        "reference_peak_close": 1553.66,
+        "reference_peak_date": "2004-01-26",
+        "drawdown_pct": -33.29,
+        "is_bear_market": true,
+        "observations_in_window": 1260,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "2006-07-21",
+          "close": 1451.88,
+          "months_from_last_hike": 0.7
+        },
+        "months_from_last_hike": 28.7,
+        "trading_days_from_last_hike": 604,
+        "bottom_before_last_hike": false,
+        "months_from_first_cut": 14.1,
+        "window_starts_before_index_history": false
+      },
+      "fedfunds_check": {
+        "value": 4.99,
+        "month": "2006-06-01",
+        "neighbourhood_months": 6,
+        "neighbourhood_peak": 5.25,
+        "neighbourhood_peak_month": "2006-08-01",
+        "gap_pp": 0.26,
+        "flagged": false,
+        "flag_rule": "gap_pp > 0.5"
+      },
+      "baa10y": {
+        "max_in_window": 6.16,
+        "max_date": "2008-12-04",
+        "at_last_hike": 1.69,
+        "at_last_hike_as_of": "2006-06-29",
+        "descriptive_only": true
+      },
+      "ice_hy_oas": {
+        "value": null,
+        "reason": "ICE BofA HY OAS on FRED only covers a rolling ~3-year window (earliest 2023-11) and ALFRED holds no vintages; unavailable for this cycle"
+      }
+    },
+    {
+      "cycle_id": "2015-12-16__2018-12-20",
+      "first_hike_date": "2015-12-16",
+      "last_hike_date": "2018-12-20",
+      "status": "complete",
+      "rate_before_pct": 0.25,
+      "peak_rate_pct": 2.5,
+      "total_hike_bp": 225.0,
+      "hike_count": 9,
+      "months_first_to_last_hike": 36.1,
+      "first_cut_after_date": "2019-08-01",
+      "window": {
+        "start": "2016-12-20",
+        "end": "2021-12-20",
+        "months_before": 24,
+        "months_after": 36
+      },
+      "gspc": {
+        "supplementary_drawdown_from_running_peak_pct": -33.92,
+        "supplementary_running_peak_close": 3386.15,
+        "supplementary_running_peak_date": "2020-02-19",
+        "supplementary_trading_days_from_window_start": 817,
+        "supplementary_is_window_edge_artifact": false,
+        "bottom_date": "2020-03-23",
+        "bottom_close": 2237.4,
+        "reference_peak_close": 2271.72,
+        "reference_peak_date": "2016-12-13",
+        "drawdown_pct": -1.51,
+        "is_bear_market": false,
+        "observations_in_window": 1259,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "2018-12-24",
+          "close": 2351.1,
+          "months_from_last_hike": 0.1
+        },
+        "months_from_last_hike": 15.1,
+        "trading_days_from_last_hike": 314,
+        "bottom_before_last_hike": false,
+        "months_from_first_cut": 7.7,
+        "window_starts_before_index_history": false
+      },
+      "ndx": {
+        "supplementary_drawdown_from_running_peak_pct": -2.06,
+        "supplementary_running_peak_close": 4965.81,
+        "supplementary_running_peak_date": "2016-12-27",
+        "supplementary_trading_days_from_window_start": 7,
+        "supplementary_is_window_edge_artifact": true,
+        "bottom_date": "2016-12-30",
+        "bottom_close": 4863.62,
+        "reference_peak_close": 4935.84,
+        "reference_peak_date": "2016-12-13",
+        "drawdown_pct": -1.46,
+        "is_bear_market": false,
+        "observations_in_window": 1259,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "2018-12-24",
+          "close": 5899.35,
+          "months_from_last_hike": 0.1
+        },
+        "months_from_last_hike": -23.7,
+        "trading_days_from_last_hike": -496,
+        "bottom_before_last_hike": true,
+        "months_from_first_cut": -31.0,
+        "window_starts_before_index_history": false
+      },
+      "fedfunds_check": {
+        "value": 2.27,
+        "month": "2018-12-01",
+        "neighbourhood_months": 6,
+        "neighbourhood_peak": 2.42,
+        "neighbourhood_peak_month": "2019-04-01",
+        "gap_pp": 0.15,
+        "flagged": false,
+        "flag_rule": "gap_pp > 0.5"
+      },
+      "baa10y": {
+        "max_in_window": 4.31,
+        "max_date": "2020-03-23",
+        "at_last_hike": 2.28,
+        "at_last_hike_as_of": "2018-12-20",
+        "descriptive_only": true
+      },
+      "ice_hy_oas": {
+        "value": null,
+        "reason": "ICE BofA HY OAS on FRED only covers a rolling ~3-year window (earliest 2023-11) and ALFRED holds no vintages; unavailable for this cycle"
+      }
+    },
+    {
+      "cycle_id": "2022-03-17__2023-07-27",
+      "first_hike_date": "2022-03-17",
+      "last_hike_date": "2023-07-27",
+      "status": "complete",
+      "rate_before_pct": 0.25,
+      "peak_rate_pct": 5.5,
+      "total_hike_bp": 525.0,
+      "hike_count": 11,
+      "months_first_to_last_hike": 16.3,
+      "first_cut_after_date": "2024-09-19",
+      "window": {
+        "start": "2021-07-27",
+        "end": "2026-07-27",
+        "months_before": 24,
+        "months_after": 36
+      },
+      "gspc": {
+        "supplementary_drawdown_from_running_peak_pct": -25.43,
+        "supplementary_running_peak_close": 4796.56,
+        "supplementary_running_peak_date": "2022-01-03",
+        "supplementary_trading_days_from_window_start": 306,
+        "supplementary_is_window_edge_artifact": false,
+        "bottom_date": "2022-10-12",
+        "bottom_close": 3577.03,
+        "reference_peak_close": 4422.3,
+        "reference_peak_date": "2021-07-26",
+        "drawdown_pct": -19.11,
+        "is_bear_market": false,
+        "observations_in_window": 1255,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "2023-03-13",
+          "close": 3855.76,
+          "months_from_last_hike": -4.5
+        },
+        "months_from_last_hike": -9.5,
+        "trading_days_from_last_hike": -197,
+        "bottom_before_last_hike": true,
+        "months_from_first_cut": -23.3,
+        "window_starts_before_index_history": false
+      },
+      "ndx": {
+        "supplementary_drawdown_from_running_peak_pct": -35.56,
+        "supplementary_running_peak_close": 16573.34,
+        "supplementary_running_peak_date": "2021-11-19",
+        "supplementary_trading_days_from_window_start": 359,
+        "supplementary_is_window_edge_artifact": false,
+        "bottom_date": "2022-12-28",
+        "bottom_close": 10679.34,
+        "reference_peak_close": 15125.95,
+        "reference_peak_date": "2021-07-26",
+        "drawdown_pct": -29.4,
+        "is_bear_market": true,
+        "observations_in_window": 1255,
+        "incomplete": false,
+        "incomplete_reason": null,
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "2023-03-10",
+          "close": 11830.28,
+          "months_from_last_hike": -4.6
+        },
+        "months_from_last_hike": -6.9,
+        "trading_days_from_last_hike": -144,
+        "bottom_before_last_hike": true,
+        "months_from_first_cut": -20.7,
+        "window_starts_before_index_history": false
+      },
+      "fedfunds_check": {
+        "value": 5.12,
+        "month": "2023-07-01",
+        "neighbourhood_months": 6,
+        "neighbourhood_peak": 5.33,
+        "neighbourhood_peak_month": "2023-08-01",
+        "gap_pp": 0.21,
+        "flagged": false,
+        "flag_rule": "gap_pp > 0.5"
+      },
+      "baa10y": {
+        "max_in_window": 2.42,
+        "max_date": "2022-07-01",
+        "at_last_hike": 1.78,
+        "at_last_hike_as_of": "2023-07-27",
+        "descriptive_only": true
+      },
+      "ice_hy_oas": {
+        "value": null,
+        "reason": "ICE BofA HY OAS on FRED only covers a rolling ~3-year window (earliest 2023-11) and ALFRED holds no vintages; unavailable for this cycle"
+      }
+    },
+    {
+      "cycle_id": "2026-09-17__2026-09-17",
+      "first_hike_date": "2026-09-17",
+      "last_hike_date": "2026-09-17",
+      "status": "ongoing",
+      "rate_before_pct": 3.75,
+      "peak_rate_pct": 4.0,
+      "total_hike_bp": 25.0,
+      "hike_count": 1,
+      "months_first_to_last_hike": 0.0,
+      "first_cut_after_date": null,
+      "ongoing_note": "no last hike yet; last_hike_date is the most recent hike to date and every interval below is provisional",
+      "window": {
+        "start": "2024-09-17",
+        "end": "2029-09-17",
+        "months_before": 24,
+        "months_after": 36
+      },
+      "gspc": {
+        "supplementary_drawdown_from_running_peak_pct": -18.9,
+        "supplementary_running_peak_close": 6144.15,
+        "supplementary_running_peak_date": "2025-02-19",
+        "supplementary_trading_days_from_window_start": 139,
+        "supplementary_is_window_edge_artifact": false,
+        "bottom_date": "2025-04-08",
+        "bottom_close": 4982.77,
+        "reference_peak_close": 5667.2,
+        "reference_peak_date": "2024-07-16",
+        "drawdown_pct": -12.08,
+        "is_bear_market": false,
+        "observations_in_window": 548,
+        "incomplete": true,
+        "incomplete_reason": "window ends 2029-09-17 but data ends 2026-11-20; this is the running low, NOT a confirmed bottom",
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "2026-03-30",
+          "close": 6343.72,
+          "months_from_last_hike": -5.6
+        },
+        "months_from_last_hike": -17.3,
+        "trading_days_from_last_hike": -362,
+        "bottom_before_last_hike": true,
+        "months_from_first_cut": null,
+        "window_starts_before_index_history": false
+      },
+      "ndx": {
+        "supplementary_drawdown_from_running_peak_pct": -22.93,
+        "supplementary_running_peak_close": 22175.6,
+        "supplementary_running_peak_date": "2025-02-19",
+        "supplementary_trading_days_from_window_start": 139,
+        "supplementary_is_window_edge_artifact": false,
+        "bottom_date": "2025-04-08",
+        "bottom_close": 17090.4,
+        "reference_peak_close": 20675.38,
+        "reference_peak_date": "2024-07-10",
+        "drawdown_pct": -17.34,
+        "is_bear_market": false,
+        "observations_in_window": 548,
+        "incomplete": true,
+        "incomplete_reason": "window ends 2029-09-17 but data ends 2026-11-20; this is the running low, NOT a confirmed bottom",
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "2026-03-30",
+          "close": 22953.38,
+          "months_from_last_hike": -5.6
+        },
+        "months_from_last_hike": -17.3,
+        "trading_days_from_last_hike": -362,
+        "bottom_before_last_hike": true,
+        "months_from_first_cut": null,
+        "window_starts_before_index_history": false
+      },
+      "fedfunds_check": {
+        "value": 3.75,
+        "month": "2026-09-01",
+        "neighbourhood_months": 6,
+        "neighbourhood_peak": 3.88,
+        "neighbourhood_peak_month": "2026-10-01",
+        "gap_pp": 0.13,
+        "flagged": false,
+        "flag_rule": "gap_pp > 0.5"
+      },
+      "baa10y": {
+        "max_in_window": 2.02,
+        "max_date": "2025-04-07",
+        "at_last_hike": 1.44,
+        "at_last_hike_as_of": "2026-09-17",
+        "descriptive_only": true
+      },
+      "ice_hy_oas": {
+        "value": null,
+        "reason": "ICE BofA HY OAS on FRED only covers a rolling ~3-year window (earliest 2023-11) and ALFRED holds no vintages; unavailable for this cycle"
+      }
+    }
+  ],
+  "current_cycle_extra": {
+    "reference_peak_date": "2026-10-06",
+    "reference_peak_close": 31224.47,
+    "latest_date": "2026-11-20",
+    "latest_close": 25028.98,
+    "drawdown_pct": -19.84,
+    "ongoing_cycle": {
+      "cycle_id": "2026-09-17__2026-09-17",
+      "first_hike_date": "2026-09-17",
+      "last_hike_date": "2026-09-17",
+      "status": "ongoing",
+      "rate_before_pct": 3.75,
+      "peak_rate_pct": 4.0,
+      "total_hike_bp": 25.0,
+      "hike_count": 1,
+      "months_first_to_last_hike": 0.0,
+      "first_cut_after_date": null,
+      "ongoing_note": "no last hike yet; last_hike_date is the most recent hike to date and every interval below is provisional",
+      "window": {
+        "start": "2024-09-17",
+        "end": "2029-09-17",
+        "months_before": 24,
+        "months_after": 36
+      },
+      "gspc": {
+        "supplementary_drawdown_from_running_peak_pct": -18.9,
+        "supplementary_running_peak_close": 6144.15,
+        "supplementary_running_peak_date": "2025-02-19",
+        "supplementary_trading_days_from_window_start": 139,
+        "supplementary_is_window_edge_artifact": false,
+        "bottom_date": "2025-04-08",
+        "bottom_close": 4982.77,
+        "reference_peak_close": 5667.2,
+        "reference_peak_date": "2024-07-16",
+        "drawdown_pct": -12.08,
+        "is_bear_market": false,
+        "observations_in_window": 548,
+        "incomplete": true,
+        "incomplete_reason": "window ends 2029-09-17 but data ends 2026-11-20; this is the running low, NOT a confirmed bottom",
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "2026-03-30",
+          "close": 6343.72,
+          "months_from_last_hike": -5.6
+        },
+        "months_from_last_hike": -17.3,
+        "trading_days_from_last_hike": -362,
+        "bottom_before_last_hike": true,
+        "months_from_first_cut": null,
+        "window_starts_before_index_history": false
+      },
+      "ndx": {
+        "supplementary_drawdown_from_running_peak_pct": -22.93,
+        "supplementary_running_peak_close": 22175.6,
+        "supplementary_running_peak_date": "2025-02-19",
+        "supplementary_trading_days_from_window_start": 139,
+        "supplementary_is_window_edge_artifact": false,
+        "bottom_date": "2025-04-08",
+        "bottom_close": 17090.4,
+        "reference_peak_close": 20675.38,
+        "reference_peak_date": "2024-07-10",
+        "drawdown_pct": -17.34,
+        "is_bear_market": false,
+        "observations_in_window": 548,
+        "incomplete": true,
+        "incomplete_reason": "window ends 2029-09-17 but data ends 2026-11-20; this is the running low, NOT a confirmed bottom",
+        "supplementary_local_bottom": {
+          "window_months_each_side": 6,
+          "date": "2026-03-30",
+          "close": 22953.38,
+          "months_from_last_hike": -5.6
+        },
+        "months_from_last_hike": -17.3,
+        "trading_days_from_last_hike": -362,
+        "bottom_before_last_hike": true,
+        "months_from_first_cut": null,
+        "window_starts_before_index_history": false
+      },
+      "fedfunds_check": {
+        "value": 3.75,
+        "month": "2026-09-01",
+        "neighbourhood_months": 6,
+        "neighbourhood_peak": 3.88,
+        "neighbourhood_peak_month": "2026-10-01",
+        "gap_pp": 0.13,
+        "flagged": false,
+        "flag_rule": "gap_pp > 0.5"
+      },
+      "baa10y": {
+        "max_in_window": 2.02,
+        "max_date": "2025-04-07",
+        "at_last_hike": 1.44,
+        "at_last_hike_as_of": "2026-09-17",
+        "descriptive_only": true
+      },
+      "ice_hy_oas": {
+        "value": null,
+        "reason": "ICE BofA HY OAS on FRED only covers a rolling ~3-year window (earliest 2023-11) and ALFRED holds no vintages; unavailable for this cycle"
+      }
+    },
+    "note": "reference_peak_close is fetched from yfinance, not taken from the brief; the two are compared in the report"
+  },
+  "sensitivity": {
+    "[-12,+24]": {
+      "months_before": 12,
+      "months_after": 24,
+      "cycles_whose_bottom_moved": [
+        {
+          "cycle_id": "1983-03-31__1983-08-11",
+          "index": "^NDX",
+          "baseline_bottom": "1985-10-08",
+          "alt_bottom": null,
+          "baseline_months": 25.9,
+          "alt_months": null
+        },
+        {
+          "cycle_id": "1984-03-29__1984-08-09",
+          "index": "^GSPC",
+          "baseline_bottom": "1982-08-12",
+          "alt_bottom": "1984-07-24",
+          "baseline_months": -23.9,
+          "alt_months": -0.5
+        },
+        {
+          "cycle_id": "1985-07-25__1985-09-06",
+          "index": "^GSPC",
+          "baseline_bottom": "1984-07-24",
+          "alt_bottom": "1984-10-09",
+          "baseline_months": -13.4,
+          "alt_months": -10.9
+        },
+        {
+          "cycle_id": "1986-04-02__1986-04-02",
+          "index": "^GSPC",
+          "baseline_bottom": "1984-07-24",
+          "alt_bottom": "1985-04-08",
+          "baseline_months": -20.3,
+          "alt_months": -11.8
+        },
+        {
+          "cycle_id": "1986-05-22__1986-06-05",
+          "index": "^GSPC",
+          "baseline_bottom": "1984-07-24",
+          "alt_bottom": "1985-09-25",
+          "baseline_months": -22.4,
+          "alt_months": -8.3
+        },
+        {
+          "cycle_id": "1987-01-05__1987-05-22",
+          "index": "^GSPC",
+          "baseline_bottom": "1985-09-25",
+          "alt_bottom": "1987-12-04",
+          "baseline_months": -19.8,
+          "alt_months": 6.4
+        },
+        {
+          "cycle_id": "1987-01-05__1987-05-22",
+          "index": "^NDX",
+          "baseline_bottom": "1985-10-08",
+          "alt_bottom": "1987-10-26",
+          "baseline_months": -19.4,
+          "alt_months": 5.2
+        },
+        {
+          "cycle_id": "1987-08-27__1987-09-24",
+          "index": "^GSPC",
+          "baseline_bottom": "1985-09-25",
+          "alt_bottom": "1987-12-04",
+          "baseline_months": -24.0,
+          "alt_months": 2.3
+        },
+        {
+          "cycle_id": "1987-08-27__1987-09-24",
+          "index": "^NDX",
+          "baseline_bottom": "1985-10-08",
+          "alt_bottom": "1987-10-26",
+          "baseline_months": -23.5,
+          "alt_months": 1.1
+        },
+        {
+          "cycle_id": "1988-03-30__1989-05-17",
+          "index": "^GSPC",
+          "baseline_bottom": "1987-12-04",
+          "alt_bottom": "1988-05-23",
+          "baseline_months": -17.4,
+          "alt_months": -11.8
+        },
+        {
+          "cycle_id": "1988-03-30__1989-05-17",
+          "index": "^NDX",
+          "baseline_bottom": "1987-10-26",
+          "alt_bottom": "1988-11-21",
+          "baseline_months": -18.7,
+          "alt_months": -5.8
+        },
+        {
+          "cycle_id": "1994-02-04__1995-02-01",
+          "index": "^GSPC",
+          "baseline_bottom": "1993-02-18",
+          "alt_bottom": "1994-04-04",
+          "baseline_months": -23.4,
+          "alt_months": -10.0
+        },
+        {
+          "cycle_id": "1994-02-04__1995-02-01",
+          "index": "^NDX",
+          "baseline_bottom": "1993-04-26",
+          "alt_bottom": "1994-06-24",
+          "baseline_months": -21.2,
+          "alt_months": -7.3
+        },
+        {
+          "cycle_id": "1997-03-25__1997-03-25",
+          "index": "^GSPC",
+          "baseline_bottom": "1995-03-31",
+          "alt_bottom": "1996-07-24",
+          "baseline_months": -23.8,
+          "alt_months": -8.0
+        },
+        {
+          "cycle_id": "1997-03-25__1997-03-25",
+          "index": "^NDX",
+          "baseline_bottom": "1995-04-06",
+          "alt_bottom": "1996-03-25",
+          "baseline_months": -23.6,
+          "alt_months": -12.0
+        },
+        {
+          "cycle_id": "1999-06-30__2000-05-16",
+          "index": "^GSPC",
+          "baseline_bottom": "2002-10-09",
+          "alt_bottom": "2001-09-21",
+          "baseline_months": 28.8,
+          "alt_months": 16.2
+        },
+        {
+          "cycle_id": "1999-06-30__2000-05-16",
+          "index": "^NDX",
+          "baseline_bottom": "2002-10-07",
+          "alt_bottom": "2001-09-21",
+          "baseline_months": 28.7,
+          "alt_months": 16.2
+        },
+        {
+          "cycle_id": "2004-06-30__2006-06-29",
+          "index": "^GSPC",
+          "baseline_bottom": "2009-03-09",
+          "alt_bottom": "2005-10-13",
+          "baseline_months": 32.3,
+          "alt_months": -8.5
+        },
+        {
+          "cycle_id": "2004-06-30__2006-06-29",
+          "index": "^NDX",
+          "baseline_bottom": "2008-11-20",
+          "alt_bottom": "2006-07-21",
+          "baseline_months": 28.7,
+          "alt_months": 0.7
+        },
+        {
+          "cycle_id": "2015-12-16__2018-12-20",
+          "index": "^NDX",
+          "baseline_bottom": "2016-12-30",
+          "alt_bottom": "2018-12-24",
+          "baseline_months": -23.7,
+          "alt_months": 0.1
+        },
+        {
+          "cycle_id": "2026-09-17__2026-09-17",
+          "index": "^GSPC",
+          "baseline_bottom": "2025-04-08",
+          "alt_bottom": "2026-03-30",
+          "baseline_months": -17.3,
+          "alt_months": -5.6
+        },
+        {
+          "cycle_id": "2026-09-17__2026-09-17",
+          "index": "^NDX",
+          "baseline_bottom": "2025-04-08",
+          "alt_bottom": "2026-03-30",
+          "baseline_months": -17.3,
+          "alt_months": -5.6
+        }
+      ],
+      "unchanged_count": 10
+    },
+    "[-36,+48]": {
+      "months_before": 36,
+      "months_after": 48,
+      "cycles_whose_bottom_moved": [
+        {
+          "cycle_id": "1985-01-24__1985-03-28",
+          "index": "^GSPC",
+          "baseline_bottom": "1984-07-24",
+          "alt_bottom": "1982-08-12",
+          "baseline_months": -8.1,
+          "alt_months": -31.5
+        },
+        {
+          "cycle_id": "1985-07-25__1985-09-06",
+          "index": "^GSPC",
+          "baseline_bottom": "1984-07-24",
+          "alt_bottom": "1982-09-30",
+          "baseline_months": -13.4,
+          "alt_months": -35.2
+        },
+        {
+          "cycle_id": "1987-01-05__1987-05-22",
+          "index": "^GSPC",
+          "baseline_bottom": "1985-09-25",
+          "alt_bottom": "1984-07-24",
+          "baseline_months": -19.8,
+          "alt_months": -33.9
+        },
+        {
+          "cycle_id": "1987-08-27__1987-09-24",
+          "index": "^GSPC",
+          "baseline_bottom": "1985-09-25",
+          "alt_bottom": "1984-10-09",
+          "baseline_months": -24.0,
+          "alt_months": -35.5
+        },
+        {
+          "cycle_id": "1994-02-04__1995-02-01",
+          "index": "^GSPC",
+          "baseline_bottom": "1993-02-18",
+          "alt_bottom": "1992-04-08",
+          "baseline_months": -23.4,
+          "alt_months": -33.8
+        },
+        {
+          "cycle_id": "1994-02-04__1995-02-01",
+          "index": "^NDX",
+          "baseline_bottom": "1993-04-26",
+          "alt_bottom": "1992-06-26",
+          "baseline_months": -21.2,
+          "alt_months": -31.2
+        },
+        {
+          "cycle_id": "1997-03-25__1997-03-25",
+          "index": "^GSPC",
+          "baseline_bottom": "1995-03-31",
+          "alt_bottom": "1994-04-04",
+          "baseline_months": -23.8,
+          "alt_months": -35.7
+        },
+        {
+          "cycle_id": "1997-03-25__1997-03-25",
+          "index": "^NDX",
+          "baseline_bottom": "1995-04-06",
+          "alt_bottom": "1994-06-24",
+          "baseline_months": -23.6,
+          "alt_months": -33.0
+        },
+        {
+          "cycle_id": "2015-12-16__2018-12-20",
+          "index": "^GSPC",
+          "baseline_bottom": "2020-03-23",
+          "alt_bottom": "2016-02-11",
+          "baseline_months": 15.1,
+          "alt_months": -34.3
+        },
+        {
+          "cycle_id": "2015-12-16__2018-12-20",
+          "index": "^NDX",
+          "baseline_bottom": "2016-12-30",
+          "alt_bottom": "2016-02-09",
+          "baseline_months": -23.7,
+          "alt_months": -34.3
+        },
+        {
+          "cycle_id": "2022-03-17__2023-07-27",
+          "index": "^GSPC",
+          "baseline_bottom": "2022-10-12",
+          "alt_bottom": "2020-07-28",
+          "baseline_months": -9.5,
+          "alt_months": -35.9
+        },
+        {
+          "cycle_id": "2022-03-17__2023-07-27",
+          "index": "^NDX",
+          "baseline_bottom": "2022-12-28",
+          "alt_bottom": "2020-07-28",
+          "baseline_months": -6.9,
+          "alt_months": -35.9
+        },
+        {
+          "cycle_id": "2026-09-17__2026-09-17",
+          "index": "^GSPC",
+          "baseline_bottom": "2025-04-08",
+          "alt_bottom": "2023-10-27",
+          "baseline_months": -17.3,
+          "alt_months": -34.7
+        },
+        {
+          "cycle_id": "2026-09-17__2026-09-17",
+          "index": "^NDX",
+          "baseline_bottom": "2025-04-08",
+          "alt_bottom": "2023-10-26",
+          "baseline_months": -17.3,
+          "alt_months": -34.7
+        }
+      ],
+      "unchanged_count": 18
+    }
+  },
+  "limitations": [
+    "FRED DFEDTAR is a compiled series: before 1994 the FOMC did not announce its target in real time, so pre-1994 'hike dates' are after-the-fact reconstructions of a target that markets had to infer at the time.",
+    "DFEDTARU is the UPPER BOUND of a target range, not a point target; it is not the same quantity as DFEDTAR and the two are never averaged here.",
+    "^NDX begins 1985-10-01, so cycles before that have no NDX column.",
+    "ICE BofA HY OAS is unavailable before 2023-11 (rolling FRED window, no ALFRED vintages), so it is null for every completed cycle here.",
+    "Index closes are unadjusted (auto_adjust=False); index levels carry no dividends, so this is a price-return view.",
+    "The specified drawdown anchors its reference peak in the 252 trading days before the window OPENS, i.e. ~24 months before the last hike. Over a 60-month window that anchor can be far from the peak the bottom actually fell from, so a severe bottom can score a small drawdown (2015-18: bottoms at the COVID crash, scores -1.51%). The supplementary running-peak drawdown is reported alongside it.",
+    "In a cycle where the index only rose inside the window, the window minimum IS the left edge and is not a bottom in any economic sense. Those rows are flagged supplementary_is_window_edge_artifact.",
+    "An ongoing cycle has no last hike. Its intervals are provisional and its window runs past the data, so it is marked incomplete and no bottom is concluded."
+  ]
+}
