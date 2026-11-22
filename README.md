@@ -41,3 +41,32 @@ into an ICE column.
 Because FRED's ICE window rolls forward (~1 trading day lost per day), each run
 merges fresh observations with what is already committed here, so first-hand
 rows once captured are retained. Fresh FRED values win on overlapping dates.
+
+## FINRA margin debt — observation item F
+
+- `finra_margin_history.csv` — monthly, `month` (YYYY-MM), `debit_mn`,
+  `free_credit_cash_mn`, `free_credit_margin_mn`, in $ millions, every month the
+  source provides (currently 1997-01 onward).
+- `finra_raw/margin-statistics_YYYY-MM-DD.xlsx` — a dated copy of exactly what
+  FINRA served on that snapshot date, kept so any number here can be audited
+  back to the file it came from.
+- `fields.finra_margin` in each snapshot and in `latest.json` carries
+  `latest_month`, `debit_mn`, `mom_pct`, `yoy_pct`, `peak_month`,
+  `peak_debit_mn`, `from_peak_pct`, `debit_to_cash_ratio`, the two flags
+  `flag_mom_drop_gt_10` / `flag_yoy_negative`, and
+  `new_month_since_last_snapshot`.
+
+**Source.** FINRA's own margin statistics page and the workbook linked on it:
+<https://www.finra.org/rules-guidance/key-topics/margin-accounts/margin-statistics>.
+FINRA states it does not distribute this data outside that page and offers no
+feed, so nothing else is consulted — no news site, no YCharts, no aggregator.
+If both the workbook and the page table fail, the block is written as `null`
+with an `error`; a value is never estimated or carried over.
+
+**Publication timing.** FINRA publishes the previous month around the third week
+of the following month, so `latest_month` normally trails the current month by
+one to two months. That lag is expected, not staleness.
+
+**It is an observation item only** (`in_force: false`, note
+`观察项 F，只记录，不触发`). It feeds no light, no batch and no trigger, and the
+snapshot validator asserts that it has not leaked into any of them.
