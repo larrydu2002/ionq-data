@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-22T22:29:32+11:00",
+  "generated_at": "2026-11-22T22:32:31+11:00",
   "script": "market_data_daily_v1.py",
   "version": "v1",
   "snapshot_date": "2026-11-20",
@@ -339,7 +339,7 @@
       "months_in_history": 358,
       "history_first_month": "1997-01",
       "source_url": "https://www.finra.org/rules-guidance/key-topics/margin-accounts/margin-statistics",
-      "fetched_at": "2026-11-22T22:29:31+11:00",
+      "fetched_at": "2026-11-22T22:32:30+11:00",
       "source": "FINRA margin-statistics.xlsx (linked on the page)",
       "source_file_url": "https://www.finra.org/sites/default/files/2021-03/margin-statistics.xlsx",
       "rows": 358,
@@ -665,6 +665,9 @@
         "anchor_source": "yfinance ^NDX 收盘最高日（与 bear_clock 同源，未设上限）",
         "anchor_note": "取自 bear_clock 同一条 ^NDX 收盘序列的最高收盘日，但不设 2026-10-06 上限；当前最高收盘日仍是 2026-10-06，与 bear_clock.peak_close_date 一致。",
         "anchor_is_new_high_after_plan_peak": false,
+        "anchor_window_first_date": "2025-11-10",
+        "anchor_window_rows": 260,
+        "anchor_at_window_edge": false,
         "bear_clock_peak_close_date": "2026-10-06",
         "anchor_matches_bear_clock": true,
         "source": "yfinance NDX constituents"
