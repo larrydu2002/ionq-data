@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-22T15:16:14+11:00",
+  "generated_at": "2026-11-22T17:40:10+11:00",
   "script": "market_data_daily_v1.py",
   "version": "v1",
   "snapshot_date": "2026-11-20",
@@ -259,6 +259,64 @@
       "below_ma200": true,
       "source": "yfinance ^NDX",
       "grade": "一手"
+    },
+    "ndx_breadth_ma50": {
+      "value": 31.7,
+      "above_count": 32,
+      "valid_count": 101,
+      "constituents_requested": 101,
+      "missing_tickers": {},
+      "as_of": "2026-11-20",
+      "ma_days": 50,
+      "source": "yfinance (constituent closes, auto_adjust=False)",
+      "grade": "一手",
+      "constituent_list": {
+        "source_file": "ndx_constituents_2026-11-22.csv",
+        "list_date": "2026-11-22",
+        "age_days": 0,
+        "refreshed": false,
+        "records": 101
+      }
+    },
+    "rsp_spy_ratio": {
+      "pair": "RSP/SPY",
+      "source": "yfinance RSP, SPY",
+      "grade": "一手",
+      "value": 0.30072,
+      "as_of": "2026-11-20",
+      "rsp_close": 207.44,
+      "spy_close": 689.81,
+      "change_vs_2026-09-30_pct": 10.25,
+      "change_vs_2026-09-30_base_date": "2026-09-30",
+      "change_vs_2026-10-06_pct": 10.34,
+      "change_vs_2026-10-06_base_date": "2026-10-06",
+      "change_20d_pct": 5.54,
+      "rsp_drawdown_from_52w_high_pct": -7.12,
+      "rsp_52w_high": 223.33,
+      "rsp_52w_high_date": "2026-11-04",
+      "spy_drawdown_from_52w_high_pct": -11.46,
+      "spy_52w_high": 779.09,
+      "spy_52w_high_date": "2026-10-06"
+    },
+    "qqew_qqq_ratio": {
+      "pair": "QQEW/QQQ",
+      "source": "yfinance QQEW, QQQ",
+      "grade": "一手",
+      "value": 0.217668,
+      "as_of": "2026-11-20",
+      "qqew_close": 132.44,
+      "qqq_close": 608.45,
+      "change_vs_2026-09-30_pct": -1.05,
+      "change_vs_2026-09-30_base_date": "2026-09-30",
+      "change_vs_2026-10-06_pct": -0.23,
+      "change_vs_2026-10-06_base_date": "2026-10-06",
+      "change_20d_pct": -0.93,
+      "qqew_drawdown_from_52w_high_pct": -20.71,
+      "qqew_52w_high": 167.03,
+      "qqew_52w_high_date": "2026-08-13",
+      "qqq_drawdown_from_52w_high_pct": -19.9,
+      "qqq_52w_high": 759.66,
+      "qqq_52w_high_date": "2026-10-06"
     },
     "qqq_drawdown_pct_crosscheck": {
       "value": -19.9,
@@ -562,6 +620,19 @@
         "rule": "量比 ≥ 2.0 且收盘位置 ≥ 0.5（放量后收在当日区间上半部 / 脚本口径）",
         "source": "yfinance IONQ",
         "grade": "一手"
+      },
+      "6_breadth_washout_then_recover": {
+        "triggered": false,
+        "armed_date": null,
+        "armed_low": null,
+        "recovered_date": null,
+        "recovered_value": null,
+        "window_trading_days": 250,
+        "rule": "上膛：比例 < 10%；成立：上膛之后任意一天比例 > 50%（回看 250 个交易日 / 脚本口径）",
+        "thresholds_are_script_defined": true,
+        "in_force": false,
+        "note": "等 Lei 确认定义后生效；目前只计算、不参与任何红黄灯或批次判断",
+        "source": "yfinance NDX constituents"
       }
     }
   },
@@ -572,6 +643,10 @@
     "价格为未复权收盘价 (auto_adjust=False)，与盘面报价一致。",
     "可选项联邦基金期货缺失不影响其他字段：全部抓到",
     "credit_ladder 为纯观察项（CCC→B→BB→HY→BBB→IG），不参与红黄灯判定；change_bp = (最新值 − 5 个观测值前) × 100，单位基点。",
+    "ndx_breadth_ma50 = 纳指100 成分股中收盘价高于 50 日简单均线的比例（%）。分母是有效成分股数（数据不足 50 天或抓取失败的列入 missing_tickers，不估、不计入分母）。成分股名单一手取自 Nasdaq 官网。",
+    "ndx_breadth_history.csv 用【当前】成分股名单回算，存在幸存者偏差：今天的名单不等于历史上的成分股，被剔除的公司完全不在样本里，因此回算值只能作参考，不能用于判断。",
+    "rsp_spy_ratio / qqew_qqq_ratio 读法：比值上升 = 大市值（AI）跌得比普通股多，属于窄幅；比值持平且两者同步下跌 = 全面。两者均为纯观察项，不触发任何批次。",
+    "triggers.batch_3_partial.6_breadth_washout_then_recover 尚未生效（in_force=false）：上膛 < 10%、成立 > 50%，回看 250 个交易日为脚本口径，等 Lei 确认后才参与判断。",
     "脚本只读数据，不连接券商，不下单。"
   ],
   "raw": {
