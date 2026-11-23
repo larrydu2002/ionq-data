@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-11-22T22:32:31+11:00",
+  "generated_at": "2026-11-23T22:07:21+11:00",
   "script": "market_data_daily_v1.py",
   "version": "v1",
-  "snapshot_date": "2026-11-20",
+  "snapshot_date": "2026-11-23",
   "as_of_cutoff": null,
-  "latest_us_trading_day_in_data": "2026-11-20",
+  "latest_us_trading_day_in_data": "2026-11-23",
   "fields": {
     "ionq_close": {
       "value": 20.72,
@@ -153,14 +153,14 @@
       "grade": "一手"
     },
     "vix_close": {
-      "value": 35.89,
-      "as_of": "2026-11-20",
+      "value": 29.77,
+      "as_of": "2026-11-23",
       "source": "yfinance ^VIX",
       "grade": "一手"
     },
     "vix_consecutive_ge30": {
-      "value": 1,
-      "as_of": "2026-11-20",
+      "value": 0,
+      "as_of": "2026-11-23",
       "source": "yfinance ^VIX",
       "grade": "一手"
     },
@@ -190,58 +190,58 @@
     },
     "fed_funds_futures": {
       "ZQZ26.CBT": {
-        "close": 95.96,
-        "implied_rate_pct": 4.04,
-        "as_of": "2026-11-20",
+        "close": 95.945,
+        "implied_rate_pct": 4.055,
+        "as_of": "2026-11-23",
         "source": "yfinance ZQZ26.CBT",
         "grade": "一手"
       },
       "ZQF27.CBT": {
-        "close": 95.88,
-        "implied_rate_pct": 4.12,
-        "as_of": "2026-11-20",
+        "close": 95.855,
+        "implied_rate_pct": 4.145,
+        "as_of": "2026-11-23",
         "source": "yfinance ZQF27.CBT",
         "grade": "一手"
       },
       "ZQH27.CBT": {
-        "close": 95.7,
-        "implied_rate_pct": 4.3,
-        "as_of": "2026-11-20",
+        "close": 95.645,
+        "implied_rate_pct": 4.355,
+        "as_of": "2026-11-23",
         "source": "yfinance ZQH27.CBT",
         "grade": "一手"
       },
       "ZQJ27.CBT": {
-        "close": 95.635,
-        "implied_rate_pct": 4.365,
-        "as_of": "2026-11-20",
+        "close": 95.57,
+        "implied_rate_pct": 4.43,
+        "as_of": "2026-11-23",
         "source": "yfinance ZQJ27.CBT",
         "grade": "一手"
       },
       "ZQM27.CBT": {
-        "close": 95.56,
-        "implied_rate_pct": 4.44,
-        "as_of": "2026-11-20",
+        "close": 95.475,
+        "implied_rate_pct": 4.525,
+        "as_of": "2026-11-23",
         "source": "yfinance ZQM27.CBT",
         "grade": "一手"
       },
       "ZQN27.CBT": {
-        "close": 95.545,
-        "implied_rate_pct": 4.455,
-        "as_of": "2026-11-20",
+        "close": 95.455,
+        "implied_rate_pct": 4.545,
+        "as_of": "2026-11-23",
         "source": "yfinance ZQN27.CBT",
         "grade": "一手"
       },
       "ZQU27.CBT": {
-        "close": 95.535,
-        "implied_rate_pct": 4.465,
-        "as_of": "2026-11-20",
+        "close": 95.44,
+        "implied_rate_pct": 4.56,
+        "as_of": "2026-11-23",
         "source": "yfinance ZQU27.CBT",
         "grade": "一手"
       },
       "ZQX27.CBT": {
-        "close": 95.555,
-        "implied_rate_pct": 4.445,
-        "as_of": "2026-11-20",
+        "close": 95.455,
+        "implied_rate_pct": 4.545,
+        "as_of": "2026-11-23",
         "source": "yfinance ZQX27.CBT",
         "grade": "一手"
       }
@@ -273,7 +273,7 @@
       "constituent_list": {
         "source_file": "ndx_constituents_2026-11-22.csv",
         "list_date": "2026-11-22",
-        "age_days": 0,
+        "age_days": 1,
         "refreshed": false,
         "records": 101
       }
@@ -339,7 +339,7 @@
       "months_in_history": 358,
       "history_first_month": "1997-01",
       "source_url": "https://www.finra.org/rules-guidance/key-topics/margin-accounts/margin-statistics",
-      "fetched_at": "2026-11-22T22:32:30+11:00",
+      "fetched_at": "2026-11-23T22:07:19+11:00",
       "source": "FINRA margin-statistics.xlsx (linked on the page)",
       "source_file_url": "https://www.finra.org/sites/default/files/2021-03/margin-statistics.xlsx",
       "rows": 358,
@@ -374,8 +374,8 @@
     },
     "2_vix": {
       "lit": false,
-      "consecutive_closes_ge_30": 1,
-      "as_of": "2026-11-20",
+      "consecutive_closes_ge_30": 0,
+      "as_of": "2026-11-23",
       "threshold_days": 3,
       "source": "yfinance ^VIX",
       "grade": "一手",
@@ -414,8 +414,8 @@
     },
     "vix": {
       "lit": true,
-      "value": 35.89,
-      "as_of": "2026-11-20",
+      "value": 29.77,
+      "as_of": "2026-11-23",
       "threshold": 25.0,
       "source": "yfinance ^VIX",
       "grade": "一手",
@@ -630,11 +630,11 @@
         "grade": "一手"
       },
       "3_vix_panic_then_recover": {
-        "triggered": false,
+        "triggered": true,
         "spike_date": "2026-11-20",
         "spike_high": 40.03,
-        "recovery_date": null,
-        "recovery_close": null,
+        "recovery_date": "2026-11-23",
+        "recovery_close": 29.77,
         "window_trading_days": 20,
         "rule": "近 20 个交易日内盘中 ≥ 40.0，之后某日收盘 < 30.0（脚本口径）",
         "source": "yfinance ^VIX",
@@ -3257,11 +3257,6 @@
     ],
     "vix_daily": [
       {
-        "date": "2026-10-26",
-        "high": 19.84,
-        "close": 18.39
-      },
-      {
         "date": "2026-10-27",
         "high": 18.55,
         "close": 17.52
@@ -3355,6 +3350,11 @@
         "date": "2026-11-20",
         "high": 40.03,
         "close": 35.89
+      },
+      {
+        "date": "2026-11-23",
+        "high": 31.48,
+        "close": 29.77
       }
     ],
     "fred": {
