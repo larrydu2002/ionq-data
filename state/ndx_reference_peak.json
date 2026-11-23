@@ -1,0 +1,9 @@
+{
+  "peak_date": "2026-10-06",
+  "peak_close": 31224.47,
+  "source": "yfinance ^NDX 收盘（一手）",
+  "set_at": "2026-11-23T22:07:42+11:00",
+  "set_as_of_data_date": "2026-11-20",
+  "note": "纳指100 参考高点。B 清单第 6 条只认该日之后的宽度读数；只有 ^NDX 收盘价严格高于 peak_close 时才更新，更新时把旧值追加进 history 并清零第 6 条状态。本文件缺失或损坏时第 6 条输出 null + error，脚本不会自动重建。",
+  "history": []
+}

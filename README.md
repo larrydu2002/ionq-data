@@ -42,6 +42,28 @@ Because FRED's ICE window rolls forward (~1 trading day lost per day), each run
 merges fresh observations with what is already committed here, so first-hand
 rows once captured are retained. Fresh FRED values win on overlapping dates.
 
+## Stored state
+
+- `state/ndx_reference_peak.json` — the Nasdaq-100 **reference closing high**
+  that B-list item 6 anchors to: `peak_date`, `peak_close`, `source`, `set_at`,
+  `set_as_of_data_date` and a `history` array of every peak it has replaced.
+
+Before 2026-11-23 that anchor was recomputed on every run as the maximum of a
+rolling 260-row ^NDX window, which meant the anchor silently depended on when
+the script happened to run: once the window's start date rolled past the real
+peak, the window's own first row became the "peak". Lei ruled on 2026-11-23
+that it must be stored state instead.
+
+It moves only when ^NDX closes **strictly above** `peak_close`; the old entry is
+appended to `history` and item 6's state clears by construction, because only
+breadth readings dated after the anchor count. Every run cross-checks the
+stored close against first-hand yfinance data. If the file is missing or
+corrupt, if the fetched window does not reach `peak_date`, or if the stored
+close disagrees with the data by more than 0.1%, item 6 is written as
+`triggered: null` with an `error` and listed in `missing`. **The script never
+re-creates or repairs this file** — doing so would reset item 6 without anyone
+noticing. Initialise it by hand and re-run.
+
 ## FINRA margin debt — observation item F
 
 - `finra_margin_history.csv` — monthly, `month` (YYYY-MM), `debit_mn`,
@@ -52,9 +74,21 @@ rows once captured are retained. Fresh FRED values win on overlapping dates.
   back to the file it came from.
 - `fields.finra_margin` in each snapshot and in `latest.json` carries
   `latest_month`, `debit_mn`, `mom_pct`, `yoy_pct`, `peak_month`,
-  `peak_debit_mn`, `from_peak_pct`, `debit_to_cash_ratio`, the two flags
+  `peak_debit_mn`, `from_peak_pct`, `net_credit_mn` (plus its `_mom_mn`,
+  `_yoy_mn`, `_min_mn`, `_min_month` and `_rule`), the two flags
   `flag_mom_drop_gt_10` / `flag_yoy_negative`, and
   `new_month_since_last_snapshot`.
+
+**Net credit balance.** `net_credit_mn = free_credit_cash_mn +
+free_credit_margin_mn − debit_mn`, in $ millions, so a **negative** number is
+net leverage. Lei replaced `debit_to_cash_ratio` with it on 2026-11-23 because
+this is the standard published measure. Any month missing a component is `null`
+rather than a partial sum, and FINRA only reports `free_credit_margin_mn` from
+2010-02, so 1997-01 … 2010-01 carry no net credit at all. Its month-on-month
+and year-on-year figures are absolute changes in $ millions, not percentages:
+the series is signed and currently far below zero, which makes a percentage
+change meaningless. That choice is the script's (`脚本口径`) and is flagged for
+Lei to confirm.
 
 **Source.** FINRA's own margin statistics page and the workbook linked on it:
 <https://www.finra.org/rules-guidance/key-topics/margin-accounts/margin-statistics>.
