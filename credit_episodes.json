@@ -700,22 +700,22 @@
       "grade": "一手"
     },
     "BAA10Y": {
-      "value": 1.59,
-      "as_of": "2026-11-23",
-      "change_5obs_bp": 9.0,
-      "percentile_vs_trailing_1y": 97.8,
-      "ties_at_current": 3,
+      "value": 1.61,
+      "as_of": "2026-11-24",
+      "change_5obs_bp": 8.0,
+      "percentile_vs_trailing_1y": 95.6,
+      "ties_at_current": 8,
       "trailing_observations": 252,
       "percentile_method": "mid-rank: (#below + #equal/2) / n",
       "source": "FRED BAA10Y",
       "grade": "一手"
     },
     "AAA10Y": {
-      "value": 1.12,
-      "as_of": "2026-11-23",
-      "change_5obs_bp": 7.0,
-      "percentile_vs_trailing_1y": 94.0,
-      "ties_at_current": 6,
+      "value": 1.13,
+      "as_of": "2026-11-24",
+      "change_5obs_bp": 5.0,
+      "percentile_vs_trailing_1y": 86.1,
+      "ties_at_current": 12,
       "trailing_observations": 252,
       "percentile_method": "mid-rank: (#below + #equal/2) / n",
       "source": "FRED AAA10Y",
@@ -791,14 +791,14 @@
     },
     "BAA10Y": {
       "earliest": "1986-01-02",
-      "latest": "2026-11-23",
-      "observations": 10223,
+      "latest": "2026-11-24",
+      "observations": 10224,
       "source": "FRED (full history the API allows)"
     },
     "AAA10Y": {
       "earliest": "1983-01-03",
-      "latest": "2026-11-23",
-      "observations": 10970,
+      "latest": "2026-11-24",
+      "observations": 10971,
       "source": "FRED (full history the API allows)"
     }
   },
@@ -812,5 +812,5 @@
     "ties_at_current = 窗口内与当前 5 观测变化相等的观测个数（含自身）。",
     "credit_history.csv 中早于 FRED API 当前窗口的日期来自 FRED 网页手工下载（Lei 2026-11-18），见 coverage.*.seeded_rows；与 API 重叠的日期一律以 API 为准。"
   ],
-  "generated_at": "2026-11-26T08:17:10+11:00"
+  "generated_at": "2026-11-26T10:49:48+11:00"
 }
