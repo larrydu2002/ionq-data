@@ -64,6 +64,51 @@ close disagrees with the data by more than 0.1%, item 6 is written as
 re-creates or repairs this file** — doing so would reset item 6 without anyone
 noticing. Initialise it by hand and re-run.
 
+## Labour market — jobless claims and the unemployment rate
+
+- `labor_history.csv` — `date,icsa,ic4wsa,ccsa,unrate` from 2000-01-01, one row
+  per date any of the four series publishes. ICSA, IC4WSA and CCSA are weekly;
+  **UNRATE is monthly and is left BLANK on the weekly dates it does not cover.**
+  It is never forward-filled: a carried-forward rate would be an observation
+  nobody published.
+- `fields.labor` in each snapshot and in `latest.json` carries the four series
+  with `as_of`, the previous and year-earlier readings, CCSA's `yoy_pct`,
+  UNRATE's `low_12m` and `sahm_style_gap_pp`, and four flags.
+
+**Source.** FRED series ICSA, IC4WSA, CCSA and UNRATE, fetched first-hand on
+every run with the same key handling as the credit spreads. A failure writes
+`null` plus an `error`; no value is carried over or taken from another source.
+
+**Observation only** (`in_force: false`). Added 2026-11-26. These never trigger
+a buy and never count as a red or yellow light — the snapshot validator asserts
+that none of `labor`, `icsa`, `ic4wsa`, `ccsa`, `unrate`, `sahm` or `claims`
+appears anywhere in the lights or the triggers. A gap here goes to
+`missing_optional`, never to `missing`, which is reserved for the core fields
+the plan depends on (prices, HY OAS, VIX, ^NDX).
+
+**Two things to read carefully.**
+
+A flag whose input is unavailable is `null`, not `false`. Reporting "not
+triggered" on data we do not have would be a wrong-but-plausible reading, so
+the block distinguishes "we checked and it is below the line" from "we do not
+know".
+
+`sahm_style_gap_pp` is the current 3-month average of UNRATE minus the lowest
+3-month average among the twelve windows ending in the previous twelve months.
+It is a reading in the *shape* of the Sahm rule, not an official recession
+call. Its windows are built on calendar-month continuity, not on list
+positions, because UNRATE genuinely has holes — 2025-10 is absent from FRED —
+and a positional window would average three observations spanning four calendar
+months and label it a 3-month average. When fewer than twelve complete windows
+exist the field is `null` rather than a minimum taken over the windows that do
+exist: a skipped window might have been the lowest one, and leaving it out can
+only make the gap look smaller, which is the dangerous direction for a
+deterioration reading. As of 2026-11-25 it is `null` for exactly that reason.
+
+`value_1y_ago` on the weekly series is the observation 52 rows back, published
+alongside its own date; if the step is not 357–371 days the field is `null`
+with a reason rather than a change measured over the wrong interval.
+
 ## FINRA margin debt — observation item F
 
 - `finra_margin_history.csv` — monthly, `month` (YYYY-MM), `debit_mn`,
