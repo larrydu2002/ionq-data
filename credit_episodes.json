@@ -812,5 +812,5 @@
     "ties_at_current = 窗口内与当前 5 观测变化相等的观测个数（含自身）。",
     "credit_history.csv 中早于 FRED API 当前窗口的日期来自 FRED 网页手工下载（Lei 2026-11-18），见 coverage.*.seeded_rows；与 API 重叠的日期一律以 API 为准。"
   ],
-  "generated_at": "2026-11-26T10:49:48+11:00"
+  "generated_at": "2026-11-27T08:16:15+11:00"
 }

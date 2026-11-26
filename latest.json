@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-11-26T10:49:12+11:00",
+  "generated_at": "2026-11-27T08:15:51+11:00",
   "script": "market_data_daily_v1.py",
   "version": "v1",
-  "snapshot_date": "2026-11-25",
+  "snapshot_date": "2026-11-26",
   "as_of_cutoff": null,
-  "latest_us_trading_day_in_data": "2026-11-25",
+  "latest_us_trading_day_in_data": "2026-11-26",
   "fields": {
     "ionq_close": {
       "value": 23.54,
@@ -31,13 +31,13 @@
       "grade": "一手"
     },
     "ionq_volume": {
-      "value": 22885500,
+      "value": 23116900,
       "as_of": "2026-11-25",
       "source": "yfinance IONQ",
       "grade": "一手"
     },
     "ionq_turnover": {
-      "value": 516563893.0,
+      "value": 521786977.0,
       "as_of": "2026-11-25",
       "source": "yfinance IONQ",
       "grade": "一手"
@@ -176,14 +176,14 @@
       "grade": "一手"
     },
     "vix_close": {
-      "value": 28.29,
-      "as_of": "2026-11-25",
+      "value": 26.8,
+      "as_of": "2026-11-26",
       "source": "yfinance ^VIX",
       "grade": "一手"
     },
     "vix_consecutive_ge30": {
       "value": 0,
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-26",
       "source": "yfinance ^VIX",
       "grade": "一手"
     },
@@ -277,58 +277,58 @@
     },
     "fed_funds_futures": {
       "ZQZ26.CBT": {
-        "close": 95.95,
-        "implied_rate_pct": 4.05,
-        "as_of": "2026-11-25",
+        "close": 95.945,
+        "implied_rate_pct": 4.055,
+        "as_of": "2026-11-26",
         "source": "yfinance ZQZ26.CBT",
         "grade": "一手"
       },
       "ZQF27.CBT": {
-        "close": 95.855,
-        "implied_rate_pct": 4.145,
-        "as_of": "2026-11-25",
+        "close": 95.85,
+        "implied_rate_pct": 4.15,
+        "as_of": "2026-11-26",
         "source": "yfinance ZQF27.CBT",
         "grade": "一手"
       },
       "ZQH27.CBT": {
-        "close": 95.65,
-        "implied_rate_pct": 4.35,
-        "as_of": "2026-11-25",
+        "close": 95.645,
+        "implied_rate_pct": 4.355,
+        "as_of": "2026-11-26",
         "source": "yfinance ZQH27.CBT",
         "grade": "一手"
       },
       "ZQJ27.CBT": {
-        "close": 95.57,
-        "implied_rate_pct": 4.43,
-        "as_of": "2026-11-25",
+        "close": 95.56,
+        "implied_rate_pct": 4.44,
+        "as_of": "2026-11-26",
         "source": "yfinance ZQJ27.CBT",
         "grade": "一手"
       },
       "ZQM27.CBT": {
         "close": 95.465,
         "implied_rate_pct": 4.535,
-        "as_of": "2026-11-25",
+        "as_of": "2026-11-26",
         "source": "yfinance ZQM27.CBT",
         "grade": "一手"
       },
       "ZQN27.CBT": {
-        "close": 95.45,
-        "implied_rate_pct": 4.55,
-        "as_of": "2026-11-25",
+        "close": 95.445,
+        "implied_rate_pct": 4.555,
+        "as_of": "2026-11-26",
         "source": "yfinance ZQN27.CBT",
         "grade": "一手"
       },
       "ZQU27.CBT": {
         "close": 95.46,
         "implied_rate_pct": 4.54,
-        "as_of": "2026-11-25",
+        "as_of": "2026-11-26",
         "source": "yfinance ZQU27.CBT",
         "grade": "一手"
       },
       "ZQX27.CBT": {
-        "close": 95.485,
-        "implied_rate_pct": 4.515,
-        "as_of": "2026-11-25",
+        "close": 95.495,
+        "implied_rate_pct": 4.505,
+        "as_of": "2026-11-26",
         "source": "yfinance ZQX27.CBT",
         "grade": "一手"
       }
@@ -360,7 +360,7 @@
       "constituent_list": {
         "source_file": "ndx_constituents_2026-11-22.csv",
         "list_date": "2026-11-22",
-        "age_days": 4,
+        "age_days": 5,
         "refreshed": false,
         "records": 101
       }
@@ -437,7 +437,7 @@
       "months_in_history": 358,
       "history_first_month": "1997-01",
       "source_url": "https://www.finra.org/rules-guidance/key-topics/margin-accounts/margin-statistics",
-      "fetched_at": "2026-11-26T10:49:08+11:00",
+      "fetched_at": "2026-11-27T08:15:48+11:00",
       "source": "FINRA margin-statistics.xlsx (linked on the page)",
       "source_file_url": "https://www.finra.org/sites/default/files/2021-03/margin-statistics.xlsx",
       "rows": 358,
@@ -473,7 +473,7 @@
     "2_vix": {
       "lit": false,
       "consecutive_closes_ge_30": 0,
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-26",
       "threshold_days": 3,
       "source": "yfinance ^VIX",
       "grade": "一手",
@@ -512,8 +512,8 @@
     },
     "vix": {
       "lit": true,
-      "value": 28.29,
-      "as_of": "2026-11-25",
+      "value": 26.8,
+      "as_of": "2026-11-26",
       "threshold": 25.0,
       "source": "yfinance ^VIX",
       "grade": "一手",
@@ -686,17 +686,17 @@
       "label": "韩国 KOSPI",
       "is_proxy": false,
       "proxy_for": null,
-      "close": 5006.03,
-      "pct_change": 6.32,
+      "close": 4697.51,
+      "pct_change": -6.16,
       "high_52w_close": 9114.55,
       "high_52w_close_date": "2026-06-22",
-      "drawdown_pct": -45.08,
-      "ma200": 6522.2,
+      "drawdown_pct": -48.46,
+      "ma200": 6519.59,
       "below_ma200": true,
       "window_rows": 260,
-      "window_first_date": "2025-11-03",
+      "window_first_date": "2025-11-04",
       "high_at_window_edge": false,
-      "as_of": "2026-11-24",
+      "as_of": "2026-11-25",
       "source": "yfinance ^KS11",
       "grade": "一手"
     },
@@ -706,17 +706,17 @@
       "label": "韩国 KOSDAQ",
       "is_proxy": false,
       "proxy_for": null,
-      "close": 665.88,
-      "pct_change": 4.79,
+      "close": 650.64,
+      "pct_change": -2.29,
       "high_52w_close": 1226.18,
       "high_52w_close_date": "2026-04-27",
-      "drawdown_pct": -45.69,
-      "ma200": 946.87,
+      "drawdown_pct": -46.94,
+      "ma200": 944.3,
       "below_ma200": true,
       "window_rows": 260,
-      "window_first_date": "2025-11-03",
+      "window_first_date": "2025-11-04",
       "high_at_window_edge": false,
-      "as_of": "2026-11-24",
+      "as_of": "2026-11-25",
       "source": "yfinance ^KQ11",
       "grade": "一手"
     },
@@ -726,17 +726,17 @@
       "label": "日经 225",
       "is_proxy": false,
       "proxy_for": null,
-      "close": 58644.63,
-      "pct_change": 3.91,
+      "close": 57011.62,
+      "pct_change": -2.78,
       "high_52w_close": 72366.34,
       "high_52w_close_date": "2026-06-25",
-      "drawdown_pct": -18.96,
-      "ma200": 62291.53,
+      "drawdown_pct": -21.22,
+      "ma200": 62309.79,
       "below_ma200": true,
       "window_rows": 260,
-      "window_first_date": "2025-10-28",
+      "window_first_date": "2025-10-29",
       "high_at_window_edge": false,
-      "as_of": "2026-11-24",
+      "as_of": "2026-11-25",
       "source": "yfinance ^N225",
       "grade": "一手"
     },
@@ -746,17 +746,17 @@
       "label": "恒生指数",
       "is_proxy": false,
       "proxy_for": null,
-      "close": 22219.65,
-      "pct_change": -0.73,
+      "close": 21966.01,
+      "pct_change": -1.14,
       "high_52w_close": 27968.09,
       "high_52w_close_date": "2026-01-29",
-      "drawdown_pct": -20.55,
-      "ma200": 25070.67,
+      "drawdown_pct": -21.46,
+      "ma200": 25046.62,
       "below_ma200": true,
       "window_rows": 260,
-      "window_first_date": "2025-11-05",
+      "window_first_date": "2025-11-06",
       "high_at_window_edge": false,
-      "as_of": "2026-11-24",
+      "as_of": "2026-11-25",
       "source": "yfinance ^HSI",
       "grade": "一手"
     },
@@ -766,17 +766,17 @@
       "label": "恒生科技(ETF 代理)",
       "is_proxy": true,
       "proxy_for": "恒生科技指数 HSTECH",
-      "close": 3.39,
-      "pct_change": -1.4,
+      "close": 3.31,
+      "pct_change": -2.24,
       "high_52w_close": 5.86,
       "high_52w_close_date": "2025-11-13",
-      "drawdown_pct": -42.1,
-      "ma200": 4.55,
+      "drawdown_pct": -43.4,
+      "ma200": 4.54,
       "below_ma200": true,
       "window_rows": 260,
-      "window_first_date": "2025-11-05",
+      "window_first_date": "2025-11-06",
       "high_at_window_edge": false,
-      "as_of": "2026-11-24",
+      "as_of": "2026-11-25",
       "source": "yfinance 3033.HK",
       "grade": "一手"
     },
@@ -786,17 +786,17 @@
       "label": "上证指数",
       "is_proxy": false,
       "proxy_for": null,
-      "close": 3548.37,
-      "pct_change": 0.27,
+      "close": 3476.47,
+      "pct_change": -2.03,
       "high_52w_close": 4242.57,
       "high_52w_close_date": "2026-05-13",
-      "drawdown_pct": -16.36,
-      "ma200": 3953.42,
+      "drawdown_pct": -18.06,
+      "ma200": 3950.14,
       "below_ma200": true,
       "window_rows": 260,
-      "window_first_date": "2025-10-30",
+      "window_first_date": "2025-10-31",
       "high_at_window_edge": false,
-      "as_of": "2026-11-24",
+      "as_of": "2026-11-25",
       "source": "yfinance 000001.SS",
       "grade": "一手"
     },
@@ -806,17 +806,17 @@
       "label": "深证成指",
       "is_proxy": false,
       "proxy_for": null,
-      "close": 10423.6,
-      "pct_change": -0.29,
+      "close": 10086.36,
+      "pct_change": -3.24,
       "high_52w_close": 16372.5,
       "high_52w_close_date": "2026-06-22",
-      "drawdown_pct": -36.33,
-      "ma200": 13958.72,
+      "drawdown_pct": -38.39,
+      "ma200": 13937.57,
       "below_ma200": true,
       "window_rows": 260,
-      "window_first_date": "2025-10-30",
+      "window_first_date": "2025-10-31",
       "high_at_window_edge": false,
-      "as_of": "2026-11-24",
+      "as_of": "2026-11-25",
       "source": "yfinance 399001.SZ",
       "grade": "一手"
     },
@@ -826,17 +826,17 @@
       "label": "科创50(ETF 代理)",
       "is_proxy": true,
       "proxy_for": "科创 50 指数 000688",
-      "close": 1.32,
-      "pct_change": 1.62,
+      "close": 1.25,
+      "pct_change": -4.93,
       "high_52w_close": 2.34,
       "high_52w_close_date": "2026-06-30",
-      "drawdown_pct": -43.73,
+      "drawdown_pct": -46.5,
       "ma200": 1.65,
       "below_ma200": true,
       "window_rows": 260,
-      "window_first_date": "2025-10-30",
+      "window_first_date": "2025-10-31",
       "high_at_window_edge": false,
-      "as_of": "2026-11-24",
+      "as_of": "2026-11-25",
       "source": "yfinance 588000.SS",
       "grade": "一手"
     },
@@ -846,17 +846,17 @@
       "label": "创业板指(ETF 代理)",
       "is_proxy": true,
       "proxy_for": "创业板指 399006",
-      "close": 2.29,
-      "pct_change": -0.13,
+      "close": 2.2,
+      "pct_change": -4.06,
       "high_52w_close": 4.39,
       "high_52w_close_date": "2026-06-25",
-      "drawdown_pct": -47.85,
-      "ma200": 3.42,
+      "drawdown_pct": -49.97,
+      "ma200": 3.41,
       "below_ma200": true,
       "window_rows": 260,
-      "window_first_date": "2025-10-30",
+      "window_first_date": "2025-10-31",
       "high_at_window_edge": false,
-      "as_of": "2026-11-24",
+      "as_of": "2026-11-25",
       "source": "yfinance 159915.SZ",
       "grade": "一手"
     }
@@ -1459,7 +1459,7 @@
         "high": 23.9,
         "low": 20.28,
         "close": 23.54,
-        "volume": 22885500
+        "volume": 23116900
       }
     ],
     "crwv_daily": [
@@ -4809,11 +4809,11 @@
       },
       {
         "date": "2026-11-25",
-        "open": 39.13,
+        "open": 39.05,
         "high": 43.02,
         "low": 37.4,
         "close": 42.57,
-        "volume": 81743136
+        "volume": 82504000
       }
     ],
     "ndx_daily": [
@@ -6902,11 +6902,6 @@
     ],
     "vix_daily": [
       {
-        "date": "2026-10-29",
-        "high": 17.36,
-        "close": 17.2
-      },
-      {
         "date": "2026-10-30",
         "high": 23.93,
         "close": 19.42
@@ -7000,6 +6995,11 @@
         "date": "2026-11-25",
         "high": 34.95,
         "close": 28.29
+      },
+      {
+        "date": "2026-11-26",
+        "high": 27.54,
+        "close": 26.8
       }
     ],
     "fred": {
