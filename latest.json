@@ -1,117 +1,117 @@
 {
-  "generated_at": "2026-11-27T08:15:51+11:00",
+  "generated_at": "2026-11-28T08:16:52+11:00",
   "script": "market_data_daily_v1.py",
   "version": "v1",
-  "snapshot_date": "2026-11-26",
+  "snapshot_date": "2026-11-27",
   "as_of_cutoff": null,
-  "latest_us_trading_day_in_data": "2026-11-26",
+  "latest_us_trading_day_in_data": "2026-11-27",
   "fields": {
     "ionq_close": {
-      "value": 23.54,
-      "as_of": "2026-11-25",
+      "value": 24.97,
+      "as_of": "2026-11-27",
       "source": "yfinance IONQ",
       "grade": "一手"
     },
     "ionq_open": {
-      "value": 21.31,
-      "as_of": "2026-11-25",
+      "value": 24.75,
+      "as_of": "2026-11-27",
       "source": "yfinance IONQ",
       "grade": "一手"
     },
     "ionq_high": {
-      "value": 23.9,
-      "as_of": "2026-11-25",
+      "value": 25.39,
+      "as_of": "2026-11-27",
       "source": "yfinance IONQ",
       "grade": "一手"
     },
     "ionq_low": {
-      "value": 20.28,
-      "as_of": "2026-11-25",
+      "value": 24.16,
+      "as_of": "2026-11-27",
       "source": "yfinance IONQ",
       "grade": "一手"
     },
     "ionq_volume": {
-      "value": 23116900,
-      "as_of": "2026-11-25",
+      "value": 15112540,
+      "as_of": "2026-11-27",
       "source": "yfinance IONQ",
       "grade": "一手"
     },
     "ionq_turnover": {
-      "value": 521786977.0,
-      "as_of": "2026-11-25",
+      "value": 375395486.0,
+      "as_of": "2026-11-27",
       "source": "yfinance IONQ",
       "grade": "一手"
     },
     "ionq_volume_ratio_50d": {
-      "value": 0.94,
-      "as_of": "2026-11-25",
+      "value": 0.61,
+      "as_of": "2026-11-27",
       "source": "yfinance IONQ",
       "grade": "一手"
     },
     "ionq_close_position": {
-      "value": 0.9018,
-      "as_of": "2026-11-25",
+      "value": 0.6585,
+      "as_of": "2026-11-27",
       "source": "yfinance IONQ",
       "grade": "一手"
     },
     "ionq_pct_change": {
-      "value": 5.09,
-      "as_of": "2026-11-25",
+      "value": 6.07,
+      "as_of": "2026-11-27",
       "source": "yfinance IONQ",
       "grade": "一手"
     },
     "ionq_distance_to_levels_pct": {
       "value": {
-        "20.5": 14.83,
-        "19.5": 20.72,
-        "20": 17.7,
-        "25": -5.84,
-        "33.1": -28.88
+        "20.5": 21.8,
+        "19.5": 28.05,
+        "20": 24.85,
+        "25": -0.12,
+        "33.1": -24.56
       },
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-27",
       "source": "yfinance IONQ",
       "grade": "一手"
     },
     "peers": {
       "QNT": {
-        "close": 32.49,
-        "pct_change": 7.12,
-        "as_of": "2026-11-25",
+        "close": 34.02,
+        "pct_change": 4.71,
+        "as_of": "2026-11-27",
         "source": "yfinance QNT",
         "grade": "一手"
       },
       "INFQ": {
-        "close": 6.49,
-        "pct_change": 2.37,
-        "as_of": "2026-11-25",
+        "close": 7.05,
+        "pct_change": 8.63,
+        "as_of": "2026-11-27",
         "source": "yfinance INFQ",
         "grade": "一手"
       },
       "RGTI": {
-        "close": 7.85,
-        "pct_change": 3.43,
-        "as_of": "2026-11-25",
+        "close": 8.53,
+        "pct_change": 8.66,
+        "as_of": "2026-11-27",
         "source": "yfinance RGTI",
         "grade": "一手"
       },
       "QBTS": {
-        "close": 7.0,
-        "pct_change": 3.86,
-        "as_of": "2026-11-25",
+        "close": 7.58,
+        "pct_change": 8.29,
+        "as_of": "2026-11-27",
         "source": "yfinance QBTS",
         "grade": "一手"
       },
       "QUBT": {
-        "close": 4.59,
-        "pct_change": 5.03,
-        "as_of": "2026-11-25",
+        "close": 4.83,
+        "pct_change": 5.23,
+        "as_of": "2026-11-27",
         "source": "yfinance QUBT",
         "grade": "一手"
       },
       "IBM": {
-        "close": 243.47,
-        "pct_change": 3.33,
-        "as_of": "2026-11-25",
+        "close": 248.08,
+        "pct_change": 1.89,
+        "as_of": "2026-11-27",
         "source": "yfinance IBM",
         "grade": "一手"
       }
@@ -121,87 +121,87 @@
       "note": "AI 融资链参照物，只记录，不触发",
       "source": "yfinance CRWV",
       "grade": "一手",
-      "as_of": "2026-11-25",
-      "close": 42.57,
-      "change_pct": -0.08,
+      "as_of": "2026-11-27",
+      "close": 44.15,
+      "change_pct": 3.71,
       "high_close": 183.58,
       "high_close_date": "2025-06-20",
-      "from_high_pct": -76.81,
-      "ma50": 65.72,
-      "ma200": 87.26,
+      "from_high_pct": -75.95,
+      "ma50": 65.0,
+      "ma200": 87.0,
       "ma200_note": null,
       "below_ma200": true,
-      "ret_5d_pct": -11.0,
-      "ret_20d_pct": -33.41,
-      "vs_ionq_20d_corr": 0.599,
+      "ret_5d_pct": -1.69,
+      "ret_20d_pct": -27.31,
+      "vs_ionq_20d_corr": 0.606,
       "vs_ionq_20d_corr_note": null,
       "listed_since": "2025-03-28",
-      "trading_days": 419,
+      "trading_days": 420,
       "error": null
     },
     "ndx_close": {
-      "value": 26046.9,
-      "as_of": "2026-11-25",
+      "value": 26726.39,
+      "as_of": "2026-11-27",
       "source": "yfinance ^NDX",
       "grade": "一手"
     },
     "ndx_ma200": {
-      "value": 28090.98,
-      "as_of": "2026-11-25",
+      "value": 28098.6,
+      "as_of": "2026-11-27",
       "source": "yfinance ^NDX",
       "grade": "一手"
     },
     "ndx_below_ma200": {
       "value": true,
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-27",
       "source": "yfinance ^NDX",
       "grade": "一手"
     },
     "spx_close": {
-      "value": 7182.78,
-      "as_of": "2026-11-25",
+      "value": 7297.49,
+      "as_of": "2026-11-27",
       "source": "yfinance ^GSPC",
       "grade": "一手"
     },
     "spx_ma200": {
-      "value": 7352.49,
-      "as_of": "2026-11-25",
+      "value": 7354.27,
+      "as_of": "2026-11-27",
       "source": "yfinance ^GSPC",
       "grade": "一手"
     },
     "spx_below_ma200": {
       "value": true,
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-27",
       "source": "yfinance ^GSPC",
       "grade": "一手"
     },
     "vix_close": {
-      "value": 26.8,
-      "as_of": "2026-11-26",
+      "value": 23.81,
+      "as_of": "2026-11-27",
       "source": "yfinance ^VIX",
       "grade": "一手"
     },
     "vix_consecutive_ge30": {
       "value": 0,
-      "as_of": "2026-11-26",
+      "as_of": "2026-11-27",
       "source": "yfinance ^VIX",
       "grade": "一手"
     },
     "mag7_broad_decline": {
       "value": false,
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-27",
       "source": "yfinance AAPL MSFT GOOGL AMZN META NVDA TSLA",
       "grade": "一手"
     },
     "hy_oas": {
-      "value": 3.72,
-      "as_of": "2026-11-24",
+      "value": 3.77,
+      "as_of": "2026-11-26",
       "source": "FRED BAMLH0A0HYM2",
       "grade": "一手"
     },
     "ccc_oas": {
-      "value": 14.05,
-      "as_of": "2026-11-24",
+      "value": 14.17,
+      "as_of": "2026-11-26",
       "source": "FRED BAMLH0A3HYC",
       "grade": "一手"
     },
@@ -279,56 +279,56 @@
       "ZQZ26.CBT": {
         "close": 95.945,
         "implied_rate_pct": 4.055,
-        "as_of": "2026-11-26",
+        "as_of": "2026-11-27",
         "source": "yfinance ZQZ26.CBT",
         "grade": "一手"
       },
       "ZQF27.CBT": {
-        "close": 95.85,
-        "implied_rate_pct": 4.15,
-        "as_of": "2026-11-26",
+        "close": 95.855,
+        "implied_rate_pct": 4.145,
+        "as_of": "2026-11-27",
         "source": "yfinance ZQF27.CBT",
         "grade": "一手"
       },
       "ZQH27.CBT": {
-        "close": 95.645,
-        "implied_rate_pct": 4.355,
-        "as_of": "2026-11-26",
+        "close": 95.635,
+        "implied_rate_pct": 4.365,
+        "as_of": "2026-11-27",
         "source": "yfinance ZQH27.CBT",
         "grade": "一手"
       },
       "ZQJ27.CBT": {
-        "close": 95.56,
-        "implied_rate_pct": 4.44,
-        "as_of": "2026-11-26",
+        "close": 95.55,
+        "implied_rate_pct": 4.45,
+        "as_of": "2026-11-27",
         "source": "yfinance ZQJ27.CBT",
         "grade": "一手"
       },
       "ZQM27.CBT": {
-        "close": 95.465,
-        "implied_rate_pct": 4.535,
-        "as_of": "2026-11-26",
+        "close": 95.435,
+        "implied_rate_pct": 4.565,
+        "as_of": "2026-11-27",
         "source": "yfinance ZQM27.CBT",
         "grade": "一手"
       },
       "ZQN27.CBT": {
-        "close": 95.445,
-        "implied_rate_pct": 4.555,
-        "as_of": "2026-11-26",
+        "close": 95.41,
+        "implied_rate_pct": 4.59,
+        "as_of": "2026-11-27",
         "source": "yfinance ZQN27.CBT",
         "grade": "一手"
       },
       "ZQU27.CBT": {
-        "close": 95.46,
-        "implied_rate_pct": 4.54,
-        "as_of": "2026-11-26",
+        "close": 95.405,
+        "implied_rate_pct": 4.595,
+        "as_of": "2026-11-27",
         "source": "yfinance ZQU27.CBT",
         "grade": "一手"
       },
       "ZQX27.CBT": {
-        "close": 95.495,
-        "implied_rate_pct": 4.505,
-        "as_of": "2026-11-26",
+        "close": 95.435,
+        "implied_rate_pct": 4.565,
+        "as_of": "2026-11-27",
         "source": "yfinance ZQX27.CBT",
         "grade": "一手"
       }
@@ -338,29 +338,29 @@
       "spec_reference_peak_close": 31224.47,
       "peak_close": 31224.47,
       "peak_close_date": "2026-10-06",
-      "latest_close": 26046.9,
-      "as_of": "2026-11-25",
-      "calendar_days_since_peak": 50,
-      "trading_days_since_peak": 36,
-      "drawdown_pct": -16.58,
+      "latest_close": 26726.39,
+      "as_of": "2026-11-27",
+      "calendar_days_since_peak": 52,
+      "trading_days_since_peak": 37,
+      "drawdown_pct": -14.41,
       "below_ma200": true,
       "source": "yfinance ^NDX",
       "grade": "一手"
     },
     "ndx_breadth_ma50": {
-      "value": 42.6,
-      "above_count": 43,
+      "value": 46.5,
+      "above_count": 47,
       "valid_count": 101,
       "constituents_requested": 101,
       "missing_tickers": {},
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-27",
       "ma_days": 50,
       "source": "yfinance (constituent closes, auto_adjust=False)",
       "grade": "一手",
       "constituent_list": {
         "source_file": "ndx_constituents_2026-11-22.csv",
         "list_date": "2026-11-22",
-        "age_days": 5,
+        "age_days": 6,
         "refreshed": false,
         "records": 101
       }
@@ -369,19 +369,19 @@
       "pair": "RSP/SPY",
       "source": "yfinance RSP, SPY",
       "grade": "一手",
-      "value": 0.301019,
-      "as_of": "2026-11-25",
-      "rsp_close": 215.74,
-      "spy_close": 716.7,
-      "change_vs_2026-09-30_pct": 10.36,
+      "value": 0.299841,
+      "as_of": "2026-11-27",
+      "rsp_close": 218.38,
+      "spy_close": 728.32,
+      "change_vs_2026-09-30_pct": 9.93,
       "change_vs_2026-09-30_base_date": "2026-09-30",
-      "change_vs_2026-10-06_pct": 10.45,
+      "change_vs_2026-10-06_pct": 10.02,
       "change_vs_2026-10-06_base_date": "2026-10-06",
-      "change_20d_pct": 6.92,
-      "rsp_drawdown_from_52w_high_pct": -3.4,
+      "change_20d_pct": 4.84,
+      "rsp_drawdown_from_52w_high_pct": -2.22,
       "rsp_52w_high": 223.33,
       "rsp_52w_high_date": "2026-11-04",
-      "spy_drawdown_from_52w_high_pct": -8.01,
+      "spy_drawdown_from_52w_high_pct": -6.52,
       "spy_52w_high": 779.09,
       "spy_52w_high_date": "2026-10-06"
     },
@@ -389,19 +389,19 @@
       "pair": "QQEW/QQQ",
       "source": "yfinance QQEW, QQQ",
       "grade": "一手",
-      "value": 0.218904,
-      "as_of": "2026-11-25",
-      "qqew_close": 138.77,
-      "qqq_close": 633.93,
-      "change_vs_2026-09-30_pct": -0.49,
+      "value": 0.218815,
+      "as_of": "2026-11-27",
+      "qqew_close": 142.45,
+      "qqq_close": 650.99,
+      "change_vs_2026-09-30_pct": -0.53,
       "change_vs_2026-09-30_base_date": "2026-09-30",
-      "change_vs_2026-10-06_pct": 0.33,
+      "change_vs_2026-10-06_pct": 0.29,
       "change_vs_2026-10-06_base_date": "2026-10-06",
-      "change_20d_pct": 0.18,
-      "qqew_drawdown_from_52w_high_pct": -16.92,
+      "change_20d_pct": 0.07,
+      "qqew_drawdown_from_52w_high_pct": -14.72,
       "qqew_52w_high": 167.03,
       "qqew_52w_high_date": "2026-08-13",
-      "qqq_drawdown_from_52w_high_pct": -16.55,
+      "qqq_drawdown_from_52w_high_pct": -14.31,
       "qqq_52w_high": 759.66,
       "qqq_52w_high_date": "2026-10-06"
     },
@@ -437,7 +437,7 @@
       "months_in_history": 358,
       "history_first_month": "1997-01",
       "source_url": "https://www.finra.org/rules-guidance/key-topics/margin-accounts/margin-statistics",
-      "fetched_at": "2026-11-27T08:15:48+11:00",
+      "fetched_at": "2026-11-28T08:16:51+11:00",
       "source": "FINRA margin-statistics.xlsx (linked on the page)",
       "source_file_url": "https://www.finra.org/sites/default/files/2021-03/margin-statistics.xlsx",
       "rows": 358,
@@ -446,14 +446,14 @@
       "error": null
     },
     "qqq_drawdown_pct_crosscheck": {
-      "value": -16.55,
-      "as_of": "2026-11-25",
+      "value": -14.31,
+      "as_of": "2026-11-27",
       "source": "yfinance QQQ",
       "grade": "一手"
     },
     "ndx_vs_qqq_drawdown_diff_pp": {
-      "value": 0.03,
-      "as_of": "2026-11-25",
+      "value": 0.1,
+      "as_of": "2026-11-27",
       "source": "yfinance ^NDX vs QQQ",
       "grade": "一手"
     }
@@ -461,10 +461,10 @@
   "red_lights": {
     "1_hy_oas": {
       "lit": false,
-      "value": 3.72,
-      "as_of": "2026-11-24",
+      "value": 3.77,
+      "as_of": "2026-11-26",
       "threshold": 4.0,
-      "value_5_obs_ago": 3.43,
+      "value_5_obs_ago": 3.52,
       "widening": true,
       "source": "FRED BAMLH0A0HYM2",
       "grade": "一手",
@@ -473,19 +473,19 @@
     "2_vix": {
       "lit": false,
       "consecutive_closes_ge_30": 0,
-      "as_of": "2026-11-26",
+      "as_of": "2026-11-27",
       "threshold_days": 3,
       "source": "yfinance ^VIX",
       "grade": "一手",
       "rule": "VIX 连续收盘 ≥ 30 达 3 天"
     },
     "3_ndx": {
-      "lit": true,
-      "close": 26046.9,
-      "as_of": "2026-11-25",
+      "lit": false,
+      "close": 26726.39,
+      "as_of": "2026-11-27",
       "threshold": 26540.8,
       "threshold_basis": "31224.47 × 0.85 (10/6 收盘高点算得)",
-      "ma200": 28090.98,
+      "ma200": 28098.6,
       "below_ma200": true,
       "source": "yfinance ^NDX",
       "grade": "一手",
@@ -503,17 +503,17 @@
   "yellow_lights": {
     "hy_oas": {
       "lit": true,
-      "value": 3.72,
-      "as_of": "2026-11-24",
+      "value": 3.77,
+      "as_of": "2026-11-26",
       "threshold": 3.5,
       "source": "FRED BAMLH0A0HYM2",
       "grade": "一手",
       "rule": "高收益债利差 ≥ 3.5%"
     },
     "vix": {
-      "lit": true,
-      "value": 26.8,
-      "as_of": "2026-11-26",
+      "lit": false,
+      "value": 23.81,
+      "as_of": "2026-11-27",
       "threshold": 25.0,
       "source": "yfinance ^VIX",
       "grade": "一手",
@@ -530,8 +530,8 @@
     },
     "ccc_oas": {
       "lit": true,
-      "value": 14.05,
-      "as_of": "2026-11-24",
+      "value": 14.17,
+      "as_of": "2026-11-26",
       "threshold": 12.0,
       "source": "FRED BAMLH0A3HYC",
       "grade": "一手",
@@ -542,49 +542,49 @@
     "ccc_oas": {
       "label": "CCC 级利差",
       "series_id": "BAMLH0A3HYC",
-      "value": 14.05,
-      "as_of": "2026-11-24",
-      "value_5_obs_ago": 13.29,
-      "change_bp": 76.0,
+      "value": 14.17,
+      "as_of": "2026-11-26",
+      "value_5_obs_ago": 13.61,
+      "change_bp": 56.0,
       "source": "FRED BAMLH0A3HYC",
       "grade": "一手"
     },
     "b_oas": {
       "label": "B 级利差",
       "series_id": "BAMLH0A2HYB",
-      "value": 4.05,
-      "as_of": "2026-11-24",
-      "value_5_obs_ago": 3.68,
-      "change_bp": 37.0,
+      "value": 4.13,
+      "as_of": "2026-11-26",
+      "value_5_obs_ago": 3.8,
+      "change_bp": 33.0,
       "source": "FRED BAMLH0A2HYB",
       "grade": "一手"
     },
     "bb_oas": {
       "label": "BB 级利差",
       "series_id": "BAMLH0A1HYBB",
-      "value": 2.25,
-      "as_of": "2026-11-24",
-      "value_5_obs_ago": 2.04,
-      "change_bp": 21.0,
+      "value": 2.28,
+      "as_of": "2026-11-26",
+      "value_5_obs_ago": 2.1,
+      "change_bp": 18.0,
       "source": "FRED BAMLH0A1HYBB",
       "grade": "一手"
     },
     "hy_oas": {
       "label": "高收益债利差(总)",
       "series_id": "BAMLH0A0HYM2",
-      "value": 3.72,
-      "as_of": "2026-11-24",
-      "value_5_obs_ago": 3.43,
-      "change_bp": 29.0,
+      "value": 3.77,
+      "as_of": "2026-11-26",
+      "value_5_obs_ago": 3.52,
+      "change_bp": 25.0,
       "source": "FRED BAMLH0A0HYM2",
       "grade": "一手"
     },
     "bbb_oas": {
       "label": "BBB 级利差",
       "series_id": "BAMLC0A4CBBB",
-      "value": 1.22,
-      "as_of": "2026-11-24",
-      "value_5_obs_ago": 1.15,
+      "value": 1.24,
+      "as_of": "2026-11-26",
+      "value_5_obs_ago": 1.17,
       "change_bp": 7.0,
       "source": "FRED BAMLC0A4CBBB",
       "grade": "一手"
@@ -592,10 +592,10 @@
     "ig_oas": {
       "label": "投资级(IG)利差",
       "series_id": "BAMLC0A0CM",
-      "value": 0.98,
-      "as_of": "2026-11-24",
-      "value_5_obs_ago": 0.92,
-      "change_bp": 6.0,
+      "value": 0.99,
+      "as_of": "2026-11-26",
+      "value_5_obs_ago": 0.94,
+      "change_bp": 5.0,
       "source": "FRED BAMLC0A0CM",
       "grade": "一手"
     }
@@ -603,78 +603,78 @@
   "mag7": [
     {
       "ticker": "AAPL",
-      "close": 355.58,
-      "high_52w_close": 356.27,
-      "drawdown_pct": -0.19,
-      "ma200": 304.4,
+      "close": 358.54,
+      "high_52w_close": 358.54,
+      "drawdown_pct": 0.0,
+      "ma200": 304.82,
       "below_ma200": false,
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-27",
       "source": "yfinance AAPL",
       "grade": "一手"
     },
     {
       "ticker": "MSFT",
-      "close": 489.93,
+      "close": 492.85,
       "high_52w_close": 555.8,
-      "drawdown_pct": -11.85,
-      "ma200": 444.89,
+      "drawdown_pct": -11.33,
+      "ma200": 445.33,
       "below_ma200": false,
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-27",
       "source": "yfinance MSFT",
       "grade": "一手"
     },
     {
       "ticker": "GOOGL",
-      "close": 273.1,
+      "close": 274.96,
       "high_52w_close": 402.62,
-      "drawdown_pct": -32.17,
-      "ma200": 336.32,
+      "drawdown_pct": -31.71,
+      "ma200": 336.14,
       "below_ma200": true,
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-27",
       "source": "yfinance GOOGL",
       "grade": "一手"
     },
     {
       "ticker": "AMZN",
-      "close": 244.43,
+      "close": 254.12,
       "high_52w_close": 284.02,
-      "drawdown_pct": -13.94,
-      "ma200": 245.78,
-      "below_ma200": true,
-      "as_of": "2026-11-25",
+      "drawdown_pct": -10.53,
+      "ma200": 246.03,
+      "below_ma200": false,
+      "as_of": "2026-11-27",
       "source": "yfinance AMZN",
       "grade": "一手"
     },
     {
       "ticker": "META",
-      "close": 609.89,
+      "close": 628.96,
       "high_52w_close": 777.59,
-      "drawdown_pct": -21.57,
-      "ma200": 627.53,
-      "below_ma200": true,
-      "as_of": "2026-11-25",
+      "drawdown_pct": -19.11,
+      "ma200": 627.33,
+      "below_ma200": false,
+      "as_of": "2026-11-27",
       "source": "yfinance META",
       "grade": "一手"
     },
     {
       "ticker": "NVDA",
-      "close": 149.3,
+      "close": 150.49,
       "high_52w_close": 239.24,
-      "drawdown_pct": -37.59,
-      "ma200": 202.87,
+      "drawdown_pct": -37.1,
+      "ma200": 202.68,
       "below_ma200": true,
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-27",
       "source": "yfinance NVDA",
       "grade": "一手"
     },
     {
       "ticker": "TSLA",
-      "close": 380.14,
+      "close": 400.0,
       "high_52w_close": 489.88,
-      "drawdown_pct": -22.4,
-      "ma200": 381.15,
-      "below_ma200": true,
-      "as_of": "2026-11-25",
+      "drawdown_pct": -18.35,
+      "ma200": 381.0,
+      "below_ma200": false,
+      "as_of": "2026-11-27",
       "source": "yfinance TSLA",
       "grade": "一手"
     }
@@ -686,17 +686,17 @@
       "label": "韩国 KOSPI",
       "is_proxy": false,
       "proxy_for": null,
-      "close": 4697.51,
-      "pct_change": -6.16,
+      "close": 4711.21,
+      "pct_change": 0.29,
       "high_52w_close": 9114.55,
       "high_52w_close_date": "2026-06-22",
-      "drawdown_pct": -48.46,
-      "ma200": 6519.59,
+      "drawdown_pct": -48.31,
+      "ma200": 6517.02,
       "below_ma200": true,
       "window_rows": 260,
-      "window_first_date": "2025-11-04",
+      "window_first_date": "2025-11-05",
       "high_at_window_edge": false,
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-26",
       "source": "yfinance ^KS11",
       "grade": "一手"
     },
@@ -706,17 +706,17 @@
       "label": "韩国 KOSDAQ",
       "is_proxy": false,
       "proxy_for": null,
-      "close": 650.64,
-      "pct_change": -2.29,
+      "close": 655.71,
+      "pct_change": 0.78,
       "high_52w_close": 1226.18,
       "high_52w_close_date": "2026-04-27",
-      "drawdown_pct": -46.94,
-      "ma200": 944.3,
+      "drawdown_pct": -46.52,
+      "ma200": 941.83,
       "below_ma200": true,
       "window_rows": 260,
-      "window_first_date": "2025-11-04",
+      "window_first_date": "2025-11-05",
       "high_at_window_edge": false,
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-26",
       "source": "yfinance ^KQ11",
       "grade": "一手"
     },
@@ -726,17 +726,17 @@
       "label": "日经 225",
       "is_proxy": false,
       "proxy_for": null,
-      "close": 57011.62,
-      "pct_change": -2.78,
+      "close": 57499.16,
+      "pct_change": 0.86,
       "high_52w_close": 72366.34,
       "high_52w_close_date": "2026-06-25",
-      "drawdown_pct": -21.22,
-      "ma200": 62309.79,
+      "drawdown_pct": -20.54,
+      "ma200": 62330.41,
       "below_ma200": true,
       "window_rows": 260,
-      "window_first_date": "2025-10-29",
+      "window_first_date": "2025-10-30",
       "high_at_window_edge": false,
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-26",
       "source": "yfinance ^N225",
       "grade": "一手"
     },
@@ -746,17 +746,17 @@
       "label": "恒生指数",
       "is_proxy": false,
       "proxy_for": null,
-      "close": 21966.01,
-      "pct_change": -1.14,
+      "close": 22226.88,
+      "pct_change": 1.19,
       "high_52w_close": 27968.09,
       "high_52w_close_date": "2026-01-29",
-      "drawdown_pct": -21.46,
-      "ma200": 25046.62,
+      "drawdown_pct": -20.53,
+      "ma200": 25023.58,
       "below_ma200": true,
       "window_rows": 260,
-      "window_first_date": "2025-11-06",
+      "window_first_date": "2025-11-07",
       "high_at_window_edge": false,
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-26",
       "source": "yfinance ^HSI",
       "grade": "一手"
     },
@@ -766,17 +766,17 @@
       "label": "恒生科技(ETF 代理)",
       "is_proxy": true,
       "proxy_for": "恒生科技指数 HSTECH",
-      "close": 3.31,
-      "pct_change": -2.24,
+      "close": 3.35,
+      "pct_change": 1.21,
       "high_52w_close": 5.86,
       "high_52w_close_date": "2025-11-13",
-      "drawdown_pct": -43.4,
-      "ma200": 4.54,
+      "drawdown_pct": -42.72,
+      "ma200": 4.53,
       "below_ma200": true,
       "window_rows": 260,
-      "window_first_date": "2025-11-06",
+      "window_first_date": "2025-11-07",
       "high_at_window_edge": false,
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-26",
       "source": "yfinance 3033.HK",
       "grade": "一手"
     },
@@ -786,17 +786,17 @@
       "label": "上证指数",
       "is_proxy": false,
       "proxy_for": null,
-      "close": 3476.47,
-      "pct_change": -2.03,
+      "close": 3476.88,
+      "pct_change": 0.01,
       "high_52w_close": 4242.57,
       "high_52w_close_date": "2026-05-13",
-      "drawdown_pct": -18.06,
-      "ma200": 3950.14,
+      "drawdown_pct": -18.05,
+      "ma200": 3946.83,
       "below_ma200": true,
       "window_rows": 260,
-      "window_first_date": "2025-10-31",
+      "window_first_date": "2025-11-03",
       "high_at_window_edge": false,
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-26",
       "source": "yfinance 000001.SS",
       "grade": "一手"
     },
@@ -806,17 +806,17 @@
       "label": "深证成指",
       "is_proxy": false,
       "proxy_for": null,
-      "close": 10086.36,
-      "pct_change": -3.24,
+      "close": 10084.04,
+      "pct_change": -0.02,
       "high_52w_close": 16372.5,
       "high_52w_close_date": "2026-06-22",
-      "drawdown_pct": -38.39,
-      "ma200": 13937.57,
+      "drawdown_pct": -38.41,
+      "ma200": 13916.34,
       "below_ma200": true,
       "window_rows": 260,
-      "window_first_date": "2025-10-31",
+      "window_first_date": "2025-11-03",
       "high_at_window_edge": false,
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-26",
       "source": "yfinance 399001.SZ",
       "grade": "一手"
     },
@@ -826,17 +826,17 @@
       "label": "科创50(ETF 代理)",
       "is_proxy": true,
       "proxy_for": "科创 50 指数 000688",
-      "close": 1.25,
-      "pct_change": -4.93,
+      "close": 1.23,
+      "pct_change": -1.67,
       "high_52w_close": 2.34,
       "high_52w_close_date": "2026-06-30",
-      "drawdown_pct": -46.5,
+      "drawdown_pct": -47.4,
       "ma200": 1.65,
       "below_ma200": true,
       "window_rows": 260,
-      "window_first_date": "2025-10-31",
+      "window_first_date": "2025-11-03",
       "high_at_window_edge": false,
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-26",
       "source": "yfinance 588000.SS",
       "grade": "一手"
     },
@@ -846,28 +846,28 @@
       "label": "创业板指(ETF 代理)",
       "is_proxy": true,
       "proxy_for": "创业板指 399006",
-      "close": 2.2,
-      "pct_change": -4.06,
+      "close": 2.22,
+      "pct_change": 0.82,
       "high_52w_close": 4.39,
       "high_52w_close_date": "2026-06-25",
-      "drawdown_pct": -49.97,
+      "drawdown_pct": -49.56,
       "ma200": 3.41,
       "below_ma200": true,
       "window_rows": 260,
-      "window_first_date": "2025-10-31",
+      "window_first_date": "2025-11-03",
       "high_at_window_edge": false,
-      "as_of": "2026-11-25",
+      "as_of": "2026-11-26",
       "source": "yfinance 159915.SZ",
       "grade": "一手"
     }
   ],
   "triggers": {
     "batch_1": {
-      "last_trading_day": "2026-11-25",
-      "low": 20.28,
-      "touched_20_5": true,
+      "last_trading_day": "2026-11-27",
+      "low": 24.16,
+      "touched_20_5": false,
       "touched_19_5": false,
-      "triggered": true,
+      "triggered": false,
       "source": "yfinance IONQ",
       "grade": "一手",
       "rule": "前一交易日最低价 ≤ 20.5 / 19.5",
@@ -876,10 +876,8 @@
     "batch_2": {
       "triggered": false,
       "gate_light_1_or_2": false,
-      "red_lights_lit": 1,
-      "lit": [
-        "3_ndx"
-      ],
+      "red_lights_lit": 0,
+      "lit": [],
       "unknown": [
         "4_oracle_cds"
       ],
@@ -887,9 +885,9 @@
     },
     "reversal_protection": {
       "triggered": false,
-      "close": 23.54,
-      "volume_ratio": 0.94,
-      "as_of": "2026-11-25",
+      "close": 24.97,
+      "volume_ratio": 0.61,
+      "as_of": "2026-11-27",
       "rule": "收盘 ≥ 33.1 且量比 ≥ 1.5",
       "source": "yfinance IONQ",
       "grade": "一手"
@@ -899,10 +897,10 @@
       "thresholds_are_script_defined": true,
       "2_spread_spike_then_retreat": {
         "triggered": false,
-        "max_in_window": 3.76,
-        "max_date": "2026-11-20",
-        "latest": 3.72,
-        "latest_date": "2026-11-24",
+        "max_in_window": 3.77,
+        "max_date": "2026-11-25",
+        "latest": 3.77,
+        "latest_date": "2026-11-26",
         "spike_min": 4.5,
         "retreat_pp": 0.5,
         "rule": "窗口内 HY OAS 曾 ≥ 4.5% 且已回落 ≥ 0.5pp（脚本口径）",
@@ -922,10 +920,10 @@
       },
       "7_ionq_capitulation": {
         "triggered": false,
-        "volume_ratio": 0.94,
-        "close_position": 0.9018,
-        "pct_change": 5.09,
-        "as_of": "2026-11-25",
+        "volume_ratio": 0.61,
+        "close_position": 0.6585,
+        "pct_change": 6.07,
+        "as_of": "2026-11-27",
         "rule": "量比 ≥ 2.0 且收盘位置 ≥ 0.5（放量后收在当日区间上半部 / 脚本口径）",
         "source": "yfinance IONQ",
         "grade": "一手"
@@ -937,7 +935,7 @@
         "armed_low": null,
         "recovered_date": null,
         "recovered_value": null,
-        "observations_since_peak": 36,
+        "observations_since_peak": 37,
         "min_since_peak": 31.7,
         "rule": "第一步已满足（待确认）：比例 < 10%；成立：之后任意一天比例 > 50%。只认纳指100 参考高点日（2026-10-06）之后出现的读数；若纳指100 收盘创新高，参考高点更新，本条状态清零。",
         "in_force": true,
@@ -945,8 +943,8 @@
         "anchor_source": "state/ndx_reference_peak.json（数据仓库存储状态，每次运行与 yfinance ^NDX 收盘核对）",
         "anchor_note": "锚点为存储的纳指100 参考高点，不再取自滚动窗口；当前参考高点仍是 2026-10-06，与 bear_clock.peak_close_date 一致。",
         "anchor_is_new_high_after_plan_peak": false,
-        "anchor_window_first_date": "2025-11-13",
-        "anchor_window_last_date": "2026-11-25",
+        "anchor_window_first_date": "2025-11-14",
+        "anchor_window_last_date": "2026-11-27",
         "anchor_window_rows": 260,
         "state_peak_date": "2026-10-06",
         "state_peak_close": 31224.47,
@@ -981,14 +979,6 @@
   ],
   "raw": {
     "ionq_daily": [
-      {
-        "date": "2026-09-02",
-        "open": 37.42,
-        "high": 38.24,
-        "low": 36.78,
-        "close": 37.64,
-        "volume": 13313100
-      },
       {
         "date": "2026-09-03",
         "open": 38.13,
@@ -1460,6 +1450,14 @@
         "low": 20.28,
         "close": 23.54,
         "volume": 23116900
+      },
+      {
+        "date": "2026-11-27",
+        "open": 24.75,
+        "high": 25.39,
+        "low": 24.16,
+        "close": 24.97,
+        "volume": 15112540
       }
     ],
     "crwv_daily": [
@@ -4814,13 +4812,17 @@
         "low": 37.4,
         "close": 42.57,
         "volume": 82504000
+      },
+      {
+        "date": "2026-11-27",
+        "open": 43.81,
+        "high": 44.22,
+        "low": 40.88,
+        "close": 44.15,
+        "volume": 41517676
       }
     ],
     "ndx_daily": [
-      {
-        "date": "2025-11-13",
-        "close": 24993.46
-      },
       {
         "date": "2025-11-14",
         "close": 25008.24
@@ -5856,13 +5858,13 @@
       {
         "date": "2026-11-25",
         "close": 26046.9
+      },
+      {
+        "date": "2026-11-27",
+        "close": 26726.39
       }
     ],
     "spx_daily": [
-      {
-        "date": "2025-11-13",
-        "close": 6737.49
-      },
       {
         "date": "2025-11-14",
         "close": 6734.11
@@ -6898,14 +6900,13 @@
       {
         "date": "2026-11-25",
         "close": 7182.78
+      },
+      {
+        "date": "2026-11-27",
+        "close": 7297.49
       }
     ],
     "vix_daily": [
-      {
-        "date": "2026-10-30",
-        "high": 23.93,
-        "close": 19.42
-      },
       {
         "date": "2026-11-02",
         "high": 21.77,
@@ -7000,18 +7001,15 @@
         "date": "2026-11-26",
         "high": 27.54,
         "close": 26.8
+      },
+      {
+        "date": "2026-11-27",
+        "high": 27.52,
+        "close": 23.81
       }
     ],
     "fred": {
       "BAMLH0A0HYM2": [
-        {
-          "date": "2026-10-14",
-          "value": 3.25
-        },
-        {
-          "date": "2026-10-15",
-          "value": 3.23
-        },
         {
           "date": "2026-10-16",
           "value": 3.31
@@ -7123,17 +7121,17 @@
         {
           "date": "2026-11-24",
           "value": 3.72
+        },
+        {
+          "date": "2026-11-25",
+          "value": 3.77
+        },
+        {
+          "date": "2026-11-26",
+          "value": 3.77
         }
       ],
       "BAMLH0A3HYC": [
-        {
-          "date": "2026-10-14",
-          "value": 12.82
-        },
-        {
-          "date": "2026-10-15",
-          "value": 12.78
-        },
         {
           "date": "2026-10-16",
           "value": 12.97
@@ -7245,6 +7243,14 @@
         {
           "date": "2026-11-24",
           "value": 14.05
+        },
+        {
+          "date": "2026-11-25",
+          "value": 14.17
+        },
+        {
+          "date": "2026-11-26",
+          "value": 14.17
         }
       ],
       "DGS10": [
@@ -7367,14 +7373,6 @@
       ],
       "BAMLH0A2HYB": [
         {
-          "date": "2026-10-14",
-          "value": 3.29
-        },
-        {
-          "date": "2026-10-15",
-          "value": 3.26
-        },
-        {
           "date": "2026-10-16",
           "value": 3.35
         },
@@ -7485,17 +7483,17 @@
         {
           "date": "2026-11-24",
           "value": 4.05
+        },
+        {
+          "date": "2026-11-25",
+          "value": 4.13
+        },
+        {
+          "date": "2026-11-26",
+          "value": 4.13
         }
       ],
       "BAMLH0A1HYBB": [
-        {
-          "date": "2026-10-14",
-          "value": 1.99
-        },
-        {
-          "date": "2026-10-15",
-          "value": 1.97
-        },
         {
           "date": "2026-10-16",
           "value": 2.03
@@ -7607,17 +7605,17 @@
         {
           "date": "2026-11-24",
           "value": 2.25
+        },
+        {
+          "date": "2026-11-25",
+          "value": 2.28
+        },
+        {
+          "date": "2026-11-26",
+          "value": 2.28
         }
       ],
       "BAMLC0A4CBBB": [
-        {
-          "date": "2026-10-14",
-          "value": 1.04
-        },
-        {
-          "date": "2026-10-15",
-          "value": 1.05
-        },
         {
           "date": "2026-10-16",
           "value": 1.06
@@ -7729,17 +7727,17 @@
         {
           "date": "2026-11-24",
           "value": 1.22
+        },
+        {
+          "date": "2026-11-25",
+          "value": 1.24
+        },
+        {
+          "date": "2026-11-26",
+          "value": 1.24
         }
       ],
       "BAMLC0A0CM": [
-        {
-          "date": "2026-10-14",
-          "value": 0.84
-        },
-        {
-          "date": "2026-10-15",
-          "value": 0.84
-        },
         {
           "date": "2026-10-16",
           "value": 0.85
@@ -7851,6 +7849,14 @@
         {
           "date": "2026-11-24",
           "value": 0.98
+        },
+        {
+          "date": "2026-11-25",
+          "value": 0.99
+        },
+        {
+          "date": "2026-11-26",
+          "value": 0.99
         }
       ]
     },
